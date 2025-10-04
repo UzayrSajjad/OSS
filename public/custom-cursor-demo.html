@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Dual-Circle Cursor - Plain HTML Version</title>
+  
+  <style>
+    /* ============================================
+       CSS VARIABLES FOR EASY THEMING
+       ============================================ */
+    :root {
+      --cursor-core-size: 12px;
+      --cursor-core-color: rgba(220, 38, 38, 1); /* Solid red */
+      --cursor-halo-size: 36px;
+      --cursor-halo-color: rgba(220, 38, 38, 0.18); /* Semi-transparent red */
+      --cursor-hover-scale-core: 1.4;
+      --cursor-hover-scale-halo: 1.6;
+      --cursor-pressed-scale: 0.85;
+    }
+
+    /* ============================================
+       HIDE DEFAULT CURSOR
+       ============================================ */
+    * {
+      cursor: none !important;
+    }
+
+    /* Show system cursor on form inputs for accessibility */
+    input,
+    textarea,
+    select,
+    [contenteditable="true"] {
+      cursor: text !important;
+    }
+
+    /* Show system cursor on disabled elements */
+    [disabled],
+    .disabled {
+      cursor: not-allowed !important;
+    }
+
+    /* ============================================
+       CUSTOM CURSOR ELEMENTS
+       ============================================ */
+    
+    /* Core Circle - Small solid circle */
+    .cursor-core {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: var(--cursor-core-size);
+      height: var(--cursor-core-size);
+      background: var(--cursor-core-color);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      transition: 
+        width 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+        height 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+        background 0.2s ease;
+      box-shadow: 
+        0 2px 6px rgba(0, 0, 0, 0.15),
+        0 1px 3px rgba(220, 38, 38, 0.3);
+      will-change: transform;
+      animation: cursorFadeIn 0.4s ease;
+    }
+
+    /* Halo Circle - Larger transparent ring */
+    .cursor-halo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: var(--cursor-halo-size);
+      height: var(--cursor-halo-size);
+      background: var(--cursor-halo-color);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99998;
+      transform: translate(-50%, -50%);
+      transition: 
+        width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+        height 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+        background 0.25s ease,
+        box-shadow 0.3s ease;
+      box-shadow: 
+        0 0 15px rgba(220, 38, 38, 0.2),
+        0 0 25px rgba(220, 38, 38, 0.1);
+      backdrop-filter: blur(1px);
+      will-change: transform;
+      animation: cursorFadeIn 0.4s ease;
+    }
+
+    /* ============================================
+       INTERACTION STATES
+       ============================================ */
+
+    /* Hover State - Enlarge and Glow */
+    .cursor-core.hovering {
+      width: calc(var(--cursor-core-size) * var(--cursor-hover-scale-core));
+      height: calc(var(--cursor-core-size) * var(--cursor-hover-scale-core));
+      background: rgba(220, 38, 38, 0.9);
+    }
+
+    .cursor-halo.hovering {
+      width: calc(var(--cursor-halo-size) * var(--cursor-hover-scale-halo));
+      height: calc(var(--cursor-halo-size) * var(--cursor-hover-scale-halo));
+      background: rgba(220, 38, 38, 0.25);
+      box-shadow: 
+        0 0 25px rgba(220, 38, 38, 0.4),
+        0 0 40px rgba(220, 38, 38, 0.25),
+        0 0 60px rgba(220, 38, 38, 0.15);
+    }
+
+    /* Pressed State - Compress */
+    .cursor-core.pressed {
+      width: calc(var(--cursor-core-size) * var(--cursor-pressed-scale));
+      height: calc(var(--cursor-core-size) * var(--cursor-pressed-scale));
+      transition: 
+        width 0.1s cubic-bezier(0.4, 0, 1, 1),
+        height 0.1s cubic-bezier(0.4, 0, 1, 1);
+    }
+
+    .cursor-halo.pressed {
+      width: calc(var(--cursor-halo-size) * var(--cursor-pressed-scale));
+      height: calc(var(--cursor-halo-size) * var(--cursor-pressed-scale));
+      transition: 
+        width 0.1s cubic-bezier(0.4, 0, 1, 1),
+        height 0.1s cubic-bezier(0.4, 0, 1, 1);
+    }
+
+    /* Fade in animation */
+    @keyframes cursorFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Hide on touch devices and small screens */
+    @media (max-width: 768px), (pointer: coarse) {
+      .cursor-core,
+      .cursor-halo {
+        display: none !important;
+      }
+      
+      * {
+        cursor: auto !important;
+      }
+    }
+
+    /* ============================================
+       DEMO PAGE STYLES (Remove in production)
+       ============================================ */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      margin: 0;
+      padding: 40px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .demo-container {
+      background: white;
+      padding: 60px;
+      border-radius: 20px;
+      max-width: 800px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .interactive-elements {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    button, a {
+      padding: 12px 24px;
+      background: #DC2626;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    button:hover, a:hover {
+      background: #B91C1C;
+    }
+
+    input {
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Custom Cursor Elements -->
+  <div class="cursor-core"></div>
+  <div class="cursor-halo"></div>
+
+  <!-- Demo Content -->
+  <div class="demo-container">
+    <h1>🎯 Custom Dual-Circle Cursor</h1>
+    <p>
+      This cursor features a <strong>solid red core</strong> that follows your pointer instantly,
+      and a <strong>semi-transparent halo</strong> that trails behind with a smooth delay.
+      Try hovering over the interactive elements below!
+    </p>
+
+    <div class="interactive-elements">
+      <button>Click Me</button>
+      <a href="#demo">Hover Link</a>
+      <input type="text" placeholder="Type here (system cursor)">
+    </div>
+
+    <p style="margin-top: 40px; font-size: 14px; color: #999;">
+      <strong>Note:</strong> To disable the custom cursor, add <code>data-no-custom-cursor="true"</code> 
+      to the <code>&lt;body&gt;</code> tag.
+    </p>
+  </div>
+
+  <script>
+    // ============================================
+    // CUSTOM CURSOR INITIALIZATION
+    // ============================================
+    
+    (function() {
+      'use strict';
+
+      // Check if user disabled custom cursor (accessibility)
+      const noCustomCursor = document.body.dataset.noCustomCursor === 'true';
+      if (noCustomCursor) return;
+
+      // Detect if device has fine pointer (mouse) vs coarse (touch)
+      const hasPointerFine = window.matchMedia('(pointer: fine)').matches;
+      const hasTouch = 'ontouchstart' in window;
+      const isMouseDevice = hasPointerFine && !hasTouch;
+      
+      if (!isMouseDevice) return; // Exit on touch devices
+
+      // Get cursor elements
+      const core = document.querySelector('.cursor-core');
+      const halo = document.querySelector('.cursor-halo');
+      
+      if (!core || !halo) return;
+
+      // Position tracking objects
+      const mousePos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+      const corePos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+      const haloPos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+      const velocity = { x: 0, y: 0 };
+      const prevMousePos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+
+      let isHovering = false;
+      let isPressed = false;
+
+      /**
+       * Linear interpolation helper
+       * Smoothly interpolates between start and end values
+       * @param {number} start - Starting value
+       * @param {number} end - Target value
+       * @param {number} factor - Interpolation factor (0-1)
+       */
+      function lerp(start, end, factor) {
+        return start + (end - start) * factor;
+      }
+
+      /**
+       * Mouse move handler
+       * Updates target position and calculates velocity
+       */
+      function handleMouseMove(e) {
+        mousePos.x = e.clientX;
+        mousePos.y = e.clientY;
+        
+        // Calculate velocity for stretch effect
+        velocity.x = e.clientX - prevMousePos.x;
+        velocity.y = e.clientY - prevMousePos.y;
+        
+        prevMousePos.x = e.clientX;
+        prevMousePos.y = e.clientY;
+      }
+
+      /**
+       * Mouse down handler
+       * Triggers pressed state for compression animation
+       */
+      function handleMouseDown() {
+        isPressed = true;
+        core.classList.add('pressed');
+        halo.classList.add('pressed');
+      }
+
+      /**
+       * Mouse up handler
+       * Releases pressed state
+       */
+      function handleMouseUp() {
+        isPressed = false;
+        core.classList.remove('pressed');
+        halo.classList.remove('pressed');
+      }
+
+      /**
+       * Hover detection for interactive elements
+       * Enlarges cursor when hovering clickable elements
+       */
+      function updateHoverState(e) {
+        const target = e.target;
+        const isInteractive = target.closest(
+          'a, button, [role="button"], [onclick], .clickable, summary, [tabindex]:not([tabindex="-1"])'
+        );
+        
+        const shouldHover = !!isInteractive;
+        
+        if (shouldHover !== isHovering) {
+          isHovering = shouldHover;
+          
+          if (isHovering) {
+            core.classList.add('hovering');
+            halo.classList.add('hovering');
+          } else {
+            core.classList.remove('hovering');
+            halo.classList.remove('hovering');
+          }
+        }
+      }
+
+      /**
+       * Animation loop using requestAnimationFrame
+       * Creates smooth cursor movement with different interpolation speeds
+       */
+      function animate() {
+        // Core follows instantly (lerp factor = 1)
+        corePos.x = lerp(corePos.x, mousePos.x, 1);
+        corePos.y = lerp(corePos.y, mousePos.y, 1);
+
+        // Halo follows with delay (lerp factor = 0.15)
+        haloPos.x = lerp(haloPos.x, mousePos.x, 0.15);
+        haloPos.y = lerp(haloPos.y, mousePos.y, 0.15);
+
+        // Calculate velocity-based stretch
+        const speed = Math.sqrt(velocity.x ** 2 + velocity.y ** 2);
+        const maxSpeed = 50; // Threshold for maximum stretch
+        const stretchFactor = Math.min(speed / maxSpeed, 1) * 0.15; // Max 15% stretch
+        
+        // Calculate stretch direction
+        const angle = Math.atan2(velocity.y, velocity.x);
+        const scaleX = 1 + stretchFactor * Math.abs(Math.cos(angle));
+        const scaleY = 1 + stretchFactor * Math.abs(Math.sin(angle));
+
+        // Apply transforms with GPU acceleration (translate3d)
+        core.style.transform = `translate3d(${corePos.x}px, ${corePos.y}px, 0)`;
+        halo.style.transform = `translate3d(${haloPos.x}px, ${haloPos.y}px, 0) scale(${scaleX}, ${scaleY})`;
+
+        // Decay velocity for smooth stop
+        velocity.x *= 0.9;
+        velocity.y *= 0.9;
+
+        // Continue loop
+        requestAnimationFrame(animate);
+      }
+
+      // Add event listeners
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mousedown', handleMouseDown);
+      window.addEventListener('mouseup', handleMouseUp);
+      document.addEventListener('mouseover', updateHoverState);
+      document.addEventListener('mouseout', updateHoverState);
+
+      // Start animation loop
+      requestAnimationFrame(animate);
+    })();
+  </script>
+</body>
+</html>

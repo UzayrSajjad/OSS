@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Inter:wght@300;400;600;700&display=swap');
+/* Use explicit weight list for Outfit to avoid PostCSS parser issues with the '..' range */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Prata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* Prevent content flash before preloader appears */
+body {
+  overflow: hidden;
+}
+
+body.loaded {
+  overflow: visible;
+}
+
+@layer base {
+  /* Brand palette (HSL values) - keep HSL format because tailwind config expects it */
+  :root {
+    /* Deep black background (#000101) */
+    --background: 0 0% 1%;
+    --foreground: 0 0% 100%;
+
+    /* Soft white (slightly muted white for premium feel) */
+    --soft-foreground: 0 0% 94%;
+
+    /* Accent red - deeper, more refined against black (approx #b71c2d) */
+    --accent: 349 72% 40%;
+
+    /* Muted gray (#8d8b8b) */
+    --muted-gray: 0 1% 55%;
+
+    /* Navbar background - slightly lighter than page background to differentiate */
+    --nav-bg: 0 0% 6%;
+
+    /* Map tokens used by tailwind/theme */
+    --primary: var(--accent);
+    --primary-foreground: var(--foreground);
+    --muted: var(--background);
+    --muted-foreground: var(--muted-gray);
+
+    --card: var(--background);
+    --card-foreground: var(--foreground);
+    --popover: var(--background);
+    --popover-foreground: var(--foreground);
+
+    --border: 0 0% 12%;
+    --input: 0 0% 6%;
+    --ring: var(--accent);
+
+    --radius: 0.5rem;
+  }
+
+  /* Keep dark class consistent */
+  .dark {
+    --background: 0 0% 1%;
+    --foreground: 0 0% 100%;
+  }
+
+  /* Base resets */
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body, #root { min-height: 100%; }
+  /* Prevent accidental horizontal overflow, but keep vertical scroll natural */
+  html, body { overflow-x: hidden; }
+  
+  /* Smooth scrolling for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Reset default margins/padding for consistent cross-browser behavior */
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    /* Use Outfit as the primary UI font with sensible fallbacks */
+    font-family: Outfit, Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.4;
+  }
+
+  h1, h2, h4, h5 {
+    font-family: 'Playfair Display', Inter, serif;
+    color: hsl(var(--foreground));
+  }
+
+  /* Ensure h3 headings use Outfit for consistency across pages */
+  h3 {
+    font-family: Outfit, Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    color: hsl(var(--soft-foreground));
+  }
+
+  /* Luxury headline style */
+  .brand-headline {
+    letter-spacing: -0.02em;
+    line-height: 1.15; /* tighter, but still allows descenders */
+    font-weight: 800;
+    /* Ensure hero headlines render the light gray immediately (prevent white flash) */
+    color: #d4d2d2;
+    padding-bottom: 0.1rem; /* reduce space below heading */
+  }
+
+  /* Small centered dash under large headings for a premium look */
+  .brand-headline::after {
+    content: '';
+    display: block;
+    width: 5.5rem;
+    height: 3px;
+    background: hsl(var(--accent));
+    margin: 0.5rem auto 0; /* much less space between heading and dash */
+    border-radius: 2px;
+    opacity: 0.95;
+  }
+
+  /* Remove dash from hero and contact headings */
+  .brand-headline.no-dash::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  /* subtle border default */
+  .divider { border-color: hsl(var(--muted-gray)); }
+}
+
+/* Animations for hero and carousels */
+@keyframes marquee-x {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-y {
+  0% { transform: translateY(0%); }
+  100% { transform: translateY(-50%); }
+}
+
+/* Pixel-based vertical marquee for variable-height content */
+@keyframes marquee-y-px {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(calc(var(--scroll-length) * -1)); }
+}
+
+.marquee-smooth { will-change: transform; }
+
+/* Utility for grayscale to color on hover for logos */
+.logo-gray { filter: grayscale(100%) contrast(90%); opacity: 0.85; transition: filter .35s ease, opacity .35s ease; }
+.logo-gray:hover { filter: none; opacity: 1; }
+
+/* Marquee container and fade edges (smooth with mask) */
+.marquee-container { position: relative; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%); }
+.marquee { display: flex; gap: 1.5rem; align-items: center; width: 300%; }
+.marquee > * { flex: 0 0 auto; }
+
+.edge-fade-left, .edge-fade-right {
+  position: absolute; top: 0; bottom: 0; width: 8rem; pointer-events: none; z-index: 10;
+}
+.edge-fade-left { left: 0; background: linear-gradient(90deg, hsl(var(--background)) 0%, transparent 75%); }
+.edge-fade-right { right: 0; background: linear-gradient(270deg, hsl(var(--background)) 0%, transparent 75%); }
+
+/* Soft mask for each horizontal row to give polished feel (backup to mask-image) */
+.row-mask { position: relative; }
+.row-mask::before, .row-mask::after { content: ''; position: absolute; top: 0; bottom: 0; width: 8rem; pointer-events: none; z-index: 10; }
+.row-mask::before { left: 0; background: linear-gradient(90deg, hsl(var(--background)) 0%, rgba(0,0,0,0) 70%); }
+.row-mask::after { right: 0; background: linear-gradient(270deg, hsl(var(--background)) 0%, rgba(0,0,0,0) 70%); }
+
+/* Re-usable marquee utility classes for durations */
+.marquee-slow { animation: marquee-x 60s linear infinite; }
+.marquee-medium { animation: marquee-x 45s linear infinite; }
+.marquee-fast { animation: marquee-x 30s linear infinite; }
+
+/* Allow reversing the marquee easily */
+.marquee-reverse { animation-direction: reverse; }
+
+/* Nav link styling */
+.nav-link { color: hsl(var(--muted-gray)); position: relative; padding: 0.25rem 0.25rem; font-weight: 600; transition: color .18s ease; }
+/* Remove decorative dash: keep pseudo-element but keep width disabled for accessibility if needed later */
+.nav-link::after { content: ''; position: absolute; left: 0; bottom: -6px; height: 2px; width: 0 !important; background: hsl(var(--accent)); transition: none; border-radius: 2px; pointer-events: none; }
+/* On hover/focus, nav links should use the brand accent (red) */
+.nav-link:hover { color: hsl(var(--accent)); }
+.nav-link:focus-visible { color: hsl(var(--accent)); }
+/* no underline expansion on hover - only color changes */
+.nav-link:hover::after { width: 0 !important; }
+
+/* Gradient text for highlighted headings (red → white → red) */
+.gradient-text {
+  background: linear-gradient(90deg, hsl(var(--accent)) 0%, hsl(var(--foreground)) 50%, hsl(var(--accent)) 100% );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  line-height: 1.2;
+  padding-bottom: 0.3em;
+}
+
+/* Hero vertical scroller: remove top fade, keep smooth bottom fade via mask */
+/* Increase mask coverage so bottom fade is longer and smoother */
+.hero-scroller { -webkit-mask-image: linear-gradient(to bottom, black 0%, black 86%, transparent 100%); mask-image: linear-gradient(to bottom, black 0%, black 86%, transparent 100%); z-index: 0; }
+
+.hero-scroller .scroller-fade-top { display: none; }
+
+.hero-scroller .scroller-fade-bottom {
+  position: absolute; left: 0; right: 0; height: 10rem; z-index: 10; pointer-events: none; mix-blend-mode: normal;
+  bottom: 0; background: linear-gradient(0deg, hsl(var(--background)) 0%, rgba(0,0,0,0) 90%);
+  transition: opacity 400ms ease;
+}
+
+/* Remove seams/aliasing on rounded floating panels */
+.no-seam { background-clip: padding-box; -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+
+/* Accessibility helpers */
+.sr-only { position: absolute !important; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px); white-space: nowrap; border: 0; padding: 0; }
+
+/* Buttons and card interactions */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; border-radius: .375rem; transition: transform .18s ease, box-shadow .18s ease, opacity .12s ease; }
+.btn:active { transform: translateY(1px) scale(.995); }
+
+.card-hover { transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s cubic-bezier(.2,.9,.2,1); }
+.card-hover:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 14px 40px rgba(0,0,0,0.6), 0 0 20px rgba(183,28,45,0.06); }
+
+/* Focus outlines for keyboard users */
+:focus { outline: none; }
+:focus-visible { outline: 3px solid rgba(183,28,45,0.12); outline-offset: 3px; border-radius: 6px; }
+
+/* Smooth scrolling */
+html { scroll-behavior: smooth; }
+
+/* Ensure header is fixed/sticky on small screens where desired */
+@media (max-width: 1024px) {
+  .mobile-sticky-header { position: fixed !important; top: 0 !important; left: 0; right: 0; z-index: 60; }
+}
+
+/* Mobile header: remove rounding and transitions */
+@media (max-width: 1024px) {
+  .mobile-sticky-header { border-radius: 0 !important; }
+  .mobile-sticky-header * { transition: none !important; border-radius: 0 !important; }
+  /* helper to add top padding to the page content to avoid being covered by fixed header */
+  .page-with-sticky-header { padding-top: 64px; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+/* Utility: hide scrollbars while preserving scroll behavior */
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Global play button used across video sections */
+.play-btn {
+  width: 64px !important;
+  height: 64px !important;
+  min-width: 64px !important;
+  min-height: 64px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 9999px !important; /* rounded-full fallback */
+  background: hsl(var(--accent)) !important;
+  transition: background-color .18s ease, transform .12s ease, box-shadow .12s ease;
+}
+.play-btn:hover { background: #b71c2d !important; }
+.play-btn:focus { outline: none !important; box-shadow: 0 0 0 6px rgba(183,28,45,0.08) !important; }
+.play-btn svg { width: 36px !important; height: 36px !important; display: block; margin: 0 auto; }
+
+@media (max-width: 640px) {
+  .play-btn { width: 56px !important; height: 56px !important; min-width: 56px !important; min-height: 56px !important; }
+  .play-btn svg { width: 30px !important; height: 30px !important; }
+}
