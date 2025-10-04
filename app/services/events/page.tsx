@@ -23,7 +23,7 @@ export default function EventsPage() {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-[hsl(var(--background))] pt-28 md:pt-32 pb-12">
+      <main className="min-h-screen bg-[hsl(var(--background))] pt-28 md:pt-32 pb-12 overflow-x-hidden w-full">
         <div className="max-w-6xl mx-auto px-6">
           {/* Page-scoped wrapper so we can override card sizing/grid only on this page */}
           <div className="events-page">

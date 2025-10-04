@@ -148,7 +148,7 @@ export default function OSSPuppetTheatrePage(){
   return (
     <>
       <Navbar />
-  <main className="min-h-screen bg-[hsl(var(--background))] pb-12 overflow-x-hidden">
+  <main className="min-h-screen bg-[hsl(var(--background))] pb-12 overflow-x-hidden w-full">
   {/* Hero slider — full-bleed and pulled up behind the fixed navbar */}
   <section className="relative w-full z-0">
           {/* full-width slider */}
@@ -609,7 +609,7 @@ export default function OSSPuppetTheatrePage(){
 function HeroSlider(){
   // single full-bleed background video with overlay and branding
   return (
-    <div className="relative w-screen left-1/2 right-1/2 -translate-x-1/2 h-[80vh] md:h-[90vh] lg:h-[100vh] overflow-hidden">
+    <div className="relative w-full h-[80vh] md:h-[90vh] lg:h-[100vh] overflow-hidden">
       <video
         src="https://res.cloudinary.com/djetoiflq/video/upload/v1759608287/OSSPT_PROMO_nmhbdt.mp4"
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"

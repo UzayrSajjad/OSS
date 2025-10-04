@@ -42,7 +42,7 @@ export default function MarketingPage(){
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-[hsl(var(--background))] pt-28 md:pt-32 pb-12">
+      <main className="min-h-screen bg-[hsl(var(--background))] pt-28 md:pt-32 pb-12 overflow-x-hidden w-full">
         <div className="max-w-6xl mx-auto px-6">
           <motion.h1
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold brand-headline text-center mx-auto max-w-4xl font-[Playfair]"

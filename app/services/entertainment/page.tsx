@@ -18,7 +18,7 @@ export default function EntertainmentPage(){
       <Navbar />
 
 
-      <main className="min-h-screen bg-[hsl(var(--background))] pt-28 md:pt-32 pb-12">
+      <main className="min-h-screen bg-[hsl(var(--background))] pt-28 md:pt-32 pb-12 overflow-x-hidden w-full">
         <div className="max-w-6xl mx-auto px-6">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold brand-headline text-center mx-auto max-w-4xl font-[Outfit]">
             <span className="gradient-text font-[Outfit]">OSS Puppet Theatre</span>

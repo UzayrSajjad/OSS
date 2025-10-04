@@ -22,9 +22,9 @@ export default function HomePage(){
   }, []);
 
   return (
-    <div className="min-h-screen bg-[hsl(var(--background))]">
+    <div className="min-h-screen bg-[hsl(var(--background))] overflow-x-hidden w-full">
       <Navbar />
-      <main>
+      <main className="overflow-x-hidden w-full">
         <Hero />
 
         <TrustedBy />
