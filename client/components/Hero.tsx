@@ -64,7 +64,7 @@ export default function Hero() {
 						Now offering services in
 					</span>
 					<div className="text-base sm:text-lg md:text-xl font-semibold text-white/95">
-						USA <span className="mx-3 text-gray-400">—</span> Saudi Arabia <span className="mx-3 text-gray-400">—</span> Dubai
+						USA <span className="mx-3 text-gray-400">—</span> QATAR <span className="mx-3 text-gray-400">—</span> PAKISTAN
 					</div>
 				</motion.div>
 
