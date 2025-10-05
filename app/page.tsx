@@ -17,8 +17,38 @@ import { events, entertainment, marketing, services } from '../client/data/servi
 
 export default function HomePage(){
   useEffect(() => {
-    // Scroll to top on page load to prevent auto-scrolling to hash anchors
-    window.scrollTo(0, 0);
+    // Check if there's a hash in the URL
+    const hash = window.location.hash;
+    
+    if (hash) {
+      // Delay to ensure the page is fully rendered and sections are painted
+      const timeoutId = setTimeout(() => {
+        const sectionId = hash.substring(1); // Remove the '#'
+        const element = document.getElementById(sectionId);
+        if (element) {
+          // Scroll with smooth behavior and account for fixed navbar
+          const navbarHeight = 80; // Approximate navbar height
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - navbarHeight;
+          
+          // Check if smooth scrolling is supported (Safari 15.4+)
+          try {
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          } catch (error) {
+            // Fallback for older browsers
+            window.scrollTo(0, offsetPosition);
+          }
+        }
+      }, 150);
+      
+      return () => clearTimeout(timeoutId);
+    } else {
+      // Scroll to top on page load when no hash is present
+      window.scrollTo(0, 0);
+    }
   }, []);
 
   return (

@@ -31,19 +31,43 @@ export default function Modal({ open, onClose, children, title }: { open: boolea
       // Save current scroll position
       scrollYRef.current = window.scrollY;
       
-      // Lock body scroll using overflow hidden only
+      // Lock body scroll and fix position to prevent jumping
+      body.style.position = 'fixed';
+      body.style.top = `-${scrollYRef.current}px`;
+      body.style.left = '0';
+      body.style.right = '0';
       body.style.overflow = 'hidden';
-      body.style.paddingRight = `${window.innerWidth - document.documentElement.clientWidth}px`; // Prevent layout shift from scrollbar
-    } else {
-      // Restore body scroll
+    } else if (scrollYRef.current !== 0) {
+      // Restore scroll position BEFORE removing fixed positioning to prevent jump
+      const scrollY = scrollYRef.current;
+      
+      // Remove fixed positioning
+      body.style.position = '';
+      body.style.top = '';
+      body.style.left = '';
+      body.style.right = '';
       body.style.overflow = '';
-      body.style.paddingRight = '';
+      
+      // Use requestAnimationFrame to ensure the style changes are applied
+      // before scrolling, preventing any visual jump
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: scrollY, behavior: 'instant' });
+      });
     }
 
     // Cleanup on unmount
     return () => {
+      const scrollY = scrollYRef.current;
+      body.style.position = '';
+      body.style.top = '';
+      body.style.left = '';
+      body.style.right = '';
       body.style.overflow = '';
-      body.style.paddingRight = '';
+      if (scrollY !== 0) {
+        requestAnimationFrame(() => {
+          window.scrollTo({ top: scrollY, behavior: 'instant' });
+        });
+      }
     };
   }, [open]);
 

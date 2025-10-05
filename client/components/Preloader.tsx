@@ -33,7 +33,7 @@ export default function Preloader() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="fixed inset-0 z-[99999] flex items-center justify-center bg-black"
+          className="fixed inset-0 z-[99999] flex items-center justify-center bg-white"
           style={{ pointerEvents: isLoading ? 'auto' : 'none' }}
         >
           <div className="relative flex flex-col items-center justify-center">
@@ -52,7 +52,7 @@ export default function Preloader() {
             </motion.div>
 
             {/* Animated Loading Bar */}
-            <div className="w-48 sm:w-64 h-1 bg-zinc-800 rounded-full overflow-hidden">
+            <div className="w-48 sm:w-64 h-1 bg-gray-200 rounded-full overflow-hidden">
               <motion.div
                 initial={{ width: "0%" }}
                 animate={{ width: "100%" }}
@@ -66,22 +66,10 @@ export default function Preloader() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.5 }}
-              className="mt-6 text-white/70 text-sm sm:text-base font-[Outfit] tracking-wider"
+              className="mt-6 text-gray-600 text-sm sm:text-base font-[Outfit] tracking-wider"
             >
               Loading Experience...
             </motion.p>
-
-            {/* Spinning Circle Accent */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              className="absolute -z-10 w-32 h-32 sm:w-40 sm:h-40 border-2 border-[#AE1D36]/20 rounded-full"
-            />
-            <motion.div
-              animate={{ rotate: -360 }}
-              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-              className="absolute -z-10 w-40 h-40 sm:w-48 sm:h-48 border-2 border-[#DC2626]/10 rounded-full"
-            />
           </div>
         </motion.div>
       )}

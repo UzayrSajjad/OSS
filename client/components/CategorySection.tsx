@@ -193,7 +193,7 @@ export default function CategorySection({ title, items, isLanding = false, secti
               <p className="text-lg sm:text-xl leading-relaxed text-center mt-4">From concept to execution, OSS ensured a seamless, vibrant, and memorable experience — honoring Kids Kampus's legacy with creativity and excellence.</p>
             </div>
             <div className="max-w-5xl mx-auto">
-              <div className="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px]">
+              <div className="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px] relative">
                 {!showPuppetPlayer ? (
                   <div className="relative w-full h-full flex items-center justify-center bg-black">
                     <img
@@ -212,15 +212,17 @@ export default function CategorySection({ title, items, isLanding = false, secti
                     </button>
                   </div>
                 ) : (
-                  <ReactPlayer
-                    src="https://res.cloudinary.com/djetoiflq/video/upload/v1759001886/KK_Karnival_Polo_Ground_qrtinr.mov"
-                    playing={true}
-                    controls={true}
-                    width="100%"
-                    height="100%"
-                    className="react-player"
-                    style={{ borderRadius: '0.75rem', overflow: 'hidden' }}
-                  />
+                  <div className="absolute inset-0 w-full h-full">
+                    <ReactPlayer
+                      src="https://res.cloudinary.com/djetoiflq/video/upload/v1759001886/KK_Karnival_Polo_Ground_qrtinr.mov"
+                      playing={true}
+                      controls={true}
+                      width="100%"
+                      height="100%"
+                      className="react-player"
+                      style={{ position: 'absolute', top: 0, left: 0 }}
+                    />
+                  </div>
                 )}
               </div>
             </div>
@@ -268,7 +270,7 @@ export default function CategorySection({ title, items, isLanding = false, secti
                     <div className="w-full h-64 sm:h-[420px] md:h-[520px] block relative">
                       {lacasSelected === lacasGallery.length ? (
                         // Show video when last item is selected
-                        <div className="w-full h-full">
+                        <div className="w-full h-full relative overflow-hidden">
                           {!showLacasPlayer ? (
                             <div className="relative w-full h-full flex items-center justify-center bg-black">
                               <img
@@ -287,15 +289,17 @@ export default function CategorySection({ title, items, isLanding = false, secti
                               </button>
                             </div>
                           ) : (
-                            <ReactPlayer
-                              src="https://res.cloudinary.com/djetoiflq/video/upload/v1759605739/LACAS_1_mdbnw8.mp4"
-                              playing={true}
-                              controls={true}
-                              width="100%"
-                              height="100%"
-                              className="react-player"
-                              style={{ borderRadius: '0rem', overflow: 'hidden' }}
-                            />
+                            <div className="absolute inset-0 w-full h-full">
+                              <ReactPlayer
+                                src="https://res.cloudinary.com/djetoiflq/video/upload/v1759605739/LACAS_1_mdbnw8.mp4"
+                                playing={true}
+                                controls={true}
+                                width="100%"
+                                height="100%"
+                                className="react-player"
+                                style={{ position: 'absolute', top: 0, left: 0 }}
+                              />
+                            </div>
                           )}
                         </div>
                       ) : (
@@ -391,7 +395,7 @@ export default function CategorySection({ title, items, isLanding = false, secti
                 whileInView={{ opacity: 1, y: 0 }} 
                 viewport={{ once: true, amount: 0.4 }} 
                 transition={{ duration: 0.6 }} 
-                className="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px]"
+                className="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px] relative"
               >
                 {!showMidCityPlayer ? (
                   <div className="relative w-full h-full flex items-center justify-center bg-black">
@@ -411,15 +415,17 @@ export default function CategorySection({ title, items, isLanding = false, secti
                     </button>
                   </div>
                 ) : (
-                  <ReactPlayer
-                    src="https://res.cloudinary.com/djetoiflq/video/upload/v1759002209/fd9704cd-1fa9-42b2-9a92-21699c5a651a_wltcdk.mov"
-                    playing={true}
-                    controls={true}
-                    width="100%"
-                    height="100%"
-                    className="react-player"
-                    style={{ borderRadius: '0.75rem', overflow: 'hidden' }}
-                  />
+                  <div className="absolute inset-0 w-full h-full">
+                    <ReactPlayer
+                      src="https://res.cloudinary.com/djetoiflq/video/upload/v1759002209/fd9704cd-1fa9-42b2-9a92-21699c5a651a_wltcdk.mov"
+                      playing={true}
+                      controls={true}
+                      width="100%"
+                      height="100%"
+                      className="react-player"
+                      style={{ position: 'absolute', top: 0, left: 0 }}
+                    />
+                  </div>
                 )}
               </motion.div>
             </div>

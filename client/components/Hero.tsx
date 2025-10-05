@@ -85,7 +85,7 @@ export default function Hero() {
 						href="#works"
 						className="w-full sm:w-auto bg-[hsl(var(--muted-gray))] text-white px-7 py-3.5 rounded-xl font-semibold text-base shadow-lg hover:bg-[hsl(var(--muted-gray))]/85 transition-all duration-300"
 					>
-						Our Works
+						Our Portfolio
 					</a>
 				</motion.div>
 			</div>

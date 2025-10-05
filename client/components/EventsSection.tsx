@@ -134,7 +134,7 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
         <div className="mt-8">
           <div className="max-w-5xl mx-auto">
             <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-3xl sm:text-4xl md:text-5xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-4 max-w-5xl tracking-wider uppercase">CORPORATE DINNER — BRITISH HIGH COMMISSION</motion.h3>
-            <motion.div initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px]">
+            <motion.div initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px] relative">
               {!showPlayer ? (
                 <div className="relative w-full h-full flex items-center justify-center bg-black">
                   <img
@@ -153,15 +153,17 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
                   </button>
                 </div>
               ) : (
-                <ReactPlayer
-                  src="https://res.cloudinary.com/djetoiflq/video/upload/v1758960981/British_High_Commission_-_Nov_2024_ze5iou.mp4"
-                  playing={true}
-                  controls={true}
-                  width="100%"
-                  height="100%"
-                  className="react-player"
-                  style={{ borderRadius: '0.75rem', overflow: 'hidden' }}
-                />
+                <div className="absolute inset-0 w-full h-full">
+                  <ReactPlayer
+                    src="https://res.cloudinary.com/djetoiflq/video/upload/v1758960981/British_High_Commission_-_Nov_2024_ze5iou.mp4"
+                    playing={true}
+                    controls={true}
+                    width="100%"
+                    height="100%"
+                    className="react-player"
+                    style={{ position: 'absolute', top: 0, left: 0 }}
+                  />
+                </div>
               )}
             </motion.div>
           </div>
@@ -228,7 +230,7 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
   <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-48 text-3xl sm:text-4xl md:text-5xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-8 max-w-5xl mx-auto tracking-wider uppercase">SUFI NIGHT AT THE HISTORIC CHOWK MASJID WAZIR KHAN</motion.h3>
   <div className="mt-8">
     <div className="max-w-5xl mx-auto">
-      <motion.div initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px]">
+      <motion.div initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px] relative">
               {!showSufiPlayer ? (
           <div className="relative w-full h-full flex items-center justify-center bg-black">
             <img
@@ -247,15 +249,17 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
             </button>
           </div>
         ) : (
-          <ReactPlayer
-            src="https://res.cloudinary.com/djetoiflq/video/upload/v1758972598/sn-promo2_rumaqa.mp4"
-            playing={true}
-            controls={true}
-            width="100%"
-            height="100%"
-            className="react-player"
-            style={{ borderRadius: '0.75rem', overflow: 'hidden' }}
-          />
+          <div className="absolute inset-0 w-full h-full">
+            <ReactPlayer
+              src="https://res.cloudinary.com/djetoiflq/video/upload/v1758972598/sn-promo2_rumaqa.mp4"
+              playing={true}
+              controls={true}
+              width="100%"
+              height="100%"
+              className="react-player"
+              style={{ position: 'absolute', top: 0, left: 0 }}
+            />
+          </div>
         )}
       </motion.div>
     </div>
@@ -320,7 +324,7 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
       {/* Exclusive HUM TV coverage block (moved above cards) */}
       <div className="mt-12 max-w-5xl mx-auto px-4 sm:px-6">
   <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-3xl sm:text-4xl md:text-5xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-6 tracking-wider uppercase">EXCLUSIVE COVERAGE BY HUM NEWS</motion.h3>
-        <motion.div initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[180px] sm:min-h-[220px] md:min-h-[260px] lg:min-h-[300px]">
+        <motion.div initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[180px] sm:min-h-[220px] md:min-h-[260px] lg:min-h-[300px] relative">
           <div className="relative w-full h-full flex items-center justify-center bg-black">
             {!showSufiPlayer ? (
               <>
@@ -330,7 +334,9 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
                 </button>
               </>
             ) : (
-              <ReactPlayer src="https://res.cloudinary.com/djetoiflq/video/upload/v1758990823/sufi-night-humtv-coverage_ioexrw.mp4" playing={true} controls={true} width="100%" height="100%" className="react-player" style={{ borderRadius: '0.5rem', overflow: 'hidden' }} />
+              <div className="absolute inset-0 w-full h-full">
+                <ReactPlayer src="https://res.cloudinary.com/djetoiflq/video/upload/v1758990823/sufi-night-humtv-coverage_ioexrw.mp4" playing={true} controls={true} width="100%" height="100%" className="react-player" style={{ position: 'absolute', top: 0, left: 0 }} />
+              </div>
             )}
           </div>
         </motion.div>
