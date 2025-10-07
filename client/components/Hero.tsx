@@ -8,11 +8,38 @@ export default function Hero() {
 	const videoRef = React.useRef<HTMLVideoElement>(null);
 
 	useEffect(() => {
-		// Ensure video plays on component mount
-		if (videoRef.current) {
-			videoRef.current.play().catch((error) => {
-				console.log("Video autoplay failed:", error);
-			});
+		// Ensure video plays on component mount with retry
+		const playVideo = async () => {
+			if (videoRef.current) {
+				try {
+					videoRef.current.muted = true; // Ensure muted for autoplay
+					await videoRef.current.play();
+					console.log("Video playing successfully");
+				} catch (error) {
+					console.log("Video autoplay failed, retrying...", error);
+					// Retry after a short delay
+					setTimeout(() => {
+						if (videoRef.current) {
+							videoRef.current.play().catch(e => console.log("Retry failed:", e));
+						}
+					}, 1000);
+				}
+			}
+		};
+		
+		playVideo();
+		
+		// Also try to play when video data is loaded
+		const handleCanPlay = () => {
+			if (videoRef.current && videoRef.current.paused) {
+				videoRef.current.play().catch(e => console.log("Play on canplay failed:", e));
+			}
+		};
+		
+		const videoElement = videoRef.current;
+		if (videoElement) {
+			videoElement.addEventListener('canplay', handleCanPlay);
+			return () => videoElement.removeEventListener('canplay', handleCanPlay);
 		}
 	}, []);
 
@@ -35,16 +62,23 @@ export default function Hero() {
 			{/* Background Video - loads after page is ready */}
 			<video
 				ref={videoRef}
-				className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-					videoLoaded ? 'opacity-100' : 'opacity-0'
-				}`}
+				className="absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-700"
 				autoPlay
 				loop
 				muted
 				playsInline
 				aria-hidden="true"
 				preload="auto"
-				onLoadedData={() => setVideoLoaded(true)}
+				onLoadedData={() => {
+					console.log("Video loaded successfully");
+					setVideoLoaded(true);
+				}}
+				onError={(e) => {
+					console.error("Video loading error:", e);
+				}}
+				onPlay={() => {
+					console.log("Video started playing");
+				}}
 			>
 				<source
 					src="https://res.cloudinary.com/djetoiflq/video/upload/q_auto/v1758960981/British_High_Commission_-_Nov_2024_ze5iou.mp4"
