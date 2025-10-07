@@ -6,6 +6,8 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Modal from './Modal';
 import EventGallery from './EventGallery';
+import LazyImage from './LazyImage';
+import LazyVideo from './LazyVideo';
 
 export type Item = { id: number; title: string; image?: string; short?: string; long?: string; images?: string[] };
 
@@ -135,36 +137,12 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
           <div className="max-w-5xl mx-auto">
             <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-3xl sm:text-4xl md:text-5xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-4 max-w-5xl tracking-wider uppercase">CORPORATE DINNER — BRITISH HIGH COMMISSION</motion.h3>
             <motion.div initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px] relative">
-              {!showPlayer ? (
-                <div className="relative w-full h-full flex items-center justify-center bg-black">
-                  <img
-                    src="https://res.cloudinary.com/djetoiflq/image/upload/v1758961687/be4_ekrgfo.png"
-                    alt="Video thumbnail"
-                    className="absolute inset-0 w-full h-full object-cover z-0"
-                  />
-                  <button
-                    onClick={() => setShowPlayer(true)}
-                    className="z-10 play-btn shadow-lg focus:outline-none"
-                    aria-label="Play video"
-                  >
-                    <svg viewBox="0 0 64 64" fill="white" className="w-12 h-12 sm:w-16 sm:h-16">
-                      <polygon points="24,10 54,32 24,54" fill="white" />
-                    </svg>
-                  </button>
-                </div>
-              ) : (
-                <div className="absolute inset-0 w-full h-full">
-                  <ReactPlayer
-                    src="https://res.cloudinary.com/djetoiflq/video/upload/v1758960981/British_High_Commission_-_Nov_2024_ze5iou.mp4"
-                    playing={true}
-                    controls={true}
-                    width="100%"
-                    height="100%"
-                    className="react-player"
-                    style={{ position: 'absolute', top: 0, left: 0 }}
-                  />
-                </div>
-              )}
+              <LazyVideo
+                src="https://res.cloudinary.com/djetoiflq/video/upload/v1758960981/British_High_Commission_-_Nov_2024_ze5iou.mp4"
+                thumbnail="https://res.cloudinary.com/djetoiflq/image/upload/v1758961687/be4_ekrgfo.png"
+                thumbnailAlt="British High Commission video thumbnail"
+                playing={true}
+              />
             </motion.div>
           </div>
         </div>
@@ -187,7 +165,7 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
               <div className="relative">
                 {/* Main gallery image with navigation buttons overlaid */}
                 <div className="w-full h-64 sm:h-[420px] md:h-[520px] block relative">
-                  <img src={gallery[selected]} alt={`Event image ${selected+1}`} className="w-full h-full object-cover" />
+                  <LazyImage src={gallery[selected]} alt={`Event image ${selected+1}`} className="w-full h-full object-cover" />
                   
                   {/* Left navigation button on main image */}
                   <button aria-label="Previous image" type="button" onClick={prev} className="absolute top-1/2 -translate-y-1/2 z-20 left-3 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 backdrop-blur-md hover:bg-black/60 hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50">
@@ -215,7 +193,7 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
                       const fixedWidth = thumbWidth ?? 160;
                       return (
                         <button key={g + i} onClick={() => setSelected(i)} aria-label={`Select image ${i+1}`} className={`rounded-md overflow-hidden flex-shrink-0 snap-start border ${marginClass} ${i===selected ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none h-16 sm:h-20 md:h-24`} style={{ width: `${fixedWidth}px` }}>
-                          <img src={g} alt={`thumb-${i+1}`} className="w-full h-full object-cover" />
+                          <LazyImage src={g} alt={`thumb-${i+1}`} className="w-full h-full object-cover" />
                         </button>
                       );
                   })}
@@ -249,17 +227,12 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
             </button>
           </div>
         ) : (
-          <div className="absolute inset-0 w-full h-full">
-            <ReactPlayer
-              src="https://res.cloudinary.com/djetoiflq/video/upload/v1758972598/sn-promo2_rumaqa.mp4"
-              playing={true}
-              controls={true}
-              width="100%"
-              height="100%"
-              className="react-player"
-              style={{ position: 'absolute', top: 0, left: 0 }}
-            />
-          </div>
+          <LazyVideo
+            src="https://res.cloudinary.com/djetoiflq/video/upload/v1758972598/sn-promo2_rumaqa.mp4"
+            thumbnail="https://res.cloudinary.com/djetoiflq/image/upload/v1758990897/Screenshot_from_2025-09-27_21-34-24_sjg35n.png"
+            thumbnailAlt="Sufi Night video thumbnail"
+            playing={true}
+          />
         )}
       </motion.div>
     </div>
@@ -283,7 +256,7 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
       <div className="rounded-lg overflow-hidden bg-black relative">
         <div className="relative">
           <div className="w-full h-64 sm:h-[420px] md:h-[520px] block relative">
-            <img src={sufiGallery[sufiSelected]} alt={`Sufi image ${sufiSelected+1}`} className="w-full h-full object-cover" />
+            <LazyImage src={sufiGallery[sufiSelected]} alt={`Sufi image ${sufiSelected+1}`} className="w-full h-full object-cover" />
             
             {/* Left navigation button on main image */}
             <button aria-label="Previous Sufi image" type="button" onClick={() => setSufiSelected((s) => (s - 1 + sufiGallery.length) % sufiGallery.length)} className="absolute top-1/2 -translate-y-1/2 z-20 left-3 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 backdrop-blur-md hover:bg-black/60 hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50">
@@ -311,7 +284,7 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
               const sfFixedWidth = sufiThumbWidth ?? 160;
               return (
                 <button key={g + i} onClick={() => setSufiSelected(i)} aria-label={`Select sufi image ${i+1}`} className={`rounded-md overflow-hidden flex-shrink-0 snap-start border ${marginClass} ${i===sufiSelected ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none h-16 sm:h-20 md:h-24`} style={{ width: `${sfFixedWidth}px` }}>
-                  <img src={g} alt={`sufi-thumb-${i+1}`} className="w-full h-full object-cover" />
+                  <LazyImage src={g} alt={`sufi-thumb-${i+1}`} className="w-full h-full object-cover" />
                 </button>
               );
             })}
@@ -334,9 +307,12 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
                 </button>
               </>
             ) : (
-              <div className="absolute inset-0 w-full h-full">
-                <ReactPlayer src="https://res.cloudinary.com/djetoiflq/video/upload/v1758990823/sufi-night-humtv-coverage_ioexrw.mp4" playing={true} controls={true} width="100%" height="100%" className="react-player" style={{ position: 'absolute', top: 0, left: 0 }} />
-              </div>
+              <LazyVideo
+                src="https://res.cloudinary.com/djetoiflq/video/upload/v1758990823/sufi-night-humtv-coverage_ioexrw.mp4"
+                thumbnail="https://res.cloudinary.com/djetoiflq/image/upload/v1758990897/Screenshot_from_2025-09-27_21-34-24_sjg35n.png"
+                thumbnailAlt="HUM TV coverage thumbnail"
+                playing={true}
+              />
             )}
           </div>
         </motion.div>
@@ -351,7 +327,7 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
             return (
               <article key={it.id} role="button" tabIndex={0} onClick={() => { setSelected(idx); setOpen(true); }} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { setSelected(idx); setOpen(true); } }} className="group rounded-3xl overflow-hidden bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 border border-[hsl(var(--border))] shadow-2xl hover:shadow-[0_12px_40px_rgba(0,0,0,0.25)] hover:-translate-y-2 transition-all duration-200 cursor-pointer my-0">
                 <div className="relative h-60 overflow-hidden rounded-t-2xl">
-                  <img src={cover} alt={it.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                  <LazyImage src={cover} alt={it.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                   <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
                     <h4 className={smallHeadings ? "text-base text-white font-extrabold mb-1 drop-shadow font-[Outfit]" : "text-2xl text-white font-extrabold mb-1 drop-shadow font-[Outfit]"}>{it.title}</h4>
                   </div>
@@ -379,7 +355,7 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
                 ) : (
                   items[selected] && items[selected].image ? (
                     <div className="rounded-md overflow-hidden bg-zinc-900">
-                      <img src={items[selected].image} alt={items[selected].title} className="w-full h-80 object-cover rounded-md" />
+                      <LazyImage src={items[selected].image} alt={items[selected].title} className="w-full h-80 object-cover rounded-md" />
                     </div>
                   ) : null
                 )}

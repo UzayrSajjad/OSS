@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
+import LazyImage from './LazyImage';
 
 export default function EventGallery({ images, large = false }: { images: string[], large?: boolean }){
   const [index, setIndex] = useState(0);
@@ -33,14 +34,14 @@ export default function EventGallery({ images, large = false }: { images: string
     <div className="event-gallery">
       <div className="w-full rounded-md overflow-hidden relative">
         {large ? (
-          <img 
+          <LazyImage 
             src={images[index]} 
             alt={`Gallery image ${index+1}`} 
             className="w-full h-auto max-h-[40vh] sm:max-h-[50vh] md:max-h-[55vh] lg:max-h-[60vh] object-contain bg-black rounded-md" 
             onClick={() => { if (!large) setOpen(true); }} 
           />
         ) : (
-          <img 
+          <LazyImage 
             src={images[index]} 
             alt={`Gallery image ${index+1}`} 
             className="w-full object-cover rounded-md cursor-pointer" 
@@ -71,7 +72,7 @@ export default function EventGallery({ images, large = false }: { images: string
             onClick={() => setIndex(i)} 
             className={`flex-shrink-0 rounded-md overflow-hidden border ${i===index ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none w-20 h-14 sm:w-24 sm:h-16 md:w-28 md:h-[72px] lg:w-32 lg:h-20`}
           >
-            <img src={img} alt={`thumb-${i+1}`} className="w-full h-full object-cover" />
+            <LazyImage src={img} alt={`thumb-${i+1}`} className="w-full h-full object-cover" />
           </button>
         ))}
       </div>
@@ -79,7 +80,7 @@ export default function EventGallery({ images, large = false }: { images: string
       {open && !large && (
         <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
           <button onClick={() => setOpen(false)} className="absolute top-6 right-6 z-60 text-white text-2xl">✕</button>
-          <img src={images[index]} alt={`Lightbox ${index+1}`} className="max-h-[90vh] max-w-[90vw] object-contain" />
+          <LazyImage src={images[index]} alt={`Lightbox ${index+1}`} className="max-h-[90vh] max-w-[90vw] object-contain" />
         </div>
       )}
     </div>

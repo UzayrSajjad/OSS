@@ -8,20 +8,18 @@ import Navbar from '../../../client/components/Navbar';
 import Footer from '../../../client/components/Footer';
 import Modal from '../../../client/components/Modal';
 import { entertainment } from '../../../client/data/services';
+import LazyImage from '../../../client/components/LazyImage';
+import LazyVideo from '../../../client/components/LazyVideo';
 
 type EntItem = { id: number; title: string; image: string; short?: string; long?: string };
 
 export default function OSSPuppetTheatrePage(){
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<EntItem | null>(null);
-  const [showDiscoverPlayer, setShowDiscoverPlayer] = useState(false);
   // booking modal state
   const [bookingOpen, setBookingOpen] = useState(false);
   const [bookingPdf, setBookingPdf] = useState<string | null>(null);
   const [bookingTitle, setBookingTitle] = useState<string | null>(null);
-  
-  // Kids Kampus state
-  const [showKidsKampusPlayer, setShowKidsKampusPlayer] = useState(false);
 
   // LACAS Puppet Show Gallery state
   const lacasGallery = [
@@ -37,7 +35,6 @@ export default function OSSPuppetTheatrePage(){
     'https://res.cloudinary.com/djetoiflq/image/upload/v1759604812/7_nnkk9t.jpg',
   ];
   const [lacasSelected, setLacasSelected] = useState(0);
-  const [showLacasPlayer, setShowLacasPlayer] = useState(false);
   const lacasStripRef = useRef<HTMLDivElement | null>(null);
   const [lacasThumbWidth, setLacasThumbWidth] = useState<number | null>(null);
 
@@ -55,7 +52,6 @@ export default function OSSPuppetTheatrePage(){
     'https://res.cloudinary.com/djetoiflq/image/upload/v1759606965/10_t3ljmk.jpg',
   ];
   const [midCitySelected, setMidCitySelected] = useState(0);
-  const [showMidCityPlayer, setShowMidCityPlayer] = useState(false);
   const midCityStripRef = useRef<HTMLDivElement | null>(null);
   const [midCityThumbWidth, setMidCityThumbWidth] = useState<number | null>(null);
 
@@ -179,35 +175,13 @@ export default function OSSPuppetTheatrePage(){
               <p className="text-lg sm:text-xl leading-relaxed text-center mt-4">From concept to execution, OSS ensured a seamless, vibrant, and memorable experience — honoring Kids Kampus's legacy with creativity and excellence.</p>
             </div>
             <div className="max-w-5xl mx-auto">
-              <div className="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px]">
-                {!showKidsKampusPlayer ? (
-                  <div className="relative w-full h-full flex items-center justify-center bg-black">
-                    <img
-                      src="https://res.cloudinary.com/djetoiflq/image/upload/v1759606594/Screenshot_From_2025-10-05_00-36-16_bzhxah.png"
-                      alt="Kids Kampus 50th Anniversary thumbnail"
-                      className="absolute inset-0 w-full h-full object-cover z-0"
-                    />
-                    <button
-                      onClick={() => setShowKidsKampusPlayer(true)}
-                      className="z-10 play-btn shadow-lg focus:outline-none"
-                      aria-label="Play Kids Kampus 50th Anniversary video"
-                    >
-                      <svg viewBox="0 0 64 64" fill="white" className="w-12 h-12 sm:w-16 sm:h-16">
-                        <polygon points="24,10 54,32 24,54" fill="white" />
-                      </svg>
-                    </button>
-                  </div>
-                ) : (
-                  <ReactPlayer
-                    src="https://res.cloudinary.com/djetoiflq/video/upload/v1759001886/KK_Karnival_Polo_Ground_qrtinr.mov"
-                    playing={true}
-                    controls={true}
-                    width="100%"
-                    height="100%"
-                    className="react-player"
-                    style={{ borderRadius: '0.75rem', overflow: 'hidden' }}
-                  />
-                )}
+              <div className="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px] relative">
+                <LazyVideo
+                  src="https://res.cloudinary.com/djetoiflq/video/upload/v1759001886/KK_Karnival_Polo_Ground_qrtinr.mov"
+                  thumbnail="https://res.cloudinary.com/djetoiflq/image/upload/v1759606594/Screenshot_From_2025-10-05_00-36-16_bzhxah.png"
+                  thumbnailAlt="Kids Kampus 50th Anniversary thumbnail"
+                  playing={true}
+                />
               </div>
             </div>
 
@@ -254,40 +228,18 @@ export default function OSSPuppetTheatrePage(){
                     <div className="w-full h-64 sm:h-[420px] md:h-[520px] block relative">
                       {lacasSelected === lacasGallery.length ? (
                         // Show video when last item is selected
-                        <div className="w-full h-full">
-                          {!showLacasPlayer ? (
-                            <div className="relative w-full h-full flex items-center justify-center bg-black">
-                              <img
-                                src="https://res.cloudinary.com/djetoiflq/image/upload/v1759604814/3_ds7ugd.jpg"
-                                alt="LACAS Puppet Show video thumbnail"
-                                className="absolute inset-0 w-full h-full object-cover z-0"
-                              />
-                              <button
-                                onClick={() => setShowLacasPlayer(true)}
-                                className="z-10 play-btn shadow-lg focus:outline-none"
-                                aria-label="Play LACAS Puppet Show video"
-                              >
-                                <svg viewBox="0 0 64 64" fill="white">
-                                  <polygon points="24,10 54,32 24,54" fill="white" />
-                                </svg>
-                              </button>
-                            </div>
-                          ) : (
-                            <ReactPlayer
-                              src="https://res.cloudinary.com/djetoiflq/video/upload/v1759605739/LACAS_1_mdbnw8.mp4"
-                              playing={true}
-                              controls={true}
-                              width="100%"
-                              height="100%"
-                              className="react-player"
-                              style={{ borderRadius: '0rem', overflow: 'hidden' }}
-                            />
-                          )}
+                        <div className="w-full h-full relative">
+                          <LazyVideo
+                            src="https://res.cloudinary.com/djetoiflq/video/upload/v1759605739/LACAS_1_mdbnw8.mp4"
+                            thumbnail="https://res.cloudinary.com/djetoiflq/image/upload/v1759604814/3_ds7ugd.jpg"
+                            thumbnailAlt="LACAS Puppet Show video thumbnail"
+                            playing={true}
+                          />
                         </div>
                       ) : (
                         // Show image
                         <>
-                          <img src={lacasGallery[lacasSelected]} alt={`LACAS image ${lacasSelected+1}`} className="w-full h-full object-cover" />
+                          <LazyImage src={lacasGallery[lacasSelected]} alt={`LACAS image ${lacasSelected+1}`} className="w-full h-full object-cover" />
                           
                           {/* Left navigation button */}
                           <button 
@@ -333,7 +285,7 @@ export default function OSSPuppetTheatrePage(){
                             className={`rounded-md overflow-hidden flex-shrink-0 snap-start border ${marginClass} ${i===lacasSelected ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none`} 
                             style={{ width: `${fixedWidth}px`, height: '6.5rem' }}
                           >
-                            <img src={g} alt={`lacas-thumb-${i+1}`} className="w-full h-full object-cover" />
+                            <LazyImage src={g} alt={`lacas-thumb-${i+1}`} className="w-full h-full object-cover" />
                           </button>
                         );
                       })}
@@ -345,7 +297,7 @@ export default function OSSPuppetTheatrePage(){
                         className={`rounded-md overflow-hidden flex-shrink-0 snap-start border mx-1.5 ml-3 ${lacasSelected === lacasGallery.length ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none relative`} 
                         style={{ width: `${lacasThumbWidth ?? 160}px`, height: '6.5rem' }}
                       >
-                        <img src="https://res.cloudinary.com/djetoiflq/image/upload/v1759604814/3_ds7ugd.jpg" alt="video-thumb" className="w-full h-full object-cover" />
+                        <LazyImage src="https://res.cloudinary.com/djetoiflq/image/upload/v1759604814/3_ds7ugd.jpg" alt="video-thumb" className="w-full h-full object-cover" />
                         {/* Play icon overlay */}
                         <div className="absolute inset-0 flex items-center justify-center bg-black/30">
                           <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
@@ -377,36 +329,14 @@ export default function OSSPuppetTheatrePage(){
                 whileInView={{ opacity: 1, y: 0 }} 
                 viewport={{ once: true, amount: 0.4 }} 
                 transition={{ duration: 0.6 }} 
-                className="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px]"
+                className="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px] relative"
               >
-                {!showMidCityPlayer ? (
-                  <div className="relative w-full h-full flex items-center justify-center bg-black">
-                    <img
-                      src="https://res.cloudinary.com/djetoiflq/image/upload/v1759606964/9_y1mlxt.jpg"
-                      alt="Mid City Housing Family Fest video thumbnail"
-                      className="absolute inset-0 w-full h-full object-cover z-0"
-                    />
-                    <button
-                      onClick={() => setShowMidCityPlayer(true)}
-                      className="z-10 play-btn shadow-lg focus:outline-none"
-                      aria-label="Play Mid City Housing Family Fest video"
-                    >
-                      <svg viewBox="0 0 64 64" fill="white" className="w-12 h-12 sm:w-16 sm:h-16">
-                        <polygon points="24,10 54,32 24,54" fill="white" />
-                      </svg>
-                    </button>
-                  </div>
-                ) : (
-                  <ReactPlayer
-                    src="https://res.cloudinary.com/djetoiflq/video/upload/v1759002209/fd9704cd-1fa9-42b2-9a92-21699c5a651a_wltcdk.mov"
-                    playing={true}
-                    controls={true}
-                    width="100%"
-                    height="100%"
-                    className="react-player"
-                    style={{ borderRadius: '0.75rem', overflow: 'hidden' }}
-                  />
-                )}
+                <LazyVideo
+                  src="https://res.cloudinary.com/djetoiflq/video/upload/v1759002209/fd9704cd-1fa9-42b2-9a92-21699c5a651a_wltcdk.mov"
+                  thumbnail="https://res.cloudinary.com/djetoiflq/image/upload/v1759606964/9_y1mlxt.jpg"
+                  thumbnailAlt="Mid City Housing Family Fest video thumbnail"
+                  playing={true}
+                />
               </motion.div>
             </div>
 
@@ -439,7 +369,7 @@ export default function OSSPuppetTheatrePage(){
                 <div className="rounded-lg overflow-hidden bg-black relative">
                   <div className="relative">
                     <div className="w-full h-64 sm:h-[420px] md:h-[520px] block relative">
-                      <img src={midCityGallery[midCitySelected]} alt={`Mid City image ${midCitySelected+1}`} className="w-full h-full object-cover" />
+                      <LazyImage src={midCityGallery[midCitySelected]} alt={`Mid City image ${midCitySelected+1}`} className="w-full h-full object-cover" />
                       
                       {/* Left navigation button */}
                       <button 
@@ -483,7 +413,7 @@ export default function OSSPuppetTheatrePage(){
                             className={`rounded-md overflow-hidden flex-shrink-0 snap-start border ${marginClass} ${i===midCitySelected ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none`} 
                             style={{ width: `${fixedWidth}px`, height: '6.5rem' }}
                           >
-                            <img src={g} alt={`midcity-thumb-${i+1}`} className="w-full h-full object-cover" />
+                            <LazyImage src={g} alt={`midcity-thumb-${i+1}`} className="w-full h-full object-cover" />
                           </button>
                         );
                       })}
@@ -499,16 +429,12 @@ export default function OSSPuppetTheatrePage(){
               <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="text-3xl sm:text-4xl md:text-5xl font-[Outfit] font-extrabold text-center mx-auto max-w-4xl mb-6 text-[#AE1D36] uppercase tracking-wider">FEATURED BY DISCOVER PAKISTAN</motion.h3>
               <motion.div initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6, delay: 0.2 }} className="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[180px] sm:min-h-[220px] md:min-h-[260px] lg:min-h-[300px]">
                 <div className="relative w-full h-full flex items-center justify-center bg-black">
-                  {!showDiscoverPlayer ? (
-                    <>
-                      <img src="https://res.cloudinary.com/djetoiflq/image/upload/v1759003023/disocver_pak_jfe4lj.png" alt="Discover Pakistan thumbnail" className="absolute inset-0 w-full h-full object-cover z-0" />
-                      <button onClick={() => setShowDiscoverPlayer(true)} className="z-10 play-btn shadow-lg focus:outline-none" aria-label="Play Discover Pakistan video">
-                        <svg viewBox="0 0 64 64" fill="white" className="w-10 h-10 sm:w-12 sm:h-12"><polygon points="24,10 54,32 24,54" fill="white" /></svg>
-                      </button>
-                    </>
-                  ) : (
-                    <ReactPlayer src="https://res.cloudinary.com/djetoiflq/video/upload/v1759002936/Discover_Pakistan_pce1so.mov" playing={true} controls={true} width="100%" height="100%" className="react-player" style={{ borderRadius: '0.5rem', overflow: 'hidden' }} />
-                  )}
+                  <LazyVideo
+                    src="https://res.cloudinary.com/djetoiflq/video/upload/v1759002936/Discover_Pakistan_pce1so.mov"
+                    thumbnail="https://res.cloudinary.com/djetoiflq/image/upload/v1759003023/disocver_pak_jfe4lj.png"
+                    thumbnailAlt="Discover Pakistan thumbnail"
+                    playing={true}
+                  />
                 </div>
               </motion.div>
             </div>
@@ -525,7 +451,7 @@ export default function OSSPuppetTheatrePage(){
               <motion.div initial={prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6 }}>
                 <button type="button" onClick={() => { setBookingPdf('/pdfs/OSSPT Day-Tour.pdf'); setBookingTitle('BOOK YOUR SCHOOL TRIP'); setBookingOpen(true); }} className="group text-left rounded-3xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-[1.02] bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 border border-[hsl(var(--border))] focus:outline-none w-full">
                   <div className="relative h-64 overflow-hidden bg-black">
-                    <img src="https://res.cloudinary.com/djetoiflq/image/upload/v1759006451/Screenshot_from_2025-09-28_01-53-50_geyqxt.png" alt="School Trip preview" className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105" />
+                    <LazyImage src="https://res.cloudinary.com/djetoiflq/image/upload/v1759006451/Screenshot_from_2025-09-28_01-53-50_geyqxt.png" alt="School Trip preview" className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105" />
                   </div>
                   <div className="p-6">
                     <h3 className="text-lg sm:text-xl font-[Outfit] font-extrabold text-white uppercase mb-2">🎒 School Trips</h3>
@@ -538,7 +464,7 @@ export default function OSSPuppetTheatrePage(){
               <motion.div initial={prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6 }}>
                 <button type="button" onClick={() => { setBookingPdf('/pdfs/OSSPT Puppet Theatre.pdf'); setBookingTitle('BOOK YOUR PUPPET SHOW'); setBookingOpen(true); }} className="group text-left rounded-3xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-[1.02] bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 border border-[hsl(var(--border))] focus:outline-none w-full">
                   <div className="relative h-64 overflow-hidden">
-                    <img src="https://res.cloudinary.com/djetoiflq/image/upload/v1759006485/Screenshot_from_2025-09-28_01-54-30_kup5cv.png" alt="Puppet Show preview" className="absolute inset-0 w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105" />
+                    <LazyImage src="https://res.cloudinary.com/djetoiflq/image/upload/v1759006485/Screenshot_from_2025-09-28_01-54-30_kup5cv.png" alt="Puppet Show preview" className="absolute inset-0 w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105" />
                   </div>
                   <div className="p-6">
                     <h3 className="text-lg sm:text-xl font-[Outfit] font-extrabold text-white uppercase mb-2">🎭 Custom Puppet Show Bookings</h3>
@@ -593,7 +519,7 @@ export default function OSSPuppetTheatrePage(){
               </div>
               <div className="rounded-md overflow-hidden bg-zinc-900">
                 {active && (
-                  <img src={active.image && !active.image.includes('placeholder') ? active.image : `/entertainment/entertainment-1.jpg`} alt={active.title} className="w-full h-80 object-cover rounded-md" />
+                  <LazyImage src={active.image && !active.image.includes('placeholder') ? active.image : `/entertainment/entertainment-1.jpg`} alt={active.title} className="w-full h-80 object-cover rounded-md" />
                 )}
               </div>
             </div>

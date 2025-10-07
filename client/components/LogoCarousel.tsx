@@ -1,4 +1,5 @@
 import React from 'react';
+import LazyImage from './LazyImage';
 
 const logos = new Array(8).fill('/placeholder.svg');
 
@@ -10,7 +11,7 @@ export default function LogoCarousel(){
           <div className="flex gap-8 items-center w-[200%] animate-[marquee-x_20s_linear_infinite]">
             {logos.concat(logos).map((src, i) => (
               <div key={i} className="w-40 flex items-center justify-center">
-                <img src={src} alt={`logo-${i}`} className="logo-gray w-32 h-12 object-contain" loading="lazy" />
+                <LazyImage src={src} alt={`logo-${i}`} className="logo-gray w-32 h-12 object-contain" />
               </div>
             ))}
           </div>
