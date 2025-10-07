@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
-import type ReactPlayerType from 'react-player';
 
 // Dynamically import ReactPlayer to reduce initial bundle size
 const ReactPlayer = dynamic(() => import('react-player'), {
@@ -12,7 +11,7 @@ const ReactPlayer = dynamic(() => import('react-player'), {
       <div className="w-12 h-12 border-3 border-white/30 border-t-white rounded-full animate-spin" />
     </div>
   )
-}) as typeof ReactPlayerType;
+}) as any;
 
 interface LazyVideoProps {
   src: string;
@@ -116,7 +115,6 @@ export default function LazyVideo({
       ) : (
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           {shouldLoad && (
-            // @ts-ignore - ReactPlayer dynamic import type issue
             <ReactPlayer
               url={src}
               playing={playing}
