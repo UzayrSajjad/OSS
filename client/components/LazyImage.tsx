@@ -68,14 +68,21 @@ export default function LazyImage({
     return 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"%3E%3Crect width="400" height="300" fill="%23f0f0f0"/%3E%3C/svg%3E';
   };
 
+  // Extract object-fit class from className prop
+  const objectFitMatch = className.match(/object-(contain|cover|fill|none|scale-down)/);
+  const objectFitClass = objectFitMatch ? objectFitMatch[0] : 'object-cover';
+  
+  // Remove object-fit classes from container className
+  const containerClassName = className.replace(/object-(contain|cover|fill|none|scale-down)/g, '').trim();
+
   return (
-    <div ref={imgRef} className={`relative overflow-hidden ${className}`} style={style} onClick={onClick}>
+    <div ref={imgRef} className={`relative ${containerClassName}`} style={style} onClick={onClick}>
       {/* Placeholder */}
       <img
         src={getPlaceholder()}
         alt=""
         aria-hidden="true"
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+        className={`absolute inset-0 w-full h-full ${objectFitClass} transition-opacity duration-500 ${
           isLoaded ? 'opacity-0' : 'opacity-100'
         }`}
         style={{ filter: 'blur(10px)', transform: 'scale(1.1)' }}
@@ -86,7 +93,7 @@ export default function LazyImage({
         <img
           src={src}
           alt={alt}
-          className={`w-full h-full object-cover transition-opacity duration-500 ${
+          className={`w-full h-full ${objectFitClass} transition-opacity duration-500 ${
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}
           onLoad={handleImageLoad}

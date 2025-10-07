@@ -62,18 +62,20 @@ export default function TrustedBy() {
             {[...logos, ...logos, ...logos].map((src, i) => (
               <div
                 key={i}
-                className="flex items-center justify-center w-36 sm:w-44 h-24 sm:h-28"
+                className="flex items-center justify-center w-36 sm:w-44 h-24 sm:h-28 flex-shrink-0 px-4"
               >
-                <LazyImage
-                  src={src}
-                  alt={`Company logo ${i + 1}`}
-                  className="max-w-full max-h-full object-contain transition-all duration-300"
-                  style={{
-                    filter:
-                      'brightness(0) saturate(100%) invert(34%) sepia(3%) saturate(0%) hue-rotate(336deg) brightness(95%) contrast(94%)',
-                    opacity: 0.9
-                  }}
-                />
+                <div className="w-full h-full p-2">
+                  <LazyImage
+                    src={src}
+                    alt={`Company logo ${i + 1}`}
+                    className="w-full h-full object-contain transition-all duration-300"
+                    style={{
+                      filter:
+                        'brightness(0) saturate(100%) invert(34%) sepia(3%) saturate(0%) hue-rotate(336deg) brightness(95%) contrast(94%)',
+                      opacity: 0.9
+                    }}
+                  />
+                </div>
               </div>
             ))}
           </div>
