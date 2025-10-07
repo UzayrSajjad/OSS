@@ -1,4 +1,5 @@
 import React from 'react';
+import LazyImage from './LazyImage';
 
 const logos = [
   '/logos/bhc-modified.png',
@@ -63,7 +64,7 @@ export default function TrustedBy() {
                 key={i}
                 className="flex items-center justify-center w-36 sm:w-44 h-24 sm:h-28"
               >
-                <img
+                <LazyImage
                   src={src}
                   alt={`Company logo ${i + 1}`}
                   className="max-w-full max-h-full object-contain transition-all duration-300"
@@ -72,7 +73,6 @@ export default function TrustedBy() {
                       'brightness(0) saturate(100%) invert(34%) sepia(3%) saturate(0%) hue-rotate(336deg) brightness(95%) contrast(94%)',
                     opacity: 0.9
                   }}
-                  loading="lazy"
                 />
               </div>
             ))}

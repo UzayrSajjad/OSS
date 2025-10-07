@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Modal from './Modal';
 import EventGallery from './EventGallery';
 import { events, entertainment } from '../data/services';
+import LazyImage from './LazyImage';
 
 // Combine and select best works from events and entertainment
 const works = [
@@ -159,7 +160,7 @@ export default function WorkShowcase(){
                 <div className={`marquee ${row.speedClass} ${row.dir === 'rtl' ? 'marquee-reverse' : ''} flex items-stretch`}>
                   {row.works.concat(row.works).concat(row.works).map((work,i)=> (
                     <div key={i + rIdx*100} onClick={()=>{ setActive(works.findIndex(w => w.id === work.id)); setOpen(true); }} onKeyDown={(e)=>{ if(e.key === 'Enter' || e.key === ' ') { setActive(works.findIndex(w => w.id === work.id)); setOpen(true); } }} role="button" tabIndex={0} className="group min-w-[320px] sm:min-w-[400px] md:min-w-[520px] h-64 sm:h-80 md:h-96 bg-[hsl(var(--background))] rounded-xl overflow-hidden cursor-pointer relative transform transition card-hover">
-                          <img src={work.image} alt={work.title} className="w-full h-full object-cover" loading="lazy" />
+                          <LazyImage src={work.image} alt={work.title} className="w-full h-full object-cover" />
                           <div className="absolute inset-0 bg-[hsl(var(--background))]/28 opacity-0 group-hover:opacity-100 transition flex items-end p-4 sm:p-5 md:p-6">
                             <div className="transform transition-all duration-300 group-hover:translate-y-0 group-hover:scale-100">
                               <h4 className="text-white font-bold text-base sm:text-lg md:text-xl group-hover:text-lg sm:group-hover:text-xl md:group-hover:text-2xl font-[Outfit] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">{work.title}</h4>
@@ -188,7 +189,7 @@ export default function WorkShowcase(){
               ) : (
                 active !== null && works[active].image ? (
                   <div className="rounded-md overflow-hidden bg-zinc-900">
-                    <img src={works[active].image} alt={works[active].title} className="w-full h-80 object-cover rounded-md" />
+                    <LazyImage src={works[active].image} alt={works[active].title} className="w-full h-80 object-cover rounded-md" />
                   </div>
                 ) : null
               )}

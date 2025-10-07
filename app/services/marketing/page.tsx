@@ -7,6 +7,7 @@ import Navbar from '../../../client/components/Navbar';
 import Footer from '../../../client/components/Footer';
 import Modal from '../../../client/components/Modal';
 import { marketing } from '../../../client/data/services';
+import LazyImage from '../../../client/components/LazyImage';
 
 export default function MarketingPage(){
   const [open, setOpen] = useState(false);
@@ -78,7 +79,7 @@ export default function MarketingPage(){
                       <div className="rounded-lg overflow-hidden bg-black relative">
                         {/* Main image should not open modal on click */}
                         <div className="w-full h-64 sm:h-[420px] md:h-[520px] block">
-                          <img src={it.image && !it.image.includes('placeholder') ? it.image : `/marketing/marketing-${idx+1}.jpg`} alt={it.title} className="w-full h-full object-cover" />
+                          <LazyImage src={it.image && !it.image.includes('placeholder') ? it.image : `/marketing/marketing-${idx+1}.jpg`} alt={it.title} className="w-full h-full object-cover" />
                         </div>
                       </div>
                     </motion.div>
@@ -130,7 +131,7 @@ export default function MarketingPage(){
                       <div className="rounded-lg overflow-hidden bg-black relative">
                         {/* Main image should not open modal on click */}
                         <div className="w-full h-64 sm:h-[420px] md:h-[520px] block">
-                          <img src={it.image && !it.image.includes('placeholder') ? it.image : `/marketing/marketing-${idx+1}.jpg`} alt={it.title} className="w-full h-full object-cover" />
+                          <LazyImage src={it.image && !it.image.includes('placeholder') ? it.image : `/marketing/marketing-${idx+1}.jpg`} alt={it.title} className="w-full h-full object-cover" />
                         </div>
                       </div>
                     </motion.div>
@@ -155,7 +156,7 @@ export default function MarketingPage(){
                   >
                       <div className="h-3 w-full" />
                     <div className="relative h-72 overflow-hidden rounded-t-2xl">
-                      <img src={cover} alt={it.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                      <LazyImage src={cover} alt={it.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                       <div className="absolute inset-x-0 bottom-0 p-7 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
                         <h4 className="text-2xl text-white font-extrabold mb-2 truncate drop-shadow font-[Outfit]">{it.title}</h4>
                         <p className="text-lg text-white/90 leading-relaxed line-clamp-3 font-medium">{it.short}</p>
@@ -186,7 +187,7 @@ export default function MarketingPage(){
               </div>
               <div className="rounded-md overflow-hidden bg-zinc-900">
                 {active && (
-                  <img
+                  <LazyImage
                     src={(!active.image || active.image.includes('placeholder'))
                       ? `/marketing/marketing-${((marketing.findIndex(m => m.id === active.id) % 6) + 1)}.jpg`
                       : active.image}

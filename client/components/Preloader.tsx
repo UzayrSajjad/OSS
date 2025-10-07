@@ -7,23 +7,39 @@ export default function Preloader() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Wait for the page to fully load
-    const handleLoad = () => {
-      // Add a small delay to ensure smooth transition
+    // Show preloader for a brief moment to ensure layout is ready
+    // Maximum 1.5 seconds, regardless of asset loading
+    const maxLoadTime = 1500;
+    const startTime = Date.now();
+
+    const finishLoading = () => {
+      const elapsed = Date.now() - startTime;
+      const remainingTime = Math.max(0, 800 - elapsed); // Minimum 800ms for smooth UX
+      
       setTimeout(() => {
         setIsLoading(false);
         // Add loaded class to body to restore scroll
         document.body.classList.add('loaded');
-      }, 500);
+      }, remainingTime);
     };
 
-    // Check if page is already loaded
-    if (document.readyState === 'complete') {
-      handleLoad();
+    // Check if DOM is ready first
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', finishLoading);
     } else {
-      window.addEventListener('load', handleLoad);
-      return () => window.removeEventListener('load', handleLoad);
+      finishLoading();
     }
+
+    // Force hide preloader after max time even if DOM isn't ready
+    const maxTimeout = setTimeout(() => {
+      setIsLoading(false);
+      document.body.classList.add('loaded');
+    }, maxLoadTime);
+
+    return () => {
+      document.removeEventListener('DOMContentLoaded', finishLoading);
+      clearTimeout(maxTimeout);
+    };
   }, []);
 
   return (
@@ -56,7 +72,7 @@ export default function Preloader() {
               <motion.div
                 initial={{ width: "0%" }}
                 animate={{ width: "100%" }}
-                transition={{ duration: 2, ease: "easeInOut" }}
+                transition={{ duration: 1.2, ease: "easeInOut" }}
                 className="h-full bg-gradient-to-r from-[#AE1D36] to-[#DC2626] rounded-full"
               />
             </div>

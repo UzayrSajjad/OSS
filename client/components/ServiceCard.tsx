@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import LazyImage from './LazyImage';
 
 export default function ServiceCard({ title, desc, icon, image, index }: { title: string; desc: string; icon?: React.ReactNode; image?: string; index?: number }) {
   const accentTitles = new Set(['Events n Entertainment', 'Marketing', 'OSS Puppet Theatre']);
@@ -52,7 +53,7 @@ export default function ServiceCard({ title, desc, icon, image, index }: { title
   >
   <div className="relative h-48 sm:h-60 md:h-72 lg:h-80 w-full bg-[#0f0f10] min-w-0">
         {image ? (
-          <img src={image} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102" loading="lazy" />
+          <LazyImage src={image} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102" />
         ) : (
           <div className="w-full h-full bg-transparent" />
         )}

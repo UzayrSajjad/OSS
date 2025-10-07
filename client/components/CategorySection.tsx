@@ -5,6 +5,8 @@ import ReactPlayer from 'react-player';
 import { motion, Variants } from 'framer-motion';
 import Link from 'next/link';
 import Modal from './Modal';
+import LazyImage from './LazyImage';
+import LazyVideo from './LazyVideo';
 
 export type Item = { id: number; title: string; image: string; short: string; long: string };
 
@@ -194,36 +196,12 @@ export default function CategorySection({ title, items, isLanding = false, secti
             </div>
             <div className="max-w-5xl mx-auto">
               <div className="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px] relative">
-                {!showPuppetPlayer ? (
-                  <div className="relative w-full h-full flex items-center justify-center bg-black">
-                    <img
-                      src="https://res.cloudinary.com/djetoiflq/image/upload/v1759606594/Screenshot_From_2025-10-05_00-36-16_bzhxah.png"
-                      alt="Kids Kampus 50th Anniversary thumbnail"
-                      className="absolute inset-0 w-full h-full object-cover z-0"
-                    />
-                    <button
-                      onClick={() => setShowPuppetPlayer(true)}
-                      className="z-10 play-btn shadow-lg focus:outline-none"
-                      aria-label="Play Kids Kampus 50th Anniversary video"
-                    >
-                      <svg viewBox="0 0 64 64" fill="white" className="w-12 h-12 sm:w-16 sm:h-16">
-                        <polygon points="24,10 54,32 24,54" fill="white" />
-                      </svg>
-                    </button>
-                  </div>
-                ) : (
-                  <div className="absolute inset-0 w-full h-full">
-                    <ReactPlayer
-                      src="https://res.cloudinary.com/djetoiflq/video/upload/v1759001886/KK_Karnival_Polo_Ground_qrtinr.mov"
-                      playing={true}
-                      controls={true}
-                      width="100%"
-                      height="100%"
-                      className="react-player"
-                      style={{ position: 'absolute', top: 0, left: 0 }}
-                    />
-                  </div>
-                )}
+                <LazyVideo
+                  src="https://res.cloudinary.com/djetoiflq/video/upload/v1759001886/KK_Karnival_Polo_Ground_qrtinr.mov"
+                  thumbnail="https://res.cloudinary.com/djetoiflq/image/upload/v1759606594/Screenshot_From_2025-10-05_00-36-16_bzhxah.png"
+                  thumbnailAlt="Kids Kampus 50th Anniversary thumbnail"
+                  playing={true}
+                />
               </div>
             </div>
 
@@ -305,7 +283,11 @@ export default function CategorySection({ title, items, isLanding = false, secti
                       ) : (
                         // Show image
                         <>
-                          <img src={lacasGallery[lacasSelected]} alt={`LACAS image ${lacasSelected+1}`} className="w-full h-full object-cover" />
+                          <LazyImage 
+                            src={lacasGallery[lacasSelected]} 
+                            alt={`LACAS image ${lacasSelected+1}`} 
+                            className="w-full h-full object-cover" 
+                          />
                           
                           {/* Left navigation button */}
                           <button 
@@ -351,7 +333,7 @@ export default function CategorySection({ title, items, isLanding = false, secti
                             className={`rounded-md overflow-hidden flex-shrink-0 snap-start border ${marginClass} ${i===lacasSelected ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none h-16 sm:h-20 md:h-24`} 
                             style={{ width: `${fixedWidth}px` }}
                           >
-                            <img src={g} alt={`lacas-thumb-${i+1}`} className="w-full h-full object-cover" />
+                            <LazyImage src={g} alt={`lacas-thumb-${i+1}`} className="w-full h-full object-cover" />
                           </button>
                         );
                       })}
@@ -397,36 +379,12 @@ export default function CategorySection({ title, items, isLanding = false, secti
                 transition={{ duration: 0.6 }} 
                 className="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px] relative"
               >
-                {!showMidCityPlayer ? (
-                  <div className="relative w-full h-full flex items-center justify-center bg-black">
-                    <img
-                      src="https://res.cloudinary.com/djetoiflq/image/upload/v1759606964/9_y1mlxt.jpg"
-                      alt="Mid City Housing Family Fest video thumbnail"
-                      className="absolute inset-0 w-full h-full object-cover z-0"
-                    />
-                    <button
-                      onClick={() => setShowMidCityPlayer(true)}
-                      className="z-10 play-btn shadow-lg focus:outline-none"
-                      aria-label="Play Mid City Housing Family Fest video"
-                    >
-                      <svg viewBox="0 0 64 64" fill="white" className="w-12 h-12 sm:w-16 sm:h-16">
-                        <polygon points="24,10 54,32 24,54" fill="white" />
-                      </svg>
-                    </button>
-                  </div>
-                ) : (
-                  <div className="absolute inset-0 w-full h-full">
-                    <ReactPlayer
-                      src="https://res.cloudinary.com/djetoiflq/video/upload/v1759002209/fd9704cd-1fa9-42b2-9a92-21699c5a651a_wltcdk.mov"
-                      playing={true}
-                      controls={true}
-                      width="100%"
-                      height="100%"
-                      className="react-player"
-                      style={{ position: 'absolute', top: 0, left: 0 }}
-                    />
-                  </div>
-                )}
+                <LazyVideo
+                  src="https://res.cloudinary.com/djetoiflq/video/upload/v1759002209/fd9704cd-1fa9-42b2-9a92-21699c5a651a_wltcdk.mov"
+                  thumbnail="https://res.cloudinary.com/djetoiflq/image/upload/v1759606964/9_y1mlxt.jpg"
+                  thumbnailAlt="Mid City Housing Family Fest video thumbnail"
+                  playing={true}
+                />
               </motion.div>
             </div>
 
@@ -459,7 +417,11 @@ export default function CategorySection({ title, items, isLanding = false, secti
                 <div className="rounded-lg overflow-hidden bg-black relative">
                   <div className="relative">
                     <div className="w-full h-64 sm:h-[420px] md:h-[520px] block relative">
-                      <img src={midCityGallery[midCitySelected]} alt={`Mid City image ${midCitySelected+1}`} className="w-full h-full object-cover" />
+                      <LazyImage 
+                        src={midCityGallery[midCitySelected]} 
+                        alt={`Mid City image ${midCitySelected+1}`} 
+                        className="w-full h-full object-cover" 
+                      />
                       
                       {/* Left navigation button */}
                       <button 
@@ -503,7 +465,7 @@ export default function CategorySection({ title, items, isLanding = false, secti
                             className={`rounded-md overflow-hidden flex-shrink-0 snap-start border ${marginClass} ${i===midCitySelected ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none h-16 sm:h-20 md:h-24`} 
                             style={{ width: `${fixedWidth}px` }}
                           >
-                            <img src={g} alt={`midcity-thumb-${i+1}`} className="w-full h-full object-cover" />
+                            <LazyImage src={g} alt={`midcity-thumb-${i+1}`} className="w-full h-full object-cover" />
                           </button>
                         );
                       })}
@@ -546,7 +508,11 @@ export default function CategorySection({ title, items, isLanding = false, secti
                 <div className="relative">
                   {/* Main gallery image with navigation buttons overlaid */}
                   <div className="w-full h-64 sm:h-[420px] md:h-[520px] block relative">
-                    <img src={gallery[selected]} alt={`${title} image ${selected+1}`} className="w-full h-full object-cover" />
+                    <LazyImage 
+                      src={gallery[selected]} 
+                      alt={`${title} image ${selected+1}`} 
+                      className="w-full h-full object-cover" 
+                    />
                     
                     {/* Left navigation button on main image */}
                     <button aria-label="Previous image" type="button" onClick={prev} className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 backdrop-blur-md hover:bg-black/60 hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50">
@@ -573,7 +539,7 @@ export default function CategorySection({ title, items, isLanding = false, secti
                       else if (gallery.length > 1) marginClass = 'mx-1.5';
                       return (
                         <button key={g + i} onClick={() => setSelected(i)} aria-label={`Select image ${i+1}`} className={`rounded-md overflow-hidden flex-shrink-0 snap-start border ${marginClass} ${i===selected ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none h-16 sm:h-20 md:h-24`} style={thumbWidth ? { minWidth: `${thumbWidth}px` } : {}}>
-                          <img src={g} alt={`thumb-${i+1}`} className="w-full h-full object-cover" />
+                          <LazyImage src={g} alt={`thumb-${i+1}`} className="w-full h-full object-cover" />
                         </button>
                       );
                     })}
@@ -587,19 +553,13 @@ export default function CategorySection({ title, items, isLanding = false, secti
         {title === 'OSS Puppet Theatre' && isLanding ? (
           <div className="mt-20 max-w-5xl mx-auto px-4 sm:px-6">
             <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-3xl sm:text-4xl md:text-5xl font-[Outfit] font-extrabold text-center mx-auto max-w-4xl mb-6 text-[#AE1D36] uppercase tracking-wider">FEATURED BY DISCOVER PAKISTAN</motion.h3>
-            <motion.div initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="w-full aspect-video rounded-xl overflow-hidden shadow-lg" style={{ minHeight: '260px' }}>
-              <div className="relative w-full h-full flex items-center justify-center bg-black">
-                {!showDiscoverPlayer ? (
-                  <>
-                    <img src="https://res.cloudinary.com/djetoiflq/image/upload/v1759003023/disocver_pak_jfe4lj.png" alt="Discover Pakistan thumbnail" className="absolute inset-0 w-full h-full object-cover z-0" />
-                    <button onClick={() => setShowDiscoverPlayer(true)} className="z-10 play-btn shadow-lg focus:outline-none" aria-label="Play Discover Pakistan video">
-                      <svg viewBox="0 0 64 64" fill="white"><polygon points="24,10 54,32 24,54" fill="white" /></svg>
-                    </button>
-                  </>
-                ) : (
-                  <ReactPlayer src="https://res.cloudinary.com/djetoiflq/video/upload/v1759002936/Discover_Pakistan_pce1so.mov" playing={true} controls={true} width="100%" height="100%" className="react-player" style={{ borderRadius: '0.5rem', overflow: 'hidden' }} />
-                )}
-              </div>
+            <motion.div initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="w-full aspect-video rounded-xl overflow-hidden shadow-lg relative" style={{ minHeight: '260px' }}>
+              <LazyVideo
+                src="https://res.cloudinary.com/djetoiflq/video/upload/v1759002936/Discover_Pakistan_pce1so.mov"
+                thumbnail="https://res.cloudinary.com/djetoiflq/image/upload/v1759003023/disocver_pak_jfe4lj.png"
+                thumbnailAlt="Discover Pakistan thumbnail"
+                playing={true}
+              />
             </motion.div>
           </div>
         ) : (
@@ -612,7 +572,7 @@ export default function CategorySection({ title, items, isLanding = false, secti
                     return (
                       <article key={it.id} role="button" tabIndex={0} onClick={() => { setSelected(idx); onOpen(it); }} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { setSelected(idx); onOpen(it); } }} className="group rounded-3xl overflow-hidden bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 border border-[hsl(var(--border))] shadow-2xl hover:shadow-[0_12px_40px_rgba(183,28,45,0.25)] hover:-translate-y-2 transition-all duration-200 cursor-pointer my-6">
                         <div className="relative h-60 overflow-hidden rounded-t-2xl">
-                          <img src={cover} alt={it.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                          <LazyImage src={cover} alt={it.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                           <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
                             <h4 className="text-2xl text-white font-extrabold mb-1 truncate drop-shadow font-[Outfit]">{it.title}</h4>
                           </div>
@@ -626,7 +586,7 @@ export default function CategorySection({ title, items, isLanding = false, secti
                     return (
                       <article key={it.id} role="button" tabIndex={0} onClick={() => { setSelected(idx); onOpen(it); }} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { setSelected(idx); onOpen(it); } }} className="group rounded-3xl overflow-hidden bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 border border-[hsl(var(--border))] shadow-2xl hover:shadow-[0_12px_40px_rgba(183,28,45,0.25)] hover:-translate-y-2 transition-all duration-200 cursor-pointer my-6">
                         <div className="relative h-60 overflow-hidden rounded-t-2xl">
-                          <img src={cover} alt={it.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                          <LazyImage src={cover} alt={it.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                           <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
                             <h4 className="text-2xl text-white font-extrabold mb-1 truncate drop-shadow font-[Outfit]">{it.title}</h4>
                           </div>
@@ -641,7 +601,7 @@ export default function CategorySection({ title, items, isLanding = false, secti
                 return (
                   <article key={it.id} role="button" tabIndex={0} onClick={() => { setSelected(idx); onOpen(it); }} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { setSelected(idx); onOpen(it); } }} className="group rounded-3xl overflow-hidden bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 border border-[hsl(var(--border))] shadow-2xl hover:shadow-[0_12px_40px_rgba(183,28,45,0.25)] hover:-translate-y-2 transition-all duration-200 cursor-pointer my-6">
                     <div className="relative h-60 overflow-hidden rounded-t-2xl">
-                      <img src={cover} alt={it.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                      <LazyImage src={cover} alt={it.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                       <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
                         <h4 className="text-2xl text-white font-extrabold mb-1 truncate drop-shadow font-[Outfit]">{it.title}</h4>
                     <p className="text-base text-white/90 leading-relaxed line-clamp-3 font-medium">{it.short}</p>
@@ -668,7 +628,7 @@ export default function CategorySection({ title, items, isLanding = false, secti
             </div>
             <div className="rounded-md overflow-hidden bg-zinc-900">
               {active && (
-                <img
+                <LazyImage
                   src={(!active.image || active.image.includes('placeholder'))
                     ? gallery[items.findIndex(i => i.id === active.id) % gallery.length]
                     : active.image}

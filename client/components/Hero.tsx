@@ -1,27 +1,53 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 export default function Hero() {
+	const [videoLoaded, setVideoLoaded] = useState(false);
+	const videoRef = React.useRef<HTMLVideoElement>(null);
+
+	useEffect(() => {
+		// Ensure video plays on component mount
+		if (videoRef.current) {
+			videoRef.current.play().catch((error) => {
+				console.log("Video autoplay failed:", error);
+			});
+		}
+	}, []);
+
 	return (
 		<section
 			className="relative w-full h-screen pt-16 sm:pt-[4.5rem] md:pt-20 flex items-center justify-center overflow-hidden"
 			id="hero"
 			style={{ marginTop: 0 }}
 		>
-			{/* Background Video */}
+			{/* Poster/Placeholder Image - shows until video loads */}
+			<div 
+				className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-700 ${
+					videoLoaded ? 'opacity-0' : 'opacity-100'
+				}`}
+				style={{
+					backgroundImage: 'url(https://res.cloudinary.com/djetoiflq/image/upload/w_1920,q_auto:low/v1758960981/British_High_Commission_-_Nov_2024_ze5iou.jpg)',
+				}}
+			/>
+
+			{/* Background Video - loads after page is ready */}
 			<video
-				className="absolute inset-0 w-full h-full object-cover"
+				ref={videoRef}
+				className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+					videoLoaded ? 'opacity-100' : 'opacity-0'
+				}`}
 				autoPlay
 				loop
 				muted
 				playsInline
 				aria-hidden="true"
 				preload="auto"
+				onLoadedData={() => setVideoLoaded(true)}
 			>
 				<source
-					src="https://res.cloudinary.com/djetoiflq/video/upload/v1758960981/British_High_Commission_-_Nov_2024_ze5iou.mp4"
+					src="https://res.cloudinary.com/djetoiflq/video/upload/q_auto/v1758960981/British_High_Commission_-_Nov_2024_ze5iou.mp4"
 					type="video/mp4"
 				/>
 				Your browser does not support the video tag.
