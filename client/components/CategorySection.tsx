@@ -265,9 +265,9 @@ export default function CategorySection({ title, items, isLanding = false, secti
                 transition={{ duration: 0.6 }} 
                 className="order-2 md:order-2"
               >
-                <div className="rounded-lg overflow-hidden bg-black relative">
-                  <div className="relative">
-                    <div className="w-full h-64 sm:h-[420px] md:h-[520px] block relative">
+                <div className="rounded-lg overflow-hidden bg-black relative w-full max-w-full">
+                  <div className="relative w-full max-w-full">
+                    <div className="w-full h-64 sm:h-[420px] md:h-[520px] block relative overflow-hidden">
                       {lacasSelected === lacasGallery.length ? (
                         // Show video when last item is selected
                         <div className="w-full h-full relative overflow-hidden">
@@ -283,13 +283,13 @@ export default function CategorySection({ title, items, isLanding = false, secti
                                 className="z-10 play-btn shadow-lg focus:outline-none"
                                 aria-label="Play LACAS Puppet Show video"
                               >
-                                <svg viewBox="0 0 64 64" fill="white">
+                                <svg viewBox="0 0 64 64" fill="white" className="w-12 h-12 sm:w-16 sm:h-16">
                                   <polygon points="24,10 54,32 24,54" fill="white" />
                                 </svg>
                               </button>
                             </div>
                           ) : (
-                            <div className="absolute inset-0 w-full h-full">
+                            <div className="absolute inset-0 w-full h-full overflow-hidden">
                               <ReactPlayer
                                 src="https://res.cloudinary.com/djetoiflq/video/upload/v1759605739/LACAS_1_mdbnw8.mp4"
                                 playing={true}
