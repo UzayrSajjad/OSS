@@ -159,12 +159,12 @@ export default function WorkShowcase(){
               <div className="mx-4 sm:mx-6 lg:mx-8">
                 <div className={`marquee ${row.speedClass} ${row.dir === 'rtl' ? 'marquee-reverse' : ''} flex items-stretch`}>
                   {row.works.concat(row.works).concat(row.works).map((work,i)=> (
-                    <div key={i + rIdx*100} onClick={()=>{ setActive(works.findIndex(w => w.id === work.id)); setOpen(true); }} onKeyDown={(e)=>{ if(e.key === 'Enter' || e.key === ' ') { setActive(works.findIndex(w => w.id === work.id)); setOpen(true); } }} role="button" tabIndex={0} className="group min-w-[320px] sm:min-w-[400px] md:min-w-[520px] h-64 sm:h-80 md:h-96 bg-[hsl(var(--background))] rounded-xl overflow-hidden cursor-pointer relative transform transition card-hover">
+                    <div key={i + rIdx*100} onClick={()=>{ setActive(works.findIndex(w => w.id === work.id)); setOpen(true); }} onKeyDown={(e)=>{ if(e.key === 'Enter' || e.key === ' ') { setActive(works.findIndex(w => w.id === work.id)); setOpen(true); } }} role="button" tabIndex={0} className="group min-w-[260px] sm:min-w-[320px] md:min-w-[420px] h-56 sm:h-64 md:h-80 bg-[hsl(var(--background))] rounded-xl overflow-hidden cursor-pointer relative transform transition card-hover">
                           <LazyImage src={work.image} alt={work.title} className="w-full h-full object-cover" />
-                          <div className="absolute inset-0 bg-[hsl(var(--background))]/28 opacity-0 group-hover:opacity-100 transition flex items-end p-4 sm:p-5 md:p-6">
+                          <div className="absolute inset-0 bg-[hsl(var(--background))]/28 opacity-0 group-hover:opacity-100 transition flex items-end p-3 sm:p-4 md:p-5">
                             <div className="transform transition-all duration-300 group-hover:translate-y-0 group-hover:scale-100">
-                              <h4 className="text-white font-bold text-base sm:text-lg md:text-xl group-hover:text-lg sm:group-hover:text-xl md:group-hover:text-2xl font-[Outfit] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">{work.title}</h4>
-                              <p className="text-white/90 text-sm sm:text-base md:text-lg group-hover:text-base sm:group-hover:text-lg md:group-hover:text-xl font-[Outfit]">{work.description}</p>
+                              <h4 className="text-white font-bold text-sm sm:text-base md:text-lg group-hover:text-base sm:group-hover:text-lg md:group-hover:text-xl font-[Outfit] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">{work.title}</h4>
+                              <p className="text-white/90 text-xs sm:text-sm md:text-base group-hover:text-sm sm:group-hover:text-base md:group-hover:text-lg font-[Outfit]">{work.description}</p>
                             </div>
                           </div>
                         </div>
