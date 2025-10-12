@@ -45,7 +45,7 @@ export default function Hero() {
 
 	return (
 		<section
-			className="relative w-full h-screen pt-16 sm:pt-[4.5rem] md:pt-20 flex items-center justify-center overflow-hidden"
+			className="relative w-full h-screen flex items-center justify-center overflow-hidden"
 			id="hero"
 			style={{ marginTop: 0 }}
 		>
@@ -62,7 +62,7 @@ export default function Hero() {
 			{/* Background Video - loads after page is ready */}
 			<video
 				ref={videoRef}
-				className="absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-700"
+				className="absolute inset-0 w-full h-full object-cover object-top opacity-100 transition-opacity duration-700"
 				autoPlay
 				loop
 				muted
@@ -91,7 +91,7 @@ export default function Hero() {
 			<div className="absolute inset-0 bg-black/60" />
 
 			{/* Content */}
-			<div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+			<div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 sm:pt-[4.5rem] md:pt-20">
 				{/* Heading */}
 				<motion.h1
 					initial={{ opacity: 0, y: 30 }}
