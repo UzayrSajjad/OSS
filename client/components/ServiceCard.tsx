@@ -58,7 +58,7 @@ export default function ServiceCard({ title, desc, icon, image, index }: { title
   onClick={scrollToSection}
   className="group card-hover rounded-3xl overflow-hidden border border-black/20 shadow-[0_30px_80px_rgba(0,0,0,0.55)] transform transition hover:shadow-[0_40px_100px_rgba(0,0,0,0.65)] bg-[#0b0b0b] flex flex-col h-full min-w-0 cursor-pointer"
   >
-  <div className="relative h-48 sm:h-60 md:h-72 lg:h-80 w-full bg-[#0f0f10] min-w-0">
+  <div className="relative h-40 sm:h-52 md:h-64 lg:h-72 w-full bg-[#0f0f10] min-w-0">
         {image ? (
           <LazyImage src={image} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102" />
         ) : (
@@ -66,13 +66,13 @@ export default function ServiceCard({ title, desc, icon, image, index }: { title
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
       </div>
-  <div className="p-4 sm:p-5 md:p-6 lg:p-8 xl:p-10 bg-[#0b0b0b] flex-1 flex flex-col min-w-0">
+  <div className="p-3 sm:p-4 md:p-5 lg:p-6 xl:p-7 bg-[#0b0b0b] flex-1 flex flex-col min-w-0">
         <div className="flex items-center justify-center">
           <div className="flex items-center justify-center min-h-[64px] lg:min-h-[80px]">
             <h3 className={`text-3xl lg:text-4xl font-extrabold tracking-tight text-center uppercase ${titleColorClass}`}>{title}</h3>
           </div>
         </div>
-        <p className="mt-5 text-[#545454] text-lg leading-relaxed mb-3 font-light tracking-wide flex-1">{desc}</p>
+  <p className="mt-4 text-[#545454] text-base leading-relaxed mb-3 font-light tracking-wide flex-1">{desc}</p>
         <div className="mt-4 h-px bg-gradient-to-r from-transparent via-[#545454] to-transparent group-hover:via-[#AE1D36] transition-colors duration-500" />
       </div>
     </motion.article>
