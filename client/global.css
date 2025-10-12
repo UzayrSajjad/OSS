@@ -2,6 +2,7 @@
 /* Use explicit weight list for Outfit to avoid PostCSS parser issues with the '..' range */
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Prata&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -111,6 +112,20 @@ body.loaded {
     /* Ensure hero headlines render the light gray immediately (prevent white flash) */
     color: #d4d2d2;
     padding-bottom: 0.1rem; /* reduce space below heading */
+  }
+
+  /* Events-specific headline style using Orbitron */
+  .events-headline {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase; /* force visual capitalization */
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+
+  /* Utility to apply Orbitron font without forcing uppercase */
+  .orbitron-ui {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: none;
   }
 
   /* Small centered dash under large headings for a premium look */

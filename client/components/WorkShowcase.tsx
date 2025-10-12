@@ -149,7 +149,7 @@ export default function WorkShowcase(){
     <section id="works" className="py-12 bg-[hsl(var(--background))]">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6">
         <motion.h2 initial={typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold brand-headline text-center mx-auto max-w-4xl">
-          <span className="gradient-text">Our Portfolio</span>
+          <span className="gradient-text events-headline">Our Portfolio</span>
         </motion.h2>
         <p className="mt-4 text-[hsl(var(--muted-gray))] text-sm sm:text-base text-center mx-auto max-w-2xl">A curated selection of recent productions, campaigns and performances.</p>
 

@@ -29,7 +29,7 @@ export default function ContactForm(){
           transition={{ duration: 0.6 }}
           className="bg-zinc-900/80 rounded-2xl shadow-2xl p-8 sm:p-12 border border-[hsl(var(--border))]"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold brand-headline no-dash text-[hsl(var(--accent))] mb-2">Contact Us</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold brand-headline no-dash text-[hsl(var(--accent))] mb-2"><span className="events-headline">Contact Us</span></h2>
           <p className="mb-6 text-[hsl(var(--muted-gray))] text-base sm:text-lg">Reach out for bookings, partnerships, or bespoke experiences.</p>
 
           <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-6">

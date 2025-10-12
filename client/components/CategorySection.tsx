@@ -171,8 +171,8 @@ export default function CategorySection({ title, items, isLanding = false, secti
   return (
     <section id={sectionId} className="py-12 bg-[hsl(var(--background))]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <motion.h2 variants={headingVariants} initial={headingInitial} whileInView="visible" viewport={{ once: true, amount: 0.2 }} className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold brand-headline text-center mx-auto max-w-4xl ${title === 'OSS Puppet Theatre' ? 'mb-14' : ''}`}>
-          <span className="gradient-text">{title}</span>
+        <motion.h2 variants={headingVariants} initial={headingInitial} whileInView="visible" viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.6 }} className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold brand-headline text-center mx-auto max-w-4xl ${title === 'OSS Puppet Theatre' ? 'mb-14' : ''}`}>
+          <span className="gradient-text events-headline">{title}</span>
         </motion.h2>
 
         {/* If on the landing page and this is the Puppet section, show a single video player like other videos */}

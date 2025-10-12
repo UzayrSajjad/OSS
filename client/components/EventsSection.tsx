@@ -129,7 +129,7 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
       <section id="events" className="py-12 bg-[hsl(var(--background))]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <motion.h2 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold brand-headline text-center mx-auto max-w-4xl font-[Playfair]">
-          <span className="gradient-text font-[Playfair]">Events n Entertainment</span>
+          <span className="gradient-text events-headline">EVENTS</span>
         </motion.h2>
 
         {/* Embedded YouTube video below heading */}
@@ -338,7 +338,7 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
         </div>
 
         <div className="mt-8 flex justify-center">
-          <Link href="/services/events" aria-label="See more Events n Entertainment" className="btn bg-[hsl(var(--accent))] text-white px-6 py-2 rounded-full transform transition-transform duration-200 hover:scale-105 shadow-lg hover:shadow-[0_12px_30px_rgba(183,28,45,0.18)] focus:outline-none focus:ring-4 focus:ring-[rgba(183,28,45,0.12)]">See more</Link>
+          <Link href="/services/events" aria-label="See more EVENTS" className="btn bg-[hsl(var(--accent))] text-white px-6 py-2 rounded-full transform transition-transform duration-200 hover:scale-105 shadow-lg hover:shadow-[0_12px_30px_rgba(183,28,45,0.18)] focus:outline-none focus:ring-4 focus:ring-[rgba(183,28,45,0.12)]">See more</Link>
         </div>
       </div>
 

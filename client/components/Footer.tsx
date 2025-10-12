@@ -14,12 +14,12 @@ export default function Footer(){
               alt="One Stop Solutions" 
               className="h-20 md:h-24 w-auto mb-6" 
             />
-            <p className="text-gray-600 text-sm leading-relaxed max-w-md mb-6 font-[Outfit]">
+            <p className="text-gray-600 text-sm leading-relaxed max-w-md mb-6 orbitron-ui">
               We craft premium events, theatrical entertainment and high-impact marketing — delivering end-to-end production and creative direction that brings your vision to life.
             </p>
             
             {/* Contact Info */}
-            <div className="space-y-3 text-sm font-[Outfit]">
+            <div className="space-y-3 text-sm orbitron-ui">
               <a href="tel:+923008468758" className="flex items-center gap-3 text-gray-600 hover:text-[hsl(var(--accent))] transition-colors">
                 <FaPhone className="text-[hsl(var(--accent))]" />
                 <span>+92 300 8468758</span>
@@ -37,25 +37,25 @@ export default function Footer(){
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-sm font-bold text-gray-900 mb-4 uppercase tracking-wider font-[Outfit]">Quick Links</h4>
-            <ul className="space-y-3 text-sm font-[Outfit]">
+            <h4 className="text-sm font-bold text-gray-900 mb-4 uppercase tracking-wider font-[Outfit]"><span className="events-headline">Quick Links</span></h4>
+            <ul className="space-y-3 text-sm orbitron-ui">
               <li>
-                <a href="/#about" className="text-gray-600 hover:text-[hsl(var(--accent))] transition-colors">
+                <a href="/#about" className="text-gray-600 hover:text-[hsl(var(--accent))] transition-colors orbitron-ui">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="/#services" className="text-gray-600 hover:text-[hsl(var(--accent))] transition-colors">
+                <a href="/#services" className="text-gray-600 hover:text-[hsl(var(--accent))] transition-colors orbitron-ui">
                   Our Services
                 </a>
               </li>
               <li>
-                <a href="/#works" className="text-gray-600 hover:text-[hsl(var(--accent))] transition-colors">
+                <a href="/#works" className="text-gray-600 hover:text-[hsl(var(--accent))] transition-colors orbitron-ui">
                   Portfolio
                 </a>
               </li>
               <li>
-                <a href="/#contact" className="text-gray-600 hover:text-[hsl(var(--accent))] transition-colors">
+                <a href="/#contact" className="text-gray-600 hover:text-[hsl(var(--accent))] transition-colors orbitron-ui">
                   Contact Us
                 </a>
               </li>
@@ -64,27 +64,27 @@ export default function Footer(){
 
           {/* Services & Social */}
           <div>
-            <h4 className="text-sm font-bold text-gray-900 mb-4 uppercase tracking-wider font-[Outfit]">Our Services</h4>
+            <h4 className="text-sm font-bold text-gray-900 mb-4 uppercase tracking-wider font-[Outfit]"><span className="events-headline">Our Services</span></h4>
             <ul className="space-y-3 text-sm mb-6 font-[Outfit]">
               <li>
-                <a href="/services/events" className="text-gray-600 hover:text-[hsl(var(--accent))] transition-colors">
+                <a href="/services/events" className="text-gray-600 hover:text-[hsl(var(--accent))] transition-colors orbitron-ui">
                   Events & Entertainment
                 </a>
               </li>
               <li>
-                <a href="/services/oss-puppet-theatre" className="text-gray-600 hover:text-[hsl(var(--accent))] transition-colors">
+                <a href="/services/oss-puppet-theatre" className="text-gray-600 hover:text-[hsl(var(--accent))] transition-colors orbitron-ui">
                   OSS Puppet Theatre
                 </a>
               </li>
               <li>
-                <a href="/services/marketing" className="text-gray-600 hover:text-[hsl(var(--accent))] transition-colors">
+                <a href="/services/marketing" className="text-gray-600 hover:text-[hsl(var(--accent))] transition-colors orbitron-ui">
                   Marketing Solutions
                 </a>
               </li>
             </ul>
 
             {/* Social Media */}
-            <h4 className="text-sm font-bold text-gray-900 mb-4 uppercase tracking-wider font-[Outfit]">Follow Us</h4>
+            <h4 className="text-sm font-bold text-gray-900 mb-4 uppercase tracking-wider font-[Outfit]"><span className="events-headline">Follow Us</span></h4>
             <div className="flex items-center gap-3">
               <a 
                 href="https://facebook.com" 
@@ -127,14 +127,14 @@ export default function Footer(){
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-6 border-t border-gray-200">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600 font-[Outfit]">
+          <div className="mt-12 pt-6 border-t border-gray-200">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600 orbitron-ui">
             <p>&copy; 2025 One Stop Solutions. All rights reserved.</p>
             <div className="flex gap-6">
-              <a href="/privacy" className="hover:text-[hsl(var(--accent))] transition-colors">
+              <a href="/privacy" className="hover:text-[hsl(var(--accent))] transition-colors orbitron-ui">
                 Privacy Policy
               </a>
-              <a href="/terms" className="hover:text-[hsl(var(--accent))] transition-colors">
+              <a href="/terms" className="hover:text-[hsl(var(--accent))] transition-colors orbitron-ui">
                 Terms of Service
               </a>
             </div>

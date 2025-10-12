@@ -63,7 +63,7 @@ export default function HomePage(){
           <div className="max-w-7xl mx-auto px-6">
             {/* headings should animate only once and respect reduced-motion */}
             <motion.h2 initial={typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold brand-headline text-center mx-auto max-w-4xl">
-              <span className="gradient-text">Our Services</span>
+              <span className="gradient-text events-headline">Our Services</span>
             </motion.h2>
             <p className="mt-4 text-[hsl(var(--muted-gray))] text-sm sm:text-base text-center mx-auto max-w-2xl">Three pillars to elevate your brand moments.</p>
 
@@ -127,7 +127,7 @@ function LeftWho(){
         transition={{ duration: 0.6 }}
         className="text-5xl sm:text-6xl lg:text-7xl font-bold brand-headline no-dash text-[hsl(var(--accent))] mb-4"
       >
-        Who We Are
+        <span className="events-headline">Who We Are</span>
       </motion.h2>
       <p className="mt-4 text-[color:rgb(141,139,139)]">One Stop Solutions is an elite production house focused on cinematic storytelling, strategic marketing and unforgettable live performances. We blend creativity, craft and meticulous planning.</p>
       <div className="mt-6">

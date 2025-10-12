@@ -75,25 +75,25 @@ export default function Navbar() {
                   key={l.href} 
                   href={resolved} 
                   onClick={handleClick} 
-                  className="text-gray-700 hover:text-[hsl(var(--accent))] font-medium transition-colors duration-200 text-sm xl:text-base"
+                  className="text-gray-700 hover:text-[hsl(var(--accent))] font-medium transition-colors duration-200 text-xs xl:text-sm orbitron-ui uppercase"
                 >
                   {l.label}
                 </Link>
               );
             })}
 
-            <Link 
-              href={makeHref('#contact')} 
-              onClick={(e) => {
-                if (pathname !== '/') { 
-                  e.preventDefault(); 
-                  window.location.href = '/#contact'; 
-                }
-              }} 
-              className="ml-2 xl:ml-4 bg-[hsl(var(--accent))] text-white px-5 py-2.5 rounded-lg font-semibold text-sm xl:text-base hover:bg-[hsl(var(--accent))]/90 transition-all duration-200 shadow-sm hover:shadow-md"
-            >
-              Get in touch
-            </Link>
+                <Link 
+                  href={makeHref('#contact')} 
+                  onClick={(e) => {
+                    if (pathname !== '/') { 
+                      e.preventDefault(); 
+                      window.location.href = '/#contact'; 
+                    }
+                  }} 
+                  className="ml-2 xl:ml-4 bg-[hsl(var(--accent))] text-white px-5 py-2.5 rounded-lg font-semibold text-sm xl:text-base hover:bg-[hsl(var(--accent))]/90 transition-all duration-200 shadow-sm hover:shadow-md orbitron-ui uppercase"
+                >
+                  Get in touch
+                </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -131,7 +131,7 @@ export default function Navbar() {
                     window.location.href = `/${l.href}`.replace('//', '/');
                   }
                 }} 
-                className="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-[hsl(var(--accent))] rounded-lg font-medium transition-colors duration-200"
+                className="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-[hsl(var(--accent))] rounded-lg font-medium text-sm transition-colors duration-200 orbitron-ui uppercase"
               >
                 {l.label}
               </Link>
@@ -145,7 +145,7 @@ export default function Navbar() {
                   window.location.href = '/#contact'; 
                 } 
               }} 
-              className="block mx-4 mt-4 bg-[hsl(var(--accent))] text-white px-5 py-3 rounded-lg text-center font-semibold hover:bg-[hsl(var(--accent))]/90 transition-all duration-200"
+              className="block mx-4 mt-4 bg-[hsl(var(--accent))] text-white px-5 py-3 rounded-lg text-center font-semibold hover:bg-[hsl(var(--accent))]/90 transition-all duration-200 orbitron-ui uppercase"
             >
               Get in touch
             </Link>
