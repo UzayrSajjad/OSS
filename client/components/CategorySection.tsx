@@ -1,12 +1,11 @@
 "use client";
 
 import React, { useState, useRef } from 'react';
-import ReactPlayer from 'react-player';
 import { motion, Variants } from 'framer-motion';
 import Link from 'next/link';
 import Modal from './Modal';
 import LazyImage from './LazyImage';
-import LazyVideo from './LazyVideo';
+import OverlayVideo from './OverlayVideo';
 
 export type Item = { id: number; title: string; image: string; short: string; long: string };
 
@@ -115,8 +114,6 @@ export default function CategorySection({ title, items, isLanding = false, secti
   // determine which element will be visually left on md+ (OSS flips order)
   const imageIsLeft = title === 'OSS Puppet Theatre';
 
-  const [showPuppetPlayer, setShowPuppetPlayer] = useState(false);
-  const [showDiscoverPlayer, setShowDiscoverPlayer] = useState(false);
 
   // LACAS Puppet Show Gallery
   const lacasGallery = [
@@ -132,7 +129,6 @@ export default function CategorySection({ title, items, isLanding = false, secti
     'https://res.cloudinary.com/djetoiflq/image/upload/v1759604812/7_nnkk9t.jpg',
   ];
   const [lacasSelected, setLacasSelected] = useState(0);
-  const [showLacasPlayer, setShowLacasPlayer] = useState(false);
   const lacasStripRef = useRef<HTMLDivElement | null>(null);
   const [lacasThumbWidth, setLacasThumbWidth] = useState<number | null>(null);
 
@@ -157,7 +153,6 @@ export default function CategorySection({ title, items, isLanding = false, secti
     'https://res.cloudinary.com/djetoiflq/image/upload/v1759606965/10_t3ljmk.jpg',
   ];
   const [midCitySelected, setMidCitySelected] = useState(0);
-  const [showMidCityPlayer, setShowMidCityPlayer] = useState(false);
   const midCityStripRef = useRef<HTMLDivElement | null>(null);
   const [midCityThumbWidth, setMidCityThumbWidth] = useState<number | null>(null);
 
@@ -195,14 +190,13 @@ export default function CategorySection({ title, items, isLanding = false, secti
               <p className="text-lg sm:text-xl leading-relaxed text-center mt-4">From concept to execution, OSS ensured a seamless, vibrant, and memorable experience — honoring Kids Kampus's legacy with creativity and excellence.</p>
             </div>
             <div className="max-w-5xl mx-auto">
-              <div className="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px] relative">
-                <LazyVideo
-                  src="https://res.cloudinary.com/djetoiflq/video/upload/v1759001886/KK_Karnival_Polo_Ground_qrtinr.mov"
-                  thumbnail="https://res.cloudinary.com/djetoiflq/image/upload/v1759606594/Screenshot_From_2025-10-05_00-36-16_bzhxah.png"
-                  thumbnailAlt="Kids Kampus 50th Anniversary thumbnail"
-                  playing={true}
-                />
-              </div>
+              <OverlayVideo
+                containerClassName="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px]"
+                src="https://res.cloudinary.com/djetoiflq/video/upload/v1759001886/KK_Karnival_Polo_Ground_qrtinr.mov"
+                poster="https://res.cloudinary.com/djetoiflq/image/upload/v1759606594/Screenshot_From_2025-10-05_00-36-16_bzhxah.png"
+                posterAlt="Kids Kampus 50th Anniversary thumbnail"
+                buttonAriaLabel="Play Kids Kampus 50th Anniversary video"
+              />
             </div>
 
             {/* LACAS Puppet Show Section */}
@@ -247,39 +241,13 @@ export default function CategorySection({ title, items, isLanding = false, secti
                   <div className="relative w-full max-w-full">
                     <div className="w-full h-64 sm:h-[420px] md:h-[520px] block relative overflow-hidden">
                       {lacasSelected === lacasGallery.length ? (
-                        // Show video when last item is selected
-                        <div className="w-full h-full relative overflow-hidden">
-                          {!showLacasPlayer ? (
-                            <div className="relative w-full h-full flex items-center justify-center bg-black">
-                              <img
-                                src="https://res.cloudinary.com/djetoiflq/image/upload/v1759604814/3_ds7ugd.jpg"
-                                alt="LACAS Puppet Show video thumbnail"
-                                className="absolute inset-0 w-full h-full object-cover z-0"
-                              />
-                              <button
-                                onClick={() => setShowLacasPlayer(true)}
-                                className="z-10 play-btn shadow-lg focus:outline-none"
-                                aria-label="Play LACAS Puppet Show video"
-                              >
-                                <svg viewBox="0 0 64 64" fill="white" className="w-12 h-12 sm:w-16 sm:h-16">
-                                  <polygon points="24,10 54,32 24,54" fill="white" />
-                                </svg>
-                              </button>
-                            </div>
-                          ) : (
-                            <div className="absolute inset-0 w-full h-full overflow-hidden">
-                              <ReactPlayer
-                                src="https://res.cloudinary.com/djetoiflq/video/upload/v1759605739/LACAS_1_mdbnw8.mp4"
-                                playing={true}
-                                controls={true}
-                                width="100%"
-                                height="100%"
-                                className="react-player"
-                                style={{ position: 'absolute', top: 0, left: 0 }}
-                              />
-                            </div>
-                          )}
-                        </div>
+                        <OverlayVideo
+                          containerClassName="w-full h-full"
+                          src="https://res.cloudinary.com/djetoiflq/video/upload/v1759605739/LACAS_1_mdbnw8.mp4"
+                          poster="https://res.cloudinary.com/djetoiflq/image/upload/v1759604814/3_ds7ugd.jpg"
+                          posterAlt="LACAS Puppet Show video thumbnail"
+                          buttonAriaLabel="Play LACAS Puppet Show video"
+                        />
                       ) : (
                         // Show image
                         <>
@@ -377,13 +345,14 @@ export default function CategorySection({ title, items, isLanding = false, secti
                 whileInView={{ opacity: 1, y: 0 }} 
                 viewport={{ once: true, amount: 0.4 }} 
                 transition={{ duration: 0.6 }} 
-                className="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px] relative"
+                className="relative"
               >
-                <LazyVideo
+                <OverlayVideo
+                  containerClassName="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px]"
                   src="https://res.cloudinary.com/djetoiflq/video/upload/v1759002209/fd9704cd-1fa9-42b2-9a92-21699c5a651a_wltcdk.mov"
-                  thumbnail="https://res.cloudinary.com/djetoiflq/image/upload/v1759606964/9_y1mlxt.jpg"
-                  thumbnailAlt="Mid City Housing Family Fest video thumbnail"
-                  playing={true}
+                  poster="https://res.cloudinary.com/djetoiflq/image/upload/v1759606964/9_y1mlxt.jpg"
+                  posterAlt="Mid City Housing Family Fest thumbnail"
+                  buttonAriaLabel="Play Mid City Housing Family Fest video"
                 />
               </motion.div>
             </div>
@@ -553,12 +522,19 @@ export default function CategorySection({ title, items, isLanding = false, secti
         {title === 'OSS Puppet Theatre' && isLanding ? (
           <div className="mt-20 max-w-5xl mx-auto px-4 sm:px-6">
             <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-3xl sm:text-4xl md:text-5xl font-[Outfit] font-extrabold text-center mx-auto max-w-4xl mb-6 text-[#AE1D36] uppercase tracking-wider">FEATURED BY DISCOVER PAKISTAN</motion.h3>
-            <motion.div initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="w-full aspect-video rounded-xl overflow-hidden shadow-lg relative" style={{ minHeight: '260px' }}>
-              <LazyVideo
+            <motion.div
+              initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.6 }}
+              className="relative"
+            >
+              <OverlayVideo
+                containerClassName="w-full aspect-video rounded-xl overflow-hidden shadow-lg"
                 src="https://res.cloudinary.com/djetoiflq/video/upload/v1759002936/Discover_Pakistan_pce1so.mov"
-                thumbnail="https://res.cloudinary.com/djetoiflq/image/upload/v1759003023/disocver_pak_jfe4lj.png"
-                thumbnailAlt="Discover Pakistan thumbnail"
-                playing={true}
+                poster="https://res.cloudinary.com/djetoiflq/image/upload/v1759003023/disocver_pak_jfe4lj.png"
+                posterAlt="Discover Pakistan feature thumbnail"
+                buttonAriaLabel="Play Discover Pakistan feature video"
               />
             </motion.div>
           </div>

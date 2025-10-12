@@ -1,18 +1,16 @@
 "use client";
 
 import React, { useState, useRef } from 'react';
-import ReactPlayer from 'react-player';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Modal from './Modal';
 import EventGallery from './EventGallery';
 import LazyImage from './LazyImage';
-import LazyVideo from './LazyVideo';
+import OverlayVideo from './OverlayVideo';
 
 export type Item = { id: number; title: string; image?: string; short?: string; long?: string; images?: string[] };
 
 export default function EventsSection({ items, smallHeadings = false }: { items: Item[]; smallHeadings?: boolean }){
-  const [showPlayer, setShowPlayer] = useState(false);
   // prefer local event images from /public/events and fall back to provided item images
   const localEvents = [
     'https://res.cloudinary.com/djetoiflq/image/upload/v1758964441/be13_mcco5k.png',
@@ -37,7 +35,6 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
   const leftBtnRef = useRef<HTMLButtonElement | null>(null);
   const [leftBtnLeft, setLeftBtnLeft] = useState<number | null>(null);
 
-  const [showSufiPlayer, setShowSufiPlayer] = useState(false);
   const sufiGallery = [
     'https://res.cloudinary.com/djetoiflq/image/upload/v1758972707/sm1_zvjayu.png',
     'https://res.cloudinary.com/djetoiflq/image/upload/v1758972707/sm2_hjwlir.png',
@@ -136,12 +133,19 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
         <div className="mt-8">
           <div className="max-w-5xl mx-auto">
             <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-3xl sm:text-4xl md:text-5xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-4 max-w-5xl tracking-wider uppercase">CORPORATE DINNER — BRITISH HIGH COMMISSION</motion.h3>
-            <motion.div initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px] relative">
-              <LazyVideo
+            <motion.div
+              initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.6 }}
+              className="relative"
+            >
+              <OverlayVideo
+                containerClassName="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px]"
                 src="https://res.cloudinary.com/djetoiflq/video/upload/v1758960981/British_High_Commission_-_Nov_2024_ze5iou.mp4"
-                thumbnail="https://res.cloudinary.com/djetoiflq/image/upload/v1758961687/be4_ekrgfo.png"
-                thumbnailAlt="British High Commission video thumbnail"
-                playing={true}
+                poster="https://res.cloudinary.com/djetoiflq/image/upload/v1758961687/be4_ekrgfo.png"
+                posterAlt="British High Commission corporate dinner thumbnail"
+                buttonAriaLabel="Play British High Commission corporate dinner video"
               />
             </motion.div>
           </div>
@@ -208,32 +212,20 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
   <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-48 text-3xl sm:text-4xl md:text-5xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-8 max-w-5xl mx-auto tracking-wider uppercase">SUFI NIGHT AT THE HISTORIC CHOWK MASJID WAZIR KHAN</motion.h3>
   <div className="mt-8">
     <div className="max-w-5xl mx-auto">
-      <motion.div initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px] relative">
-              {!showSufiPlayer ? (
-          <div className="relative w-full h-full flex items-center justify-center bg-black">
-            <img
-              src="https://res.cloudinary.com/djetoiflq/image/upload/v1758972707/sm1_zvjayu.png"
-              alt="Sufi Night video thumbnail"
-              className="absolute inset-0 w-full h-full object-cover z-0"
-            />
-            <button
-                    onClick={() => setShowSufiPlayer(true)}
-              className="z-10 play-btn shadow-lg focus:outline-none"
-              aria-label="Play video"
-            >
-              <svg viewBox="0 0 64 64" fill="white" className="w-12 h-12 sm:w-16 sm:h-16">
-                <polygon points="24,10 54,32 24,54" fill="white" />
-              </svg>
-            </button>
-          </div>
-        ) : (
-          <LazyVideo
-            src="https://res.cloudinary.com/djetoiflq/video/upload/v1758972598/sn-promo2_rumaqa.mp4"
-            thumbnail="https://res.cloudinary.com/djetoiflq/image/upload/v1758990897/Screenshot_from_2025-09-27_21-34-24_sjg35n.png"
-            thumbnailAlt="Sufi Night video thumbnail"
-            playing={true}
-          />
-        )}
+      <motion.div
+        initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ duration: 0.6 }}
+        className="relative"
+      >
+        <OverlayVideo
+          containerClassName="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px]"
+          src="https://res.cloudinary.com/djetoiflq/video/upload/v1758972598/sn-promo2_rumaqa.mp4"
+          poster="https://res.cloudinary.com/djetoiflq/image/upload/v1758972707/sm1_zvjayu.png"
+          posterAlt="Sufi Night promo thumbnail"
+          buttonAriaLabel="Play Sufi Night promo video"
+        />
       </motion.div>
     </div>
   </div>
@@ -297,24 +289,20 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
       {/* Exclusive HUM TV coverage block (moved above cards) */}
       <div className="mt-12 max-w-5xl mx-auto px-4 sm:px-6">
   <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-3xl sm:text-4xl md:text-5xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-6 tracking-wider uppercase">EXCLUSIVE COVERAGE BY HUM NEWS</motion.h3>
-        <motion.div initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[180px] sm:min-h-[220px] md:min-h-[260px] lg:min-h-[300px] relative">
-          <div className="relative w-full h-full flex items-center justify-center bg-black">
-            {!showSufiPlayer ? (
-              <>
-                <img src="https://res.cloudinary.com/djetoiflq/image/upload/v1758990897/Screenshot_from_2025-09-27_21-34-24_sjg35n.png" alt="HUM TV coverage thumbnail" className="absolute inset-0 w-full h-full object-cover z-0" />
-                <button onClick={() => setShowSufiPlayer(true)} className="z-10 play-btn shadow-lg focus:outline-none" aria-label="Play HUM TV coverage">
-                  <svg viewBox="0 0 64 64" fill="white" className="w-10 h-10 sm:w-12 sm:h-12"><polygon points="24,10 54,32 24,54" fill="white" /></svg>
-                </button>
-              </>
-            ) : (
-              <LazyVideo
-                src="https://res.cloudinary.com/djetoiflq/video/upload/v1758990823/sufi-night-humtv-coverage_ioexrw.mp4"
-                thumbnail="https://res.cloudinary.com/djetoiflq/image/upload/v1758990897/Screenshot_from_2025-09-27_21-34-24_sjg35n.png"
-                thumbnailAlt="HUM TV coverage thumbnail"
-                playing={true}
-              />
-            )}
-          </div>
+        <motion.div
+          initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.6 }}
+          className="relative"
+        >
+          <OverlayVideo
+            containerClassName="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[180px] sm:min-h-[220px] md:min-h-[260px] lg:min-h-[300px]"
+            src="https://res.cloudinary.com/djetoiflq/video/upload/v1758990823/sufi-night-humtv-coverage_ioexrw.mp4"
+            poster="https://res.cloudinary.com/djetoiflq/image/upload/v1758990897/Screenshot_from_2025-09-27_21-34-24_sjg35n.png"
+            posterAlt="HUM News exclusive coverage thumbnail"
+            buttonAriaLabel="Play HUM News exclusive coverage video"
+          />
         </motion.div>
       </div>
 
