@@ -216,10 +216,10 @@ export default function CustomCursor() {
       {/* CSS Variables for easy theming */}
       <style jsx global>{`
         :root {
-          --cursor-core-size: 36px;
-          --cursor-core-color: rgba(220, 38, 38, 0.8);
-          --cursor-halo-size: 36px;
-          --cursor-halo-color: rgba(220, 38, 38, 0.3);
+          --cursor-core-size: 24px;
+          --cursor-core-color: rgba(220, 38, 38, 1);
+          --cursor-halo-size: 24px;
+          --cursor-halo-color: rgba(220, 38, 38, 0.6);
           --cursor-hover-scale-core: 1;
           --cursor-hover-scale-halo: 1;
           --cursor-pressed-scale: 0.85;
