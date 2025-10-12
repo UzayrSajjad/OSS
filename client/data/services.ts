@@ -186,7 +186,7 @@ export const marketing = [
 
 export const services = [
   {
-    title: 'Events n Entertainment',
+    title: 'EVENTS',
   desc: 'From concept to execution, we craft unforgettable events tailored to your vision. Let us handle the details while you enjoy seamless, memorable experiences.',
   image: 'https://res.cloudinary.com/djetoiflq/image/upload/v1759611715/Events_n_Entertainment_dgjdf2.webp',
     icon: '🎪'
@@ -198,9 +198,9 @@ export const services = [
     icon: '📣'
   },
   {
-    title: 'OSS Puppet Theatre',
+    title: 'PUPPET THEATRE',
   desc: 'Bringing stories to life with captivating performances and immersive experiences that inspire and delight audiences of all ages.',
-  image: 'https://res.cloudinary.com/djetoiflq/image/upload/v1759611716/OSSPuppetTheatre_kvo6yk.webp',
+  image: 'https://res.cloudinary.com/djetoiflq/image/upload/v1759606959/4_ugpaaf.jpg',
     icon: '🎭'
   },
 ];

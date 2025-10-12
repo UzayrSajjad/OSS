@@ -110,7 +110,7 @@ export default function Hero() {
 					transition={{ duration: 0.8, delay: 0.4 }}
 					className="mt-5 text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed"
 				>
-					Premium events, theatrical entertainment and high-impact marketing — all under one roof.
+					Premium 360° solutions and services provider in Events, Marketing, and Puppetry, with over 25 years of experience across
 				</motion.p>
 
 				{/* Locations */}
@@ -120,10 +120,7 @@ export default function Hero() {
 					transition={{ duration: 0.8, delay: 0.6 }}
 					className="mt-7 flex flex-col items-center gap-2 text-center"
 				>
-					<span className="uppercase tracking-[0.25em] text-gray-300 text-xs sm:text-sm font-semibold">
-						Now offering services in
-					</span>
-					<div className="text-base sm:text-lg md:text-xl font-semibold text-white/95">
+					<div className="text-lg sm:text-xl md:text-2xl font-semibold text-white/95">
 						USA <span className="mx-3 text-gray-400">—</span> QATAR <span className="mx-3 text-gray-400">—</span> PAKISTAN
 					</div>
 				</motion.div>

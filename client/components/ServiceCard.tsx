@@ -5,8 +5,15 @@ import { motion } from 'framer-motion';
 import LazyImage from './LazyImage';
 
 export default function ServiceCard({ title, desc, icon, image, index }: { title: string; desc: string; icon?: React.ReactNode; image?: string; index?: number }) {
-  const accentTitles = new Set(['Events n Entertainment', 'Marketing', 'OSS Puppet Theatre']);
-  const titleColorClass = accentTitles.has(title) ? 'text-[hsl(var(--accent))]' : 'text-[#545555]';
+  // Match titles case-insensitively so renaming (e.g. to ALL CAPS) keeps the accent color
+  const accentTitles = new Set([
+    'events n entertainment',
+    'events',
+    'marketing',
+    'oss puppet theatre',
+    'puppet theatre',
+  ]);
+  const titleColorClass = accentTitles.has((title || '').toLowerCase()) ? 'text-[hsl(var(--accent))]' : 'text-[#545555]';
   // determine animation direction by index: 0 -> left, 1 -> bottom, 2 -> right (then repeat)
   const dir = typeof index === 'number' ? index % 3 : 1;
   const variants = {
