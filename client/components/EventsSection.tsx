@@ -48,6 +48,29 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
   const [sufiSelected, setSufiSelected] = useState(0);
   const sufiStripRef = useRef<HTMLDivElement | null>(null);
   const [sufiThumbWidth, setSufiThumbWidth] = useState<number | null>(null);
+  
+  const wildlifeGallery = [
+    'https://res.cloudinary.com/djetoiflq/image/upload/v1760344039/w9_mohngt.jpg',
+    'https://res.cloudinary.com/djetoiflq/image/upload/v1760344042/w6_f1rnrk.jpg',
+    'https://res.cloudinary.com/djetoiflq/image/upload/v1760344041/w3_sffb4w.jpg',
+    'https://res.cloudinary.com/djetoiflq/image/upload/v1760344041/w5_x856kw.jpg',
+    'https://res.cloudinary.com/djetoiflq/image/upload/v1760344041/w4_mcowkb.jpg',
+    'https://res.cloudinary.com/djetoiflq/image/upload/v1760344039/w1_r7l73b.jpg',
+  'https://res.cloudinary.com/djetoiflq/image/upload/v1760344040/w10_xm7hdb.jpg',
+  'https://res.cloudinary.com/djetoiflq/image/upload/v1760345665/w16_1_atwkdr.jpg',
+  'https://res.cloudinary.com/djetoiflq/image/upload/v1760345924/w7_1_khf6sy.jpg',
+    'https://res.cloudinary.com/djetoiflq/image/upload/v1760344038/w12_fbyawt.jpg',
+    'https://res.cloudinary.com/djetoiflq/image/upload/v1760344040/w8_vf1q8l.jpg',
+  'https://res.cloudinary.com/djetoiflq/image/upload/v1760345288/w14_1_eamfnw.jpg',
+  'https://res.cloudinary.com/djetoiflq/image/upload/v1760344038/w11_ixc8ry.jpg',
+  'https://res.cloudinary.com/djetoiflq/image/upload/v1760345452/w15_1_ymuaam.jpg',
+  'https://res.cloudinary.com/djetoiflq/image/upload/v1760345544/w13_1_t0leij.jpg',
+    'https://res.cloudinary.com/djetoiflq/image/upload/v1760344036/w2_rng6mp.jpg',
+  ];
+  const [wildlifeSelected, setWildlifeSelected] = useState(0);
+  const wildlifeStripRef = useRef<HTMLDivElement | null>(null);
+  const [wildlifeThumbWidth, setWildlifeThumbWidth] = useState<number | null>(null);
+  
   const mountedRef = useRef(false);
 
   React.useEffect(() => {
@@ -86,6 +109,13 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
     }
   }, [sufiSelected]);
 
+  React.useEffect(() => {
+    const node = wildlifeStripRef.current?.children[wildlifeSelected] as HTMLElement | undefined;
+    if (node && wildlifeStripRef.current) {
+      node.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  }, [wildlifeSelected]);
+
   // compute thumbnail width so an exact number of thumbnails fit the visible strip
   React.useEffect(() => {
     const gap = 12; // gap-3 => 0.75rem => 12px
@@ -108,6 +138,13 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
         const totalGaps2 = gap * (visibleCount - 1);
         const stw = Math.floor((sw - totalGaps2) / visibleCount);
         setSufiThumbWidth(stw);
+      }
+      // compute for wildlife strip as well
+      const ww = wildlifeStripRef.current?.clientWidth ?? 0;
+      if (ww > 0 && visibleCount > 0) {
+        const totalGaps3 = gap * (visibleCount - 1);
+        const wtw = Math.floor((ww - totalGaps3) / visibleCount);
+        setWildlifeThumbWidth(wtw);
       }
     };
 
@@ -132,7 +169,7 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
         {/* Embedded YouTube video below heading */}
         <div className="mt-8">
           <div className="max-w-5xl mx-auto">
-            <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-4 max-w-5xl tracking-wider uppercase">CORPORATE DINNER — BRITISH HIGH COMMISSION</motion.h3>
+            <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-4 max-w-5xl tracking-wider uppercase">WELCOME DINNER @ BRITISH HIGH COMMISSION</motion.h3>
             <motion.div
               initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -164,11 +201,11 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
           </motion.div>
 
           {/* Right: image gallery */}
-          <motion.div initial={prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 80 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.35 }} transition={{ duration: 0.6 }} className="order-2 md:order-2">
-            <div className="rounded-lg overflow-hidden bg-black relative">
+          <motion.div initial={prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 80 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.35 }} transition={{ duration: 0.6 }} className="order-2 md:order-2 min-w-0">
+            <div className="rounded-lg bg-black relative min-w-0">
               <div className="relative">
                 {/* Main gallery image with navigation buttons overlaid */}
-                <div className="w-full h-64 sm:h-[420px] md:h-[520px] block relative">
+                <div className="w-full h-64 sm:h-[420px] md:h-[520px] block relative overflow-hidden rounded-lg">
                   <LazyImage src={gallery[selected]} alt={`Event image ${selected+1}`} className="w-full h-full object-cover" />
                   
                   {/* Left navigation button on main image */}
@@ -188,15 +225,11 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
               </div>
 
               <div className="mt-3 py-2 relative">
-                <div ref={stripRef} className="flex overflow-x-auto no-scrollbar py-1 snap-x snap-mandatory bg-black rounded-none mx-0 w-full min-w-full">
+                <div ref={stripRef} className="flex overflow-x-auto no-scrollbar py-1 snap-x snap-mandatory bg-black rounded-none mx-0 w-full gap-3 px-0">
                   {gallery.map((g, i) => {
-                    let marginClass = '';
-                    if (i === 0 && gallery.length > 1) marginClass = 'mr-3';
-                    else if (i === gallery.length - 1 && gallery.length > 1) marginClass = 'ml-3';
-                    else if (gallery.length > 1) marginClass = 'mx-1.5';
                       const fixedWidth = thumbWidth ?? 160;
                       return (
-                        <button key={g + i} onClick={() => setSelected(i)} aria-label={`Select image ${i+1}`} className={`rounded-md overflow-hidden flex-shrink-0 snap-start border ${marginClass} ${i===selected ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none h-16 sm:h-20 md:h-24`} style={{ width: `${fixedWidth}px` }}>
+                        <button key={g + i} onClick={() => setSelected(i)} aria-label={`Select image ${i+1}`} className={`rounded-md overflow-hidden flex-shrink-0 snap-start border ${i===selected ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none h-16 sm:h-20 md:h-24`} style={{ width: `${fixedWidth}px` }}>
                           <LazyImage src={g} alt={`thumb-${i+1}`} className="w-full h-full object-cover" />
                         </button>
                       );
@@ -209,7 +242,8 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
 
   {/* Below gallery: show 3 event cards */}
 
-  <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-48 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-8 max-w-5xl mx-auto tracking-wider uppercase">SUFI NIGHT AT THE HISTORIC CHOWK MASJID WAZIR KHAN</motion.h3>
+  <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-48 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-8 max-w-5xl mx-auto tracking-wider uppercase">REVIVAL OF THE SUFI MUSIC AT MASJID WAZIR KHAN, LAHORE</motion.h3>
+  <motion.p initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.5 }} className="text-center text-sm sm:text-base text-[hsl(var(--muted-gray))] mb-6 max-w-3xl mx-auto">In collaboration with Walled City Lahore Authority (WCLA) and OSS</motion.p>
   <div className="mt-8">
     <div className="max-w-5xl mx-auto">
       <motion.div
@@ -244,10 +278,10 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
     </div>
 
     {/* Right: image panel with main image + thumbnail strip */}
-    <div className="order-2 md:order-2">
-      <div className="rounded-lg overflow-hidden bg-black relative">
+    <div className="order-2 md:order-2 min-w-0">
+      <div className="rounded-lg bg-black relative">
         <div className="relative">
-          <div className="w-full h-64 sm:h-[420px] md:h-[520px] block relative">
+          <div className="w-full h-64 sm:h-[420px] md:h-[520px] block relative overflow-hidden rounded-lg">
             <LazyImage src={sufiGallery[sufiSelected]} alt={`Sufi image ${sufiSelected+1}`} className="w-full h-full object-cover" />
             
             {/* Left navigation button on main image */}
@@ -267,15 +301,11 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
         </div>
 
         <div className="mt-3 py-2 relative">
-          <div ref={sufiStripRef} className="flex overflow-x-auto no-scrollbar py-1 snap-x snap-mandatory bg-black rounded-none mx-0 w-full min-w-full">
+          <div ref={sufiStripRef} className="flex overflow-x-auto no-scrollbar py-1 snap-x snap-mandatory bg-black rounded-none mx-0 w-full gap-3 px-0">
             {sufiGallery.map((g, i) => {
-              let marginClass = '';
-              if (i === 0 && sufiGallery.length > 1) marginClass = 'mr-3';
-              else if (i === sufiGallery.length - 1 && sufiGallery.length > 1) marginClass = 'ml-3';
-              else if (sufiGallery.length > 1) marginClass = 'mx-1.5';
               const sfFixedWidth = sufiThumbWidth ?? 160;
               return (
-                <button key={g + i} onClick={() => setSufiSelected(i)} aria-label={`Select sufi image ${i+1}`} className={`rounded-md overflow-hidden flex-shrink-0 snap-start border ${marginClass} ${i===sufiSelected ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none h-16 sm:h-20 md:h-24`} style={{ width: `${sfFixedWidth}px` }}>
+                <button key={g + i} onClick={() => setSufiSelected(i)} aria-label={`Select sufi image ${i+1}`} className={`rounded-md overflow-hidden flex-shrink-0 snap-start border ${i===sufiSelected ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none h-16 sm:h-20 md:h-24`} style={{ width: `${sfFixedWidth}px` }}>
                   <LazyImage src={g} alt={`sufi-thumb-${i+1}`} className="w-full h-full object-cover" />
                 </button>
               );
@@ -304,6 +334,64 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
             buttonAriaLabel="Play HUM News exclusive coverage video"
           />
         </motion.div>
+      </div>
+
+      {/* BHC Wildlife World's Exhibition 2025 */}
+      <div className="mt-12 max-w-5xl mx-auto px-4 sm:px-6">
+        <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-6 tracking-wider uppercase">BHC Wild Life World's Exhibition 2025 – Media Coverage</motion.h3>
+        <motion.div
+          initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.6 }}
+          className="relative"
+        >
+          <OverlayVideo
+            containerClassName="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px]"
+            src="https://res.cloudinary.com/djetoiflq/video/upload/v1760344049/BHC_CITY_42_valuis.mov"
+            poster="https://res.cloudinary.com/djetoiflq/image/upload/v1760345007/w1_1_rgq2oq.jpg"
+            posterAlt="BHC Wildlife Exhibition 2025 Media Coverage thumbnail"
+            buttonAriaLabel="Play BHC Wildlife Exhibition 2025 Media Coverage video"
+          />
+        </motion.div>
+
+        {/* Wildlife Gallery */}
+        <div className="mt-10">
+          <div className="rounded-lg bg-black relative">
+            <div className="relative">
+              <div className="w-full h-64 sm:h-[420px] md:h-[520px] block relative min-w-0 overflow-hidden rounded-lg">
+                <LazyImage src={wildlifeGallery[wildlifeSelected]} alt={`Wildlife image ${wildlifeSelected+1}`} className="w-full h-full object-cover" />
+                
+                {/* Left navigation button */}
+                <button aria-label="Previous wildlife image" type="button" onClick={() => setWildlifeSelected((s) => (s - 1 + wildlifeGallery.length) % wildlifeGallery.length)} className="absolute top-1/2 -translate-y-1/2 z-20 left-3 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 backdrop-blur-md hover:bg-black/60 hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
+                    <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+
+                {/* Right navigation button */}
+                <button aria-label="Next wildlife image" type="button" onClick={() => setWildlifeSelected((s) => (s + 1) % wildlifeGallery.length)} className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 backdrop-blur-md hover:bg-black/60 hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
+                    <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div className="mt-3 py-2 relative">
+              <div ref={wildlifeStripRef} className="flex overflow-x-auto no-scrollbar py-1 snap-x snap-mandatory bg-black rounded-none mx-0 w-full gap-3 px-0">
+                {wildlifeGallery.map((g, i) => {
+                  const wfFixedWidth = wildlifeThumbWidth ?? 160;
+                  return (
+                    <button key={g + i} onClick={() => setWildlifeSelected(i)} aria-label={`Select wildlife image ${i+1}`} className={`rounded-md overflow-hidden flex-shrink-0 snap-start border ${i===wildlifeSelected ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none h-16 sm:h-20 md:h-24`} style={{ width: `${wfFixedWidth}px` }}>
+                      <LazyImage src={g} alt={`wildlife-thumb-${i+1}`} className="w-full h-full object-cover" />
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
   <div className="mt-10"></div>

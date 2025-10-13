@@ -167,7 +167,7 @@ export default function OSSPuppetTheatrePage(){
               transition={{ duration: 0.6 }} 
               className="mt-32 text-3xl sm:text-4xl md:text-5xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-6 max-w-5xl mx-auto tracking-wider uppercase"
             >
-              🎉 Kids Kampus 50th Anniversary Celebration @ Polo Ground
+              🎉 Kids Kampus 50th Anniversary @ Polo Ground
             </motion.h3>
             <div className="prose max-w-none text-[hsl(var(--muted-gray))] mx-auto mb-8 max-w-4xl">
               <p className="text-lg sm:text-xl leading-relaxed text-center">OSS proudly organized the 50th Anniversary Celebration of Kids Kampus at the iconic Polo Ground, marking five decades of learning and joy. The event featured colorful performances, engaging activities, and a lively atmosphere that brought together students, parents, and teachers in celebration of the school's remarkable journey.</p>

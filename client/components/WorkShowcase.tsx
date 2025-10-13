@@ -84,8 +84,8 @@ const works = [
     type: 'event'
   },
   {
-    id: 'british-high-commission',
-    title: 'CORPORATE DINNER — BRITISH HIGH COMMISSION',
+  id: 'british-high-commission',
+  title: 'WELCOME DINNER @ BRITISH HIGH COMMISSION',
     description: 'An exclusive corporate dinner at the British High Commission, masterfully curated and executed by OSS, embodying sophistication and refinement.',
     image: 'https://res.cloudinary.com/djetoiflq/image/upload/v1758964441/be13_mcco5k.png',
     images: [
@@ -106,8 +106,8 @@ const works = [
   },
   {
     id: 'sufi-night-wazir-khan',
-    title: 'SUFI NIGHT AT THE HISTORIC CHOWK MASJID WAZIR KHAN',
-    description: 'A mesmerizing Sufi Night at the historic Chowk Masjid Wazir Khan, blending timeless spiritual heritage with cultural grandeur.',
+    title: 'REVIVAL OF THE SUFI MUSIC AT MASJID WAZIR KHAN, LAHORE',
+    description: 'A revival of Sufi music at Masjid Wazir Khan, Lahore, blending timeless spiritual heritage with cultural grandeur.',
     image: 'https://res.cloudinary.com/djetoiflq/image/upload/v1758972707/sm1_zvjayu.png',
     images: [
       'https://res.cloudinary.com/djetoiflq/image/upload/v1758972707/sm1_zvjayu.png',
