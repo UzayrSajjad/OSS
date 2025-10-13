@@ -414,64 +414,6 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
     </motion.div>
   </div>
 
-  {/* Marketing Portfolio Section */}
-  <div className="mt-32 mb-20">
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto px-4 sm:px-6">
-      {/* Left: Heading */}
-      <motion.div 
-        initial={prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -80 }} 
-        whileInView={{ opacity: 1, x: 0 }} 
-        viewport={{ once: true, amount: 0.35 }} 
-        transition={{ duration: 0.6 }} 
-        className="order-1"
-      >
-        <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold font-['Orbitron']">
-          <span className="gradient-text events-headline">Visit Our Events Portfolio</span>
-        </h3>
-      </motion.div>
-
-      {/* Right: Animated Card */}
-      <motion.div 
-        initial={prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 80 }} 
-        whileInView={{ opacity: 1, x: 0 }} 
-        viewport={{ once: true, amount: 0.35 }} 
-        transition={{ duration: 0.6 }} 
-        className="order-2"
-      >
-        <a
-          href="/OSS-Profile.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block group cursor-pointer"
-        >
-          <div className="relative rounded-xl overflow-hidden bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 border border-[hsl(var(--border))] shadow-2xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
-            <div className="relative h-64 sm:h-80 overflow-hidden">
-              <LazyImage 
-                src="https://res.cloudinary.com/djetoiflq/image/upload/v1759013295/osss_shguh4.jpg" 
-                alt="Marketing Portfolio Preview" 
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              
-              {/* Hover Icon */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="w-16 h-16 rounded-full bg-[#AE1D36] flex items-center justify-center shadow-xl">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
-                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            
-            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
-              <p className="text-white text-lg font-semibold">Click to explore our full portfolio</p>
-            </div>
-          </div>
-        </a>
-      </motion.div>
-    </div>
-  </div>
-
   <div className="mt-10"></div>
   <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-6 tracking-wider uppercase">EXPLORE MORE EVENTS</motion.h3>
   <div className="mt-6" />
