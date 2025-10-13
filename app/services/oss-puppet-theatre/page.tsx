@@ -231,6 +231,9 @@ export default function OSSPuppetTheatrePage(){
                           poster="https://res.cloudinary.com/djetoiflq/image/upload/v1759604814/3_ds7ugd.jpg"
                           posterAlt="LACAS Puppet Show video thumbnail"
                           buttonAriaLabel="Play LACAS Puppet Show video"
+                          autoPlay={true}
+                          loop={true}
+                          muted={true}
                         />
                       ) : (
                         // Show image

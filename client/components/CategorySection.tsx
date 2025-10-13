@@ -583,24 +583,46 @@ export default function CategorySection({ title, items, isLanding = false, secti
         )}
 
         {title === 'OSS Puppet Theatre' && isLanding ? (
-          <div className="mt-20 max-w-5xl mx-auto px-4 sm:px-6">
-            <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center mx-auto max-w-4xl mb-6 text-[#AE1D36] uppercase tracking-wider">FEATURED BY DISCOVER PAKISTAN</motion.h3>
-            <motion.div
-              initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.6 }}
-              className="relative"
-            >
-              <OverlayVideo
-                containerClassName="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px]"
-                src="https://res.cloudinary.com/djetoiflq/video/upload/v1759002936/Discover_Pakistan_pce1so.mov"
-                poster="https://res.cloudinary.com/djetoiflq/image/upload/v1759003023/disocver_pak_jfe4lj.png"
-                posterAlt="Discover Pakistan feature thumbnail"
-                buttonAriaLabel="Play Discover Pakistan feature video"
-              />
-            </motion.div>
-          </div>
+          <>
+            <div className="mt-20 max-w-5xl mx-auto px-4 sm:px-6">
+              <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center mx-auto max-w-4xl mb-6 text-[#AE1D36] uppercase tracking-wider">FEATURED BY DISCOVER PAKISTAN</motion.h3>
+              <motion.div
+                initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.6 }}
+                className="relative"
+              >
+                <OverlayVideo
+                  containerClassName="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px]"
+                  src="https://res.cloudinary.com/djetoiflq/video/upload/v1759002936/Discover_Pakistan_pce1so.mov"
+                  poster="https://res.cloudinary.com/djetoiflq/image/upload/v1759003023/disocver_pak_jfe4lj.png"
+                  posterAlt="Discover Pakistan feature thumbnail"
+                  buttonAriaLabel="Play Discover Pakistan feature video"
+                />
+              </motion.div>
+            </div>
+
+            {/* Historical Days City Tour with TDCP */}
+            <div className="mt-20 max-w-5xl mx-auto px-4 sm:px-6">
+              <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center mx-auto max-w-4xl mb-6 text-[#AE1D36] uppercase tracking-wider">Historical Days City Tour with TDCP</motion.h3>
+              <motion.div
+                initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.6 }}
+                className="relative"
+              >
+                <OverlayVideo
+                  containerClassName="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px]"
+                  src="https://res.cloudinary.com/djetoiflq/video/upload/v1760374516/Bus-Tour_gkku0l.mp4"
+                  poster="https://res.cloudinary.com/djetoiflq/image/upload/v1760374611/bus-tour-thumbnail_kjfanz.png"
+                  posterAlt="Historical Days City Tour with TDCP thumbnail"
+                  buttonAriaLabel="Play Historical Days City Tour with TDCP video"
+                />
+              </motion.div>
+            </div>
+          </>
         ) : (
           <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6">
           {(typeof window === 'undefined' || window.location.pathname === '/')
