@@ -40,14 +40,14 @@ export default function EventsPage() {
             }
           }
 
-          /* Increase the image / cover height inside each card */
+          /* Reduce the image / cover height for more rectangular cards */
           .events-page .mt-16.grid article > .relative {
-            height: 28rem !important; /* ~448px */
+            height: 18rem !important; /* ~288px - reduced from 28rem */
           }
 
           /* Make titles moderately sized inside these cards */
           .events-page .mt-16.grid article h4 {
-            font-size: 1.75rem !important; /* ~24px */
+            font-size: 1.5rem !important; /* ~24px */
             line-height: 1.25 !important;
             font-weight: 700 !important;
             letter-spacing: -0.25px !important;
@@ -55,12 +55,12 @@ export default function EventsPage() {
 
           /* Adjust padding for overlay panel */
           .events-page .mt-16.grid article .absolute.inset-x-0.bottom-0.p-5 {
-            padding: 1.25rem !important;
+            padding: 1rem !important;
           }
 
-          /* Slightly increase the gap between cards */
+          /* Increase the gap between cards for better spacing */
           .events-page .mt-16.grid {
-            gap: 1.25rem !important;
+            gap: 2rem !important;
           }
 
           /* Hide the 'See more' link inside EventsSection on this page */

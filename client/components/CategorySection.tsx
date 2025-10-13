@@ -196,7 +196,7 @@ export default function CategorySection({ title, items, isLanding = false, secti
               <OverlayVideo
                 containerClassName="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px]"
                 src="https://res.cloudinary.com/djetoiflq/video/upload/v1759001886/KK_Karnival_Polo_Ground_qrtinr.mov"
-                poster="https://res.cloudinary.com/djetoiflq/image/upload/v1759606594/Screenshot_From_2025-10-05_00-36-16_bzhxah.png"
+                poster="https://res.cloudinary.com/djetoiflq/image/upload/v1759606959/2_yqcwsm.jpg"
                 posterAlt="Kids Kampus 50th Anniversary thumbnail"
                 buttonAriaLabel="Play Kids Kampus 50th Anniversary video"
               />
@@ -594,7 +594,7 @@ export default function CategorySection({ title, items, isLanding = false, secti
                   rel="noopener noreferrer"
                   className="block group cursor-pointer"
                 >
-                  <div className="relative rounded-xl overflow-hidden bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 border border-[hsl(var(--border))] shadow-2xl hover:shadow-[0_20px_60px_rgba(174,29,54,0.4)] transform hover:-translate-y-2 transition-all duration-300">
+                  <div className="relative rounded-xl overflow-hidden bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 border border-[hsl(var(--border))] shadow-2xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
                     <div className="relative h-64 sm:h-80 overflow-hidden">
                       <LazyImage 
                         src="https://res.cloudinary.com/djetoiflq/image/upload/v1760378624/Screenshot_From_2025-10-13_23-03-29_nohobk.png" 

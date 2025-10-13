@@ -15,10 +15,13 @@ type EntItem = { id: number; title: string; image: string; short?: string; long?
 export default function OSSPuppetTheatrePage(){
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<EntItem | null>(null);
-  // booking modal state
-  const [bookingOpen, setBookingOpen] = useState(false);
-  const [bookingPdf, setBookingPdf] = useState<string | null>(null);
-  const [bookingTitle, setBookingTitle] = useState<string | null>(null);
+
+  // LACAS modal state
+  const [lacasModalOpen, setLacasModalOpen] = useState(false);
+  const [lacasModalType, setLacasModalType] = useState<'video' | 'image'>('image');
+
+  // Mid City modal state
+  const [midCityModalOpen, setMidCityModalOpen] = useState(false);
 
   // LACAS Puppet Show Gallery state
   const lacasGallery = [
@@ -156,7 +159,7 @@ export default function OSSPuppetTheatrePage(){
         <div className="pt-28 md:pt-32">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <motion.h2 variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }} initial={prefersReducedMotion ? 'visible' : 'hidden'} whileInView="visible" viewport={{ once: true, amount: 0.2 }} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold brand-headline text-center mx-auto max-w-4xl mb-14">
-              <span className="gradient-text">OSS Puppet Theatre</span>
+              <span className="gradient-text events-headline">OSS Puppet Theatre</span>
             </motion.h2>
 
             {/* Kids Kampus 50th Anniversary Section */}
@@ -165,7 +168,7 @@ export default function OSSPuppetTheatrePage(){
               whileInView={{ opacity: 1, y: 0 }} 
               viewport={{ once: true, amount: 0.4 }} 
               transition={{ duration: 0.6 }} 
-              className="mt-32 text-3xl sm:text-4xl md:text-5xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-6 max-w-5xl mx-auto tracking-wider uppercase"
+              className="mt-16 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-6 max-w-5xl mx-auto tracking-wider uppercase"
             >
               🎉 Kids Kampus 50th Anniversary @ Polo Ground
             </motion.h3>
@@ -177,7 +180,7 @@ export default function OSSPuppetTheatrePage(){
               <OverlayVideo
                 containerClassName="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px]"
                 src="https://res.cloudinary.com/djetoiflq/video/upload/v1759001886/KK_Karnival_Polo_Ground_qrtinr.mov"
-                poster="https://res.cloudinary.com/djetoiflq/image/upload/v1759606594/Screenshot_From_2025-10-05_00-36-16_bzhxah.png"
+                poster="https://res.cloudinary.com/djetoiflq/image/upload/v1759606959/2_yqcwsm.jpg"
                 posterAlt="Kids Kampus 50th Anniversary thumbnail"
                 buttonAriaLabel="Play Kids Kampus 50th Anniversary video"
               />
@@ -189,13 +192,13 @@ export default function OSSPuppetTheatrePage(){
               whileInView={{ opacity: 1, y: 0 }} 
               viewport={{ once: true, amount: 0.4 }} 
               transition={{ duration: 0.6 }} 
-              className="mt-32 text-3xl sm:text-4xl md:text-5xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-8 max-w-5xl mx-auto tracking-wider uppercase"
+              className="mt-32 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-8 max-w-5xl mx-auto tracking-wider uppercase"
             >
               🎭 Puppet Show at LACAS
             </motion.h3>
 
             <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-start max-w-7xl mx-auto">
-              {/* Left: Description */}
+              {/* Left: Video with autoplay, loop, mute */}
               <motion.div 
                 initial={prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -80 }} 
                 whileInView={{ opacity: 1, x: 0 }} 
@@ -203,157 +206,23 @@ export default function OSSPuppetTheatrePage(){
                 transition={{ duration: 0.6 }} 
                 className="order-1 md:order-1"
               >
-                <div className="prose max-w-none text-[hsl(var(--muted-gray))]">
-                  <p className="text-2xl font-semibold text-[hsl(var(--accent))] mb-4">Bringing Stories to Life Through Art and Imagination</p>
-                  <p className="text-lg sm:text-xl leading-relaxed mb-4">OSS had the pleasure of organizing a delightful Puppet Show at LACAS, designed to spark creativity, laughter, and curiosity among young learners. The event combined entertainment with education, allowing children to experience storytelling in a magical and interactive way.</p>
-                  <p className="text-lg sm:text-xl leading-relaxed mb-4">Colorful puppets, engaging scripts, and lively performances brought beloved characters to life on stage — capturing the attention of every student in the audience. Our team handled complete event management, including stage setup, sound and lighting design, puppet coordination, and show flow supervision to ensure a seamless and memorable experience.</p>
-                  <div className="bg-zinc-900/70 rounded-lg p-6 mt-3">
-                    <p className="text-lg sm:text-xl leading-relaxed mb-0">The Puppet Show not only entertained but also encouraged imagination, teamwork, and expression — aligning perfectly with LACAS's vision of nurturing creativity in education. OSS was proud to deliver a production that left smiles on faces and stories in hearts, creating a joyful day the students will remember for a long time.</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Right: Image Gallery with Video */}
-              <motion.div 
-                initial={prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 80 }} 
-                whileInView={{ opacity: 1, x: 0 }} 
-                viewport={{ once: true, amount: 0.35 }} 
-                transition={{ duration: 0.6 }} 
-                className="order-2 md:order-2"
-              >
-                <div className="rounded-lg overflow-hidden bg-black relative">
-                  <div className="relative">
-                    <div className="w-full h-64 sm:h-[420px] md:h-[520px] block relative">
-                      {lacasSelected === lacasGallery.length ? (
-                        <OverlayVideo
-                          containerClassName="w-full h-full"
-                          src="https://res.cloudinary.com/djetoiflq/video/upload/v1759605739/LACAS_1_mdbnw8.mp4"
-                          poster="https://res.cloudinary.com/djetoiflq/image/upload/v1759604814/3_ds7ugd.jpg"
-                          posterAlt="LACAS Puppet Show video thumbnail"
-                          buttonAriaLabel="Play LACAS Puppet Show video"
-                          autoPlay={true}
-                          loop={true}
-                          muted={true}
-                        />
-                      ) : (
-                        // Show image
-                        <>
-                          <LazyImage src={lacasGallery[lacasSelected]} alt={`LACAS image ${lacasSelected+1}`} className="w-full h-full object-cover" />
-                          
-                          {/* Left navigation button */}
-                          <button 
-                            aria-label="Previous LACAS item" 
-                            type="button" 
-                            onClick={() => setLacasSelected((s) => (s - 1 + (lacasGallery.length + 1)) % (lacasGallery.length + 1))} 
-                            className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 backdrop-blur-md hover:bg-black/60 hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50"
-                          >
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
-                              <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                          </button>
-
-                          {/* Right navigation button */}
-                          <button 
-                            aria-label="Next LACAS item" 
-                            type="button" 
-                            onClick={() => setLacasSelected((s) => (s + 1) % (lacasGallery.length + 1))} 
-                            className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 backdrop-blur-md hover:bg-black/60 hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50"
-                          >
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
-                              <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                          </button>
-                        </>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="mt-3 py-2 relative">
-                    <div ref={lacasStripRef} className="flex overflow-x-auto no-scrollbar py-1 snap-x snap-mandatory bg-black rounded-none mx-0 w-full min-w-full">
-                      {/* Image thumbnails */}
-                      {lacasGallery.map((g, i) => {
-                        let marginClass = '';
-                        if (i === 0) marginClass = 'mr-3';
-                        else marginClass = 'mx-1.5';
-                        const fixedWidth = lacasThumbWidth ?? 160;
-                        return (
-                          <button 
-                            key={g + i} 
-                            onClick={() => setLacasSelected(i)} 
-                            aria-label={`Select LACAS image ${i+1}`} 
-                            className={`rounded-md overflow-hidden flex-shrink-0 snap-start border ${marginClass} ${i===lacasSelected ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none`} 
-                            style={{ width: `${fixedWidth}px`, height: '6.5rem' }}
-                          >
-                            <LazyImage src={g} alt={`lacas-thumb-${i+1}`} className="w-full h-full object-cover" />
-                          </button>
-                        );
-                      })}
-                      
-                      {/* Video thumbnail as last item */}
-                      <button 
-                        onClick={() => setLacasSelected(lacasGallery.length)} 
-                        aria-label="Play LACAS video"
-                        className={`rounded-md overflow-hidden flex-shrink-0 snap-start border mx-1.5 ml-3 ${lacasSelected === lacasGallery.length ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none relative`} 
-                        style={{ width: `${lacasThumbWidth ?? 160}px`, height: '6.5rem' }}
-                      >
-                        <LazyImage src="https://res.cloudinary.com/djetoiflq/image/upload/v1759604814/3_ds7ugd.jpg" alt="video-thumb" className="w-full h-full object-cover" />
-                        {/* Play icon overlay */}
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                          <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M8 5v14l11-7z" />
-                          </svg>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Mid City Housing Family Fest Section */}
-            <motion.h3 
-              initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
-              viewport={{ once: true, amount: 0.4 }} 
-              transition={{ duration: 0.6 }} 
-              className="mt-32 text-3xl sm:text-4xl md:text-5xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-8 max-w-5xl mx-auto tracking-wider uppercase"
-            >
-              🎡 Mid City Housing Family Fest
-            </motion.h3>
-
-            {/* Video First */}
-            <div className="max-w-5xl mx-auto mb-10">
-              <motion.div 
-                initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} 
-                whileInView={{ opacity: 1, y: 0 }} 
-                viewport={{ once: true, amount: 0.4 }} 
-                transition={{ duration: 0.6 }} 
-                className="relative"
-              >
-                <OverlayVideo
-                  containerClassName="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px]"
-                  src="https://res.cloudinary.com/djetoiflq/video/upload/v1759002209/fd9704cd-1fa9-42b2-9a92-21699c5a651a_wltcdk.mov"
-                  poster="https://res.cloudinary.com/djetoiflq/image/upload/v1759606964/9_y1mlxt.jpg"
-                  posterAlt="Mid City Housing Family Fest thumbnail"
-                  buttonAriaLabel="Play Mid City Housing Family Fest video"
-                />
-              </motion.div>
-            </div>
-
-            {/* Left Description and Right Images */}
-            <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-start max-w-7xl mx-auto">
-              {/* Left: Description */}
-              <motion.div 
-                initial={prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -80 }} 
-                whileInView={{ opacity: 1, x: 0 }} 
-                viewport={{ once: true, amount: 0.35 }} 
-                transition={{ duration: 0.6 }} 
-                className="order-1 md:order-1"
-              >
-                <div className="prose max-w-none text-[hsl(var(--muted-gray))]">
-                  <p className="text-lg sm:text-xl leading-relaxed mb-4">OSS successfully organized the Mid City Housing Family Fest, a vibrant community event filled with entertainment, food, and family fun. The festival brought together residents and visitors for a day of laughter, music, and togetherness — celebrating the spirit of community living.</p>
-                  <div className="bg-zinc-900/70 rounded-lg p-6 mt-3">
-                    <p className="text-lg sm:text-xl leading-relaxed mb-0">From event design and coordination to stage management and on-ground execution, OSS ensured a seamless and memorable experience for everyone.</p>
+                <div 
+                  className="rounded-lg bg-black relative cursor-pointer group"
+                  onClick={() => {
+                    setLacasModalType('video');
+                    setLacasModalOpen(true);
+                  }}
+                >
+                  <div className="w-full h-64 sm:h-[420px] md:h-[520px] block relative overflow-hidden rounded-lg">
+                    <video 
+                      autoPlay 
+                      loop 
+                      muted 
+                      playsInline
+                      className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                      src="https://res.cloudinary.com/djetoiflq/video/upload/v1759605739/LACAS_1_mdbnw8.mp4"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
                   </div>
                 </div>
               </motion.div>
@@ -364,18 +233,177 @@ export default function OSSPuppetTheatrePage(){
                 whileInView={{ opacity: 1, x: 0 }} 
                 viewport={{ once: true, amount: 0.35 }} 
                 transition={{ duration: 0.6 }} 
-                className="order-2 md:order-2"
+                className="order-2 md:order-2 min-w-0"
               >
-                <div className="rounded-lg overflow-hidden bg-black relative">
+                <div className="rounded-lg bg-black relative">
                   <div className="relative">
-                    <div className="w-full h-64 sm:h-[420px] md:h-[520px] block relative">
-                      <LazyImage src={midCityGallery[midCitySelected]} alt={`Mid City image ${midCitySelected+1}`} className="w-full h-full object-cover" />
+                    <div className="w-full h-64 sm:h-[420px] md:h-[520px] block relative overflow-hidden rounded-lg">
+                      <div 
+                        className="w-full h-full cursor-pointer group"
+                        onClick={() => {
+                          setLacasModalType('image');
+                          setLacasModalOpen(true);
+                        }}
+                      >
+                        <LazyImage 
+                          src={lacasGallery[lacasSelected]} 
+                          alt={`LACAS image ${lacasSelected+1}`} 
+                          className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none" />
+                      </div>
+                    
+                      {/* Left navigation button */}
+                      <button 
+                        aria-label="Previous LACAS image" 
+                        type="button" 
+                        onClick={(e) => { e.stopPropagation(); setLacasSelected((s) => (s - 1 + lacasGallery.length) % lacasGallery.length); }} 
+                        className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 backdrop-blur-md hover:bg-black/60 hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50"
+                      >
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
+                          <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </button>
+
+                      {/* Right navigation button */}
+                      <button 
+                        aria-label="Next LACAS image" 
+                        type="button" 
+                        onClick={(e) => { e.stopPropagation(); setLacasSelected((s) => (s + 1) % lacasGallery.length); }} 
+                        className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 backdrop-blur-md hover:bg-black/60 hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50"
+                      >
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
+                          <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="mt-3 py-2 relative">
+                    <div ref={lacasStripRef} className="flex overflow-x-auto no-scrollbar py-1 snap-x snap-mandatory bg-black rounded-none mx-0 w-full gap-3 px-0">
+                      {/* Image thumbnails only */}
+                      {lacasGallery.map((g, i) => {
+                        const fixedWidth = lacasThumbWidth ?? 160;
+                        return (
+                          <button 
+                            key={g + i} 
+                            onClick={() => setLacasSelected(i)} 
+                            aria-label={`Select LACAS image ${i+1}`} 
+                            className={`rounded-md overflow-hidden flex-shrink-0 snap-start border ${i===lacasSelected ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none h-16 sm:h-20 md:h-24`} 
+                            style={{ width: `${fixedWidth}px` }}
+                          >
+                            <LazyImage src={g} alt={`lacas-thumb-${i+1}`} className="w-full h-full object-cover" />
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* LACAS Modal */}
+            <Modal 
+              open={lacasModalOpen} 
+              onClose={() => setLacasModalOpen(false)}
+              title="🎭 Puppet Show at LACAS"
+            >
+              {lacasModalType === 'video' ? (
+                <video 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
+                  controls
+                  className="w-full rounded-lg"
+                  src="https://res.cloudinary.com/djetoiflq/video/upload/v1759605739/LACAS_1_mdbnw8.mp4"
+                />
+              ) : (
+                <div className="relative">
+                  <LazyImage 
+                    src={lacasGallery[lacasSelected]} 
+                    alt={`LACAS image ${lacasSelected+1}`} 
+                    className="w-full rounded-lg" 
+                  />
+                  
+                  {/* Modal Navigation Buttons */}
+                  <button 
+                    aria-label="Previous image" 
+                    type="button" 
+                    onClick={() => setLacasSelected((s) => (s - 1 + lacasGallery.length) % lacasGallery.length)} 
+                    className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black/50 backdrop-blur-md hover:bg-black/70 hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50"
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
+                      <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
+
+                  <button 
+                    aria-label="Next image" 
+                    type="button" 
+                    onClick={() => setLacasSelected((s) => (s + 1) % lacasGallery.length)} 
+                    className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black/50 backdrop-blur-md hover:bg-black/70 hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50"
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
+                      <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
+
+                  {/* Image counter */}
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 backdrop-blur-md px-4 py-2 rounded-full text-white text-sm sm:text-base">
+                    {lacasSelected + 1} / {lacasGallery.length}
+                  </div>
+                </div>
+              )}
+            </Modal>
+
+            <div>
+              {/* Mid City Housing Family Fest Section */}
+              <motion.h3 
+                initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                viewport={{ once: true, amount: 0.4 }} 
+                transition={{ duration: 0.6 }} 
+                className="mt-32 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-12 max-w-5xl mx-auto tracking-wider uppercase"
+              >
+                🎡 Mid City Housing Family Fest
+              </motion.h3>
+
+              {/* Centralized Video */}
+              <div className="max-w-5xl mx-auto">
+                <OverlayVideo
+                  containerClassName="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px]"
+                  src="https://res.cloudinary.com/djetoiflq/video/upload/v1759002209/fd9704cd-1fa9-42b2-9a92-21699c5a651a_wltcdk.mov"
+                  poster="https://res.cloudinary.com/djetoiflq/image/upload/v1759606964/9_y1mlxt.jpg"
+                  posterAlt="Mid City Housing Family Fest thumbnail"
+                  buttonAriaLabel="Play Mid City Housing Family Fest video"
+                />
+              </div>
+
+              {/* Image Gallery with Navigation */}
+              <div className="max-w-5xl mx-auto px-4 sm:px-6 mt-10">
+                <div className="rounded-lg bg-black relative">
+                  <div className="relative">
+                    <div className="w-full h-64 sm:h-[420px] md:h-[520px] block relative min-w-0 overflow-hidden rounded-lg">
+                      <div 
+                        className="w-full h-full cursor-pointer group"
+                        onClick={() => {
+                          setMidCityModalOpen(true);
+                        }}
+                      >
+                        <LazyImage 
+                          src={midCityGallery[midCitySelected]} 
+                          alt={`Mid City image ${midCitySelected+1}`} 
+                          className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none" />
+                      </div>
                       
                       {/* Left navigation button */}
                       <button 
                         aria-label="Previous Mid City image" 
                         type="button" 
-                        onClick={() => setMidCitySelected((s) => (s - 1 + midCityGallery.length) % midCityGallery.length)} 
+                        onClick={(e) => { e.stopPropagation(); setMidCitySelected((s) => (s - 1 + midCityGallery.length) % midCityGallery.length); }} 
                         className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 backdrop-blur-md hover:bg-black/60 hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50"
                       >
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
@@ -387,7 +415,7 @@ export default function OSSPuppetTheatrePage(){
                       <button 
                         aria-label="Next Mid City image" 
                         type="button" 
-                        onClick={() => setMidCitySelected((s) => (s + 1) % midCityGallery.length)} 
+                        onClick={(e) => { e.stopPropagation(); setMidCitySelected((s) => (s + 1) % midCityGallery.length); }} 
                         className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 backdrop-blur-md hover:bg-black/60 hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50"
                       >
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
@@ -398,20 +426,17 @@ export default function OSSPuppetTheatrePage(){
                   </div>
 
                   <div className="mt-3 py-2 relative">
-                    <div ref={midCityStripRef} className="flex overflow-x-auto no-scrollbar py-1 snap-x snap-mandatory bg-black rounded-none mx-0 w-full min-w-full">
+                    <div ref={midCityStripRef} className="flex overflow-x-auto no-scrollbar py-1 snap-x snap-mandatory bg-black rounded-none mx-0 w-full gap-3 px-0">
+                      {/* Image thumbnails */}
                       {midCityGallery.map((g, i) => {
-                        let marginClass = '';
-                        if (i === 0 && midCityGallery.length > 1) marginClass = 'mr-3';
-                        else if (i === midCityGallery.length - 1 && midCityGallery.length > 1) marginClass = 'ml-3';
-                        else if (midCityGallery.length > 1) marginClass = 'mx-1.5';
                         const fixedWidth = midCityThumbWidth ?? 160;
                         return (
                           <button 
                             key={g + i} 
                             onClick={() => setMidCitySelected(i)} 
                             aria-label={`Select Mid City image ${i+1}`} 
-                            className={`rounded-md overflow-hidden flex-shrink-0 snap-start border ${marginClass} ${i===midCitySelected ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none`} 
-                            style={{ width: `${fixedWidth}px`, height: '6.5rem' }}
+                            className={`rounded-md overflow-hidden flex-shrink-0 snap-start border ${i===midCitySelected ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none h-16 sm:h-20 md:h-24`} 
+                            style={{ width: `${fixedWidth}px` }}
                           >
                             <LazyImage src={g} alt={`midcity-thumb-${i+1}`} className="w-full h-full object-cover" />
                           </button>
@@ -420,18 +445,61 @@ export default function OSSPuppetTheatrePage(){
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
+
+              {/* Mid City Modal */}
+              <Modal 
+                open={midCityModalOpen} 
+                onClose={() => setMidCityModalOpen(false)}
+                title="🎡 Mid City Housing Family Fest"
+              >
+                <div className="relative">
+                  <LazyImage 
+                    src={midCityGallery[midCitySelected]} 
+                    alt={`Mid City image ${midCitySelected+1}`} 
+                    className="w-full rounded-lg" 
+                  />
+                  
+                  {/* Modal Navigation Buttons */}
+                  <button 
+                    aria-label="Previous image" 
+                    type="button" 
+                    onClick={() => setMidCitySelected((s) => (s - 1 + midCityGallery.length) % midCityGallery.length)} 
+                    className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black/50 backdrop-blur-md hover:bg-black/70 hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50"
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
+                      <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
+
+                  <button 
+                    aria-label="Next image" 
+                    type="button" 
+                    onClick={() => setMidCitySelected((s) => (s + 1) % midCityGallery.length)} 
+                    className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black/50 backdrop-blur-md hover:bg-black/70 hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50"
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
+                      <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
+
+                  {/* Image counter */}
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 backdrop-blur-md px-4 py-2 rounded-full text-white text-sm sm:text-base">
+                    {midCitySelected + 1} / {midCityGallery.length}
+                  </div>
+                </div>
+              </Modal>
             </div>
           </div>
 
             {/* Featured by Discover Pakistan - moved to end */}
-            <div className="mt-32 max-w-5xl mx-auto px-4 sm:px-6">
-              <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="text-3xl sm:text-4xl md:text-5xl font-[Outfit] font-extrabold text-center mx-auto max-w-4xl mb-6 text-[#AE1D36] uppercase tracking-wider">FEATURED BY DISCOVER PAKISTAN</motion.h3>
+            <div className="mt-20 max-w-5xl mx-auto px-4 sm:px-6">
+              <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center mx-auto max-w-4xl mb-6 text-[#AE1D36] uppercase tracking-wider">FEATURED BY DISCOVER PAKISTAN</motion.h3>
               <motion.div
                 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.4 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                transition={{ duration: 0.6 }}
                 className="relative"
               >
                 <OverlayVideo
@@ -440,6 +508,26 @@ export default function OSSPuppetTheatrePage(){
                   poster="https://res.cloudinary.com/djetoiflq/image/upload/v1759003023/disocver_pak_jfe4lj.png"
                   posterAlt="Discover Pakistan feature thumbnail"
                   buttonAriaLabel="Play Discover Pakistan feature video"
+                />
+              </motion.div>
+            </div>
+
+            {/* Historical Days City Tour with TDCP */}
+            <div className="mt-20 max-w-5xl mx-auto px-4 sm:px-6">
+              <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center mx-auto max-w-4xl mb-6 text-[#AE1D36] uppercase tracking-wider">Historical Days City Tour with TDCP</motion.h3>
+              <motion.div
+                initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.6 }}
+                className="relative"
+              >
+                <OverlayVideo
+                  containerClassName="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px]"
+                  src="https://res.cloudinary.com/djetoiflq/video/upload/v1760374516/Bus-Tour_gkku0l.mp4"
+                  poster="https://res.cloudinary.com/djetoiflq/image/upload/v1760374611/bus-tour-thumbnail_kjfanz.png"
+                  posterAlt="Historical Days City Tour with TDCP thumbnail"
+                  buttonAriaLabel="Play Historical Days City Tour with TDCP video"
                 />
               </motion.div>
             </div>
@@ -454,7 +542,7 @@ export default function OSSPuppetTheatrePage(){
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {/* Card 1 - School Trips */}
               <motion.div initial={prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6 }}>
-                <button type="button" onClick={() => { setBookingPdf('/pdfs/OSSPT Day-Tour.pdf'); setBookingTitle('BOOK YOUR SCHOOL TRIP'); setBookingOpen(true); }} className="group text-left rounded-3xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-[1.02] bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 border border-[hsl(var(--border))] focus:outline-none w-full">
+                <button type="button" onClick={() => window.open('/OSSPT Day-Tour.html', '_blank')} className="group text-left rounded-3xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-[1.02] bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 border border-[hsl(var(--border))] focus:outline-none w-full">
                   <div className="relative h-64 overflow-hidden bg-black">
                     <LazyImage src="https://res.cloudinary.com/djetoiflq/image/upload/v1759006451/Screenshot_from_2025-09-28_01-53-50_geyqxt.png" alt="School Trip preview" className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105" />
                   </div>
@@ -467,7 +555,7 @@ export default function OSSPuppetTheatrePage(){
 
               {/* Card 2 - Custom Puppet Show Bookings */}
               <motion.div initial={prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6 }}>
-                <button type="button" onClick={() => { setBookingPdf('/pdfs/OSSPT Puppet Theatre.pdf'); setBookingTitle('BOOK YOUR PUPPET SHOW'); setBookingOpen(true); }} className="group text-left rounded-3xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-[1.02] bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 border border-[hsl(var(--border))] focus:outline-none w-full">
+                <button type="button" onClick={() => window.open('/OSSPT Puppet Theatre.html', '_blank')} className="group text-left rounded-3xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-[1.02] bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 border border-[hsl(var(--border))] focus:outline-none w-full">
                   <div className="relative h-64 overflow-hidden">
                     <LazyImage src="https://res.cloudinary.com/djetoiflq/image/upload/v1759006485/Screenshot_from_2025-09-28_01-54-30_kup5cv.png" alt="Puppet Show preview" className="absolute inset-0 w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105" />
                   </div>
@@ -480,41 +568,6 @@ export default function OSSPuppetTheatrePage(){
             </div>
           </div>
         </div>
-
-        {/* Booking modal */}
-  <Modal open={bookingOpen} onClose={() => { setBookingOpen(false); setBookingPdf(null); setBookingTitle(null); }} title={bookingTitle ?? (bookingPdf ? 'Booking PDF' : undefined)}>
-          <div className="w-full">
-            {bookingPdf ? (
-              <div>
-                {typeof window !== 'undefined' && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? (
-                  // Mobile: Show PDF viewer without download
-                  <div className="w-full h-[70vh] bg-black rounded-md overflow-hidden">
-                    <iframe 
-                      src={bookingPdf + '#toolbar=0&navpanes=0'} 
-                      className="w-full h-full"
-                      title="Booking PDF"
-                    />
-                  </div>
-                ) : (
-                  // Desktop: Show PDF preview without download option
-                  <div className="w-full h-[70vh] bg-black rounded-md overflow-hidden">
-                    <object data={bookingPdf + '#toolbar=0&navpanes=0&scrollbar=1'} type="application/pdf" className="w-full h-full">
-                      <iframe 
-                        src={bookingPdf + '#toolbar=0&navpanes=0'} 
-                        className="w-full h-full"
-                        title="Booking PDF"
-                      >
-                        <p className="text-center text-white p-6">PDF preview not available in your browser.</p>
-                      </iframe>
-                    </object>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <p>No PDF selected.</p>
-            )}
-          </div>
-        </Modal>
 
         <Modal open={open} onClose={() => setOpen(false)} title={active?.title}>
           <div>
@@ -561,18 +614,18 @@ function HeroSlider(){
           transition={{ duration: 0.8, delay: 3 }}
           className="max-w-5xl mx-auto"
         >
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-[Outfit] font-extrabold mb-6 leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight orbitron-ui">
             <span className="text-[#DC2626]">OSS Puppet Theatre</span>
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-4 font-light leading-relaxed max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-4 font-light leading-relaxed max-w-3xl mx-auto orbitron-ui">
             Bringing Stories to Life, Inspiring Young Minds
           </p>
           <div className="mt-8 space-y-4">
-            <p className="text-base sm:text-lg md:text-xl text-white/80 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-white/80 leading-relaxed max-w-3xl mx-auto orbitron-ui">
               Through engaging puppet shows, we help students learn real-world values like <span className="text-[hsl(var(--accent))] font-semibold">teamwork</span>, <span className="text-[hsl(var(--accent))] font-semibold">creativity</span>, <span className="text-[hsl(var(--accent))] font-semibold">empathy</span>, and <span className="text-[hsl(var(--accent))] font-semibold">cultural awareness</span> — making education fun, interactive, and memorable.
             </p>
           </div>
-          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center orbitron-ui">
             <div className="flex items-center gap-2 text-white/70 text-sm sm:text-base">
               <svg className="w-5 h-5 text-[hsl(var(--accent))]" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
