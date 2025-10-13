@@ -75,7 +75,7 @@ export default function Navbar() {
                   key={l.href} 
                   href={resolved} 
                   onClick={handleClick} 
-                  className="text-gray-700 hover:text-[hsl(var(--accent))] font-medium transition-colors duration-200 text-xs xl:text-sm orbitron-ui uppercase"
+                  className="text-gray-700 hover:text-[hsl(var(--accent))] font-medium transition-all duration-200 text-xs xl:text-sm orbitron-ui uppercase hover:scale-110 inline-block"
                 >
                   {l.label}
                 </Link>
@@ -90,7 +90,7 @@ export default function Navbar() {
                       window.location.href = '/#contact'; 
                     }
                   }} 
-                  className="ml-2 xl:ml-4 bg-[hsl(var(--accent))] text-white px-5 py-2.5 rounded-lg font-semibold text-sm xl:text-base hover:bg-[hsl(var(--accent))]/90 transition-all duration-200 shadow-sm hover:shadow-md orbitron-ui uppercase"
+                  className="ml-2 xl:ml-4 bg-[hsl(var(--accent))] text-white px-5 py-2.5 rounded-lg font-semibold text-sm xl:text-base hover:bg-[hsl(var(--accent))]/90 transition-all duration-200 shadow-sm hover:shadow-md orbitron-ui uppercase hover:scale-105"
                 >
                   Get in touch
                 </Link>

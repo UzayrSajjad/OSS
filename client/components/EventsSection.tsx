@@ -55,7 +55,6 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
     'https://res.cloudinary.com/djetoiflq/image/upload/v1760344041/w3_sffb4w.jpg',
     'https://res.cloudinary.com/djetoiflq/image/upload/v1760344041/w5_x856kw.jpg',
     'https://res.cloudinary.com/djetoiflq/image/upload/v1760344041/w4_mcowkb.jpg',
-    'https://res.cloudinary.com/djetoiflq/image/upload/v1760344039/w1_r7l73b.jpg',
   'https://res.cloudinary.com/djetoiflq/image/upload/v1760344040/w10_xm7hdb.jpg',
   'https://res.cloudinary.com/djetoiflq/image/upload/v1760345665/w16_1_atwkdr.jpg',
   'https://res.cloudinary.com/djetoiflq/image/upload/v1760345924/w7_1_khf6sy.jpg',
@@ -65,7 +64,6 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
   'https://res.cloudinary.com/djetoiflq/image/upload/v1760344038/w11_ixc8ry.jpg',
   'https://res.cloudinary.com/djetoiflq/image/upload/v1760345452/w15_1_ymuaam.jpg',
   'https://res.cloudinary.com/djetoiflq/image/upload/v1760345544/w13_1_t0leij.jpg',
-    'https://res.cloudinary.com/djetoiflq/image/upload/v1760344036/w2_rng6mp.jpg',
   ];
   const [wildlifeSelected, setWildlifeSelected] = useState(0);
   const wildlifeStripRef = useRef<HTMLDivElement | null>(null);
@@ -79,7 +77,7 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
     // ensure the selected thumbnail is visible
     const node = stripRef.current?.children[selected] as HTMLElement | undefined;
     if (node && stripRef.current) {
-      node.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      node.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
     }
   }, [selected]);
 
@@ -105,14 +103,14 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
   React.useEffect(() => {
     const node = sufiStripRef.current?.children[sufiSelected] as HTMLElement | undefined;
     if (node && sufiStripRef.current) {
-      node.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      node.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
     }
   }, [sufiSelected]);
 
   React.useEffect(() => {
     const node = wildlifeStripRef.current?.children[wildlifeSelected] as HTMLElement | undefined;
     if (node && wildlifeStripRef.current) {
-      node.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      node.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
     }
   }, [wildlifeSelected]);
 
@@ -209,14 +207,14 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
                   <LazyImage src={gallery[selected]} alt={`Event image ${selected+1}`} className="w-full h-full object-cover" />
                   
                   {/* Left navigation button on main image */}
-                  <button aria-label="Previous image" type="button" onClick={prev} className="absolute top-1/2 -translate-y-1/2 z-20 left-3 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 backdrop-blur-md hover:bg-black/60 hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50">
+                  <button aria-label="Previous image" type="button" onClick={prev} className="absolute top-1/2 -translate-y-1/2 z-20 left-3 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#AE1D36] backdrop-blur-md hover:bg-[#8B1729] hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
                       <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </button>
 
                   {/* Right navigation button on main image */}
-                  <button aria-label="Next image" type="button" onClick={next} className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 backdrop-blur-md hover:bg-black/60 hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50">
+                  <button aria-label="Next image" type="button" onClick={next} className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#AE1D36] backdrop-blur-md hover:bg-[#8B1729] hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
                       <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
@@ -285,14 +283,14 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
             <LazyImage src={sufiGallery[sufiSelected]} alt={`Sufi image ${sufiSelected+1}`} className="w-full h-full object-cover" />
             
             {/* Left navigation button on main image */}
-            <button aria-label="Previous Sufi image" type="button" onClick={() => setSufiSelected((s) => (s - 1 + sufiGallery.length) % sufiGallery.length)} className="absolute top-1/2 -translate-y-1/2 z-20 left-3 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 backdrop-blur-md hover:bg-black/60 hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50">
+            <button aria-label="Previous Sufi image" type="button" onClick={() => setSufiSelected((s) => (s - 1 + sufiGallery.length) % sufiGallery.length)} className="absolute top-1/2 -translate-y-1/2 z-20 left-3 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#AE1D36] backdrop-blur-md hover:bg-[#8B1729] hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
                 <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
 
             {/* Right navigation button on main image */}
-            <button aria-label="Next Sufi image" type="button" onClick={() => setSufiSelected((s) => (s + 1) % sufiGallery.length)} className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 backdrop-blur-md hover:bg-black/60 hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50">
+            <button aria-label="Next Sufi image" type="button" onClick={() => setSufiSelected((s) => (s + 1) % sufiGallery.length)} className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#AE1D36] backdrop-blur-md hover:bg-[#8B1729] hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
                 <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -363,14 +361,14 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
                 <LazyImage src={wildlifeGallery[wildlifeSelected]} alt={`Wildlife image ${wildlifeSelected+1}`} className="w-full h-full object-cover" />
                 
                 {/* Left navigation button */}
-                <button aria-label="Previous wildlife image" type="button" onClick={() => setWildlifeSelected((s) => (s - 1 + wildlifeGallery.length) % wildlifeGallery.length)} className="absolute top-1/2 -translate-y-1/2 z-20 left-3 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 backdrop-blur-md hover:bg-black/60 hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50">
+                <button aria-label="Previous wildlife image" type="button" onClick={() => setWildlifeSelected((s) => (s - 1 + wildlifeGallery.length) % wildlifeGallery.length)} className="absolute top-1/2 -translate-y-1/2 z-20 left-3 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#AE1D36] backdrop-blur-md hover:bg-[#8B1729] hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
                     <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
 
                 {/* Right navigation button */}
-                <button aria-label="Next wildlife image" type="button" onClick={() => setWildlifeSelected((s) => (s + 1) % wildlifeGallery.length)} className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 backdrop-blur-md hover:bg-black/60 hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50">
+                <button aria-label="Next wildlife image" type="button" onClick={() => setWildlifeSelected((s) => (s + 1) % wildlifeGallery.length)} className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#AE1D36] backdrop-blur-md hover:bg-[#8B1729] hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-2 focus:ring-white/50">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
                     <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>

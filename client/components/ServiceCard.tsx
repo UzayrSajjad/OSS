@@ -28,22 +28,26 @@ export default function ServiceCard({ title, desc, icon, image, index }: { title
   const prefersReduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const effectiveInitial = prefersReduced ? 'visible' : initialVariant;
 
-  // Map card titles to their respective section IDs
-  const scrollToSection = () => {
-    let sectionId = '';
-    if (title === 'Events n Entertainment') {
-      sectionId = 'events';
-    } else if (title === 'OSS Puppet Theatre') {
-      sectionId = 'puppet-theatre';
-    } else if (title === 'Marketing') {
-      sectionId = 'marketing';
+  // Map card titles to their respective service pages
+  const openServicePage = () => {
+    let servicePath = '';
+    const titleLower = (title || '').toLowerCase();
+    
+    // Match various title formats for Events
+    if (titleLower.includes('event')) {
+      servicePath = '/services/events';
+    } 
+    // Match various title formats for Puppet Theatre
+    else if (titleLower.includes('puppet')) {
+      servicePath = '/services/oss-puppet-theatre';
+    } 
+    // Match Marketing
+    else if (titleLower.includes('marketing')) {
+      servicePath = '/services/marketing';
     }
     
-    if (sectionId) {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+    if (servicePath) {
+      window.open(servicePath, '_blank');
     }
   };
 
@@ -55,7 +59,7 @@ export default function ServiceCard({ title, desc, icon, image, index }: { title
   viewport={{ once: true, amount: 0.35 }}
     variants={variants}
     whileHover={{ scale: 1.03 }}
-  onClick={scrollToSection}
+  onClick={openServicePage}
   className="group card-hover rounded-3xl overflow-hidden border border-black/20 shadow-[0_30px_80px_rgba(0,0,0,0.55)] transform transition hover:shadow-[0_40px_100px_rgba(0,0,0,0.65)] bg-[#0b0b0b] flex flex-col h-full min-w-0 cursor-pointer"
   >
   <div className="relative h-40 sm:h-52 md:h-64 lg:h-72 w-full bg-[#0f0f10] min-w-0">
