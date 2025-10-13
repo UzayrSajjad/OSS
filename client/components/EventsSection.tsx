@@ -224,12 +224,12 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
                 </div>
               </div>
 
-              <div className="mt-3 py-2 relative">
-                <div ref={stripRef} className="flex overflow-x-auto no-scrollbar py-1 snap-x snap-mandatory bg-black rounded-none mx-0 w-full gap-3 px-0">
+              <div className="mt-3 py-2 relative overflow-hidden">
+                <div ref={stripRef} className="flex overflow-x-auto no-scrollbar py-1 snap-x snap-mandatory bg-black rounded-none mx-0 w-full gap-3 px-0 min-w-0">
                   {gallery.map((g, i) => {
                       const fixedWidth = thumbWidth ?? 160;
                       return (
-                        <button key={g + i} onClick={() => setSelected(i)} aria-label={`Select image ${i+1}`} className={`rounded-md overflow-hidden flex-shrink-0 snap-start border ${i===selected ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none h-16 sm:h-20 md:h-24`} style={{ width: `${fixedWidth}px` }}>
+                        <button key={g + i} onClick={() => setSelected(i)} aria-label={`Select image ${i+1}`} className={`rounded-md overflow-hidden flex-shrink-0 snap-start border ${i===selected ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none h-16 sm:h-20 md:h-24`} style={{ width: `${fixedWidth}px`, minWidth: `${fixedWidth}px`, maxWidth: `${fixedWidth}px` }}>
                           <LazyImage src={g} alt={`thumb-${i+1}`} className="w-full h-full object-cover" />
                         </button>
                       );
@@ -300,12 +300,12 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
           </div>
         </div>
 
-        <div className="mt-3 py-2 relative">
-          <div ref={sufiStripRef} className="flex overflow-x-auto no-scrollbar py-1 snap-x snap-mandatory bg-black rounded-none mx-0 w-full gap-3 px-0">
+        <div className="mt-3 py-2 relative overflow-hidden">
+          <div ref={sufiStripRef} className="flex overflow-x-auto no-scrollbar py-1 snap-x snap-mandatory bg-black rounded-none mx-0 w-full gap-3 px-0 min-w-0">
             {sufiGallery.map((g, i) => {
               const sfFixedWidth = sufiThumbWidth ?? 160;
               return (
-                <button key={g + i} onClick={() => setSufiSelected(i)} aria-label={`Select sufi image ${i+1}`} className={`rounded-md overflow-hidden flex-shrink-0 snap-start border ${i===sufiSelected ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none h-16 sm:h-20 md:h-24`} style={{ width: `${sfFixedWidth}px` }}>
+                <button key={g + i} onClick={() => setSufiSelected(i)} aria-label={`Select sufi image ${i+1}`} className={`rounded-md overflow-hidden flex-shrink-0 snap-start border ${i===sufiSelected ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none h-16 sm:h-20 md:h-24`} style={{ width: `${sfFixedWidth}px`, minWidth: `${sfFixedWidth}px`, maxWidth: `${sfFixedWidth}px` }}>
                   <LazyImage src={g} alt={`sufi-thumb-${i+1}`} className="w-full h-full object-cover" />
                 </button>
               );
@@ -378,12 +378,12 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
               </div>
             </div>
 
-            <div className="mt-3 py-2 relative">
-              <div ref={wildlifeStripRef} className="flex overflow-x-auto no-scrollbar py-1 snap-x snap-mandatory bg-black rounded-none mx-0 w-full gap-3 px-0">
+            <div className="mt-3 py-2 relative overflow-hidden">
+              <div ref={wildlifeStripRef} className="flex overflow-x-auto no-scrollbar py-1 snap-x snap-mandatory bg-black rounded-none mx-0 w-full gap-3 px-0 min-w-0">
                 {wildlifeGallery.map((g, i) => {
                   const wfFixedWidth = wildlifeThumbWidth ?? 160;
                   return (
-                    <button key={g + i} onClick={() => setWildlifeSelected(i)} aria-label={`Select wildlife image ${i+1}`} className={`rounded-md overflow-hidden flex-shrink-0 snap-start border ${i===wildlifeSelected ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none h-16 sm:h-20 md:h-24`} style={{ width: `${wfFixedWidth}px` }}>
+                    <button key={g + i} onClick={() => setWildlifeSelected(i)} aria-label={`Select wildlife image ${i+1}`} className={`rounded-md overflow-hidden flex-shrink-0 snap-start border ${i===wildlifeSelected ? 'ring-2 ring-[hsl(var(--accent))]' : 'border-[hsl(var(--border))]'} focus:outline-none h-16 sm:h-20 md:h-24`} style={{ width: `${wfFixedWidth}px`, minWidth: `${wfFixedWidth}px`, maxWidth: `${wfFixedWidth}px` }}>
                       <LazyImage src={g} alt={`wildlife-thumb-${i+1}`} className="w-full h-full object-cover" />
                     </button>
                   );
