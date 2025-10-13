@@ -51,12 +51,12 @@ export default function EventGallery({ images, large = false }: { images: string
         )}
           {large && (
             <>
-              <button aria-label="Prev image" onClick={prevImage} className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white/6 backdrop-blur-md hover:scale-105 transform transition-shadow transition-transform shadow-md hover:shadow-lg flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-4 focus:ring-[rgba(0,0,0,0.12)]">
+              <button aria-label="Prev image" onClick={prevImage} className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-[#AE1D36] backdrop-blur-md hover:bg-[#8B1729] hover:scale-105 transform transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-4 focus:ring-[rgba(0,0,0,0.12)]">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white sm:w-[18px] sm:h-[18px]">
                   <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
-              <button aria-label="Next image" onClick={nextImage} className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white/6 backdrop-blur-md hover:scale-105 transform transition-shadow transition-transform shadow-md hover:shadow-lg flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-4 focus:ring-[rgba(0,0,0,0.12)]">
+              <button aria-label="Next image" onClick={nextImage} className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-[#AE1D36] backdrop-blur-md hover:bg-[#8B1729] hover:scale-105 transform transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center text-white ring-0 focus:outline-none focus:ring-4 focus:ring-[rgba(0,0,0,0.12)]">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white sm:w-[18px] sm:h-[18px]">
                   <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
