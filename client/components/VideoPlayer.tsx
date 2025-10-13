@@ -1,6 +1,7 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useRef, useId } from 'react';
+import { useVideoPlayer } from '../contexts/VideoPlayerContext';
 
 type PreloadSetting = "auto" | "metadata" | "none";
 
@@ -57,6 +58,10 @@ export default function VideoPlayer({
   className = '',
   style
 }: VideoPlayerProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoId = useId();
+  const { registerVideo, unregisterVideo, playVideo } = useVideoPlayer();
+
   const mergedStyle: React.CSSProperties = {
     width: '100%',
     height: '100%',
@@ -68,8 +73,34 @@ export default function VideoPlayer({
   const effectiveMuted = muted ?? autoPlay;
   const fallbackSrc = src.toLowerCase().endsWith('.mov') ? buildMp4Fallback(src) : null;
 
+  // Register video on mount, unregister on unmount
+  useEffect(() => {
+    if (videoRef.current) {
+      registerVideo(videoId, videoRef.current);
+    }
+    return () => {
+      unregisterVideo(videoId);
+    };
+  }, [videoId, registerVideo, unregisterVideo]);
+
+  // Handle play event to pause other videos
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handlePlay = () => {
+      playVideo(videoId);
+    };
+
+    video.addEventListener('play', handlePlay);
+    return () => {
+      video.removeEventListener('play', handlePlay);
+    };
+  }, [videoId, playVideo]);
+
   return (
     <video
+      ref={videoRef}
       className={className}
       poster={poster}
       autoPlay={autoPlay}

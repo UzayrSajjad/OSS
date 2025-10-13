@@ -9,6 +9,7 @@ import ScrollProgress from "./ScrollProgress";
 import WhatsAppButton from "./WhatsAppButton";
 import CustomCursor from "./CustomCursor";
 import Preloader from "./Preloader";
+import { VideoPlayerProvider } from "../contexts/VideoPlayerContext";
 
 export function ClientProviders({
   children,
@@ -20,16 +21,18 @@ export function ClientProviders({
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Preloader />
-        <Toaster />
-        <Sonner />
-        {children}
-        <CustomCursor />
-        <ScrollProgress />
-        <WhatsAppButton 
-          phoneNumber="923008468758" 
-          message="Hello! I'd like to know more about your services." 
-        />
+        <VideoPlayerProvider>
+          <Preloader />
+          <Toaster />
+          <Sonner />
+          {children}
+          <CustomCursor />
+          <ScrollProgress />
+          <WhatsAppButton 
+            phoneNumber="923008468758" 
+            message="Hello! I'd like to know more about your services." 
+          />
+        </VideoPlayerProvider>
       </TooltipProvider>
     </QueryClientProvider>
   );
