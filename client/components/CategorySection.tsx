@@ -593,7 +593,7 @@ export default function CategorySection({ title, items, isLanding = false, secti
               className="relative"
             >
               <OverlayVideo
-                containerClassName="w-full aspect-video rounded-xl overflow-hidden shadow-lg"
+                containerClassName="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px]"
                 src="https://res.cloudinary.com/djetoiflq/video/upload/v1759002936/Discover_Pakistan_pce1so.mov"
                 poster="https://res.cloudinary.com/djetoiflq/image/upload/v1759003023/disocver_pak_jfe4lj.png"
                 posterAlt="Discover Pakistan feature thumbnail"
