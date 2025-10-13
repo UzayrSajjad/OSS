@@ -132,7 +132,7 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
         {/* Embedded YouTube video below heading */}
         <div className="mt-8">
           <div className="max-w-5xl mx-auto">
-            <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-3xl sm:text-4xl md:text-5xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-4 max-w-5xl tracking-wider uppercase">CORPORATE DINNER — BRITISH HIGH COMMISSION</motion.h3>
+            <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-4 max-w-5xl tracking-wider uppercase">CORPORATE DINNER — BRITISH HIGH COMMISSION</motion.h3>
             <motion.div
               initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -209,7 +209,7 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
 
   {/* Below gallery: show 3 event cards */}
 
-  <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-48 text-3xl sm:text-4xl md:text-5xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-8 max-w-5xl mx-auto tracking-wider uppercase">SUFI NIGHT AT THE HISTORIC CHOWK MASJID WAZIR KHAN</motion.h3>
+  <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-48 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-8 max-w-5xl mx-auto tracking-wider uppercase">SUFI NIGHT AT THE HISTORIC CHOWK MASJID WAZIR KHAN</motion.h3>
   <div className="mt-8">
     <div className="max-w-5xl mx-auto">
       <motion.div
@@ -288,7 +288,7 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
 
       {/* Exclusive HUM TV coverage block (moved above cards) */}
       <div className="mt-12 max-w-5xl mx-auto px-4 sm:px-6">
-  <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-3xl sm:text-4xl md:text-5xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-6 tracking-wider uppercase">EXCLUSIVE COVERAGE BY HUM NEWS</motion.h3>
+  <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-6 tracking-wider uppercase">EXCLUSIVE COVERAGE BY HUM NEWS</motion.h3>
         <motion.div
           initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -307,7 +307,7 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
       </div>
 
   <div className="mt-10"></div>
-  <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-3xl sm:text-4xl md:text-5xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-6 tracking-wider uppercase">EXPLORE MORE EVENTS</motion.h3>
+  <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-6 tracking-wider uppercase">EXPLORE MORE EVENTS</motion.h3>
   <div className="mt-6" />
   <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
   {items.map((it, idx) => {

@@ -181,7 +181,7 @@ export default function CategorySection({ title, items, isLanding = false, secti
               whileInView={{ opacity: 1, y: 0 }} 
               viewport={{ once: true, amount: 0.4 }} 
               transition={{ duration: 0.6 }} 
-              className="mt-16 text-3xl sm:text-4xl md:text-5xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-6 max-w-5xl mx-auto tracking-wider uppercase"
+              className="mt-16 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-6 max-w-5xl mx-auto tracking-wider uppercase"
             >
               🎉 Kids Kampus 50th Anniversary Celebration @ Polo Ground
             </motion.h3>
@@ -205,7 +205,7 @@ export default function CategorySection({ title, items, isLanding = false, secti
               whileInView={{ opacity: 1, y: 0 }} 
               viewport={{ once: true, amount: 0.4 }} 
               transition={{ duration: 0.6 }} 
-              className="mt-32 text-3xl sm:text-4xl md:text-5xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-8 max-w-5xl mx-auto tracking-wider uppercase"
+              className="mt-32 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-8 max-w-5xl mx-auto tracking-wider uppercase"
             >
               🎭 Puppet Show at LACAS
             </motion.h3>
@@ -333,7 +333,7 @@ export default function CategorySection({ title, items, isLanding = false, secti
               whileInView={{ opacity: 1, y: 0 }} 
               viewport={{ once: true, amount: 0.4 }} 
               transition={{ duration: 0.6 }} 
-              className="mt-32 text-3xl sm:text-4xl md:text-5xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-8 max-w-5xl mx-auto tracking-wider uppercase"
+              className="mt-32 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-8 max-w-5xl mx-auto tracking-wider uppercase"
             >
               🎡 Mid City Housing Family Fest
             </motion.h3>
@@ -521,7 +521,7 @@ export default function CategorySection({ title, items, isLanding = false, secti
 
         {title === 'OSS Puppet Theatre' && isLanding ? (
           <div className="mt-20 max-w-5xl mx-auto px-4 sm:px-6">
-            <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-3xl sm:text-4xl md:text-5xl font-[Outfit] font-extrabold text-center mx-auto max-w-4xl mb-6 text-[#AE1D36] uppercase tracking-wider">FEATURED BY DISCOVER PAKISTAN</motion.h3>
+            <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center mx-auto max-w-4xl mb-6 text-[#AE1D36] uppercase tracking-wider">FEATURED BY DISCOVER PAKISTAN</motion.h3>
             <motion.div
               initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}

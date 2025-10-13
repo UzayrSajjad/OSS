@@ -97,7 +97,7 @@ export default function Hero() {
 					initial={{ opacity: 0, y: 30 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.8, delay: 0.2 }}
-					className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight"
+					className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight orbitron-ui"
 				>
 					We craft{" "}
 					<span className="text-[hsl(var(--accent))]">unforgettable</span> moments
@@ -108,7 +108,7 @@ export default function Hero() {
 					initial={{ opacity: 0, y: 30 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.8, delay: 0.4 }}
-					className="mt-5 text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed"
+					className="mt-5 text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed orbitron-ui"
 				>
 					Premium 360° solutions and services provider in Events, Marketing, and Puppetry, with over 25 years of experience across
 				</motion.p>
@@ -118,9 +118,9 @@ export default function Hero() {
 					initial={{ opacity: 0, y: 30 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.8, delay: 0.6 }}
-					className="mt-7 flex flex-col items-center gap-2 text-center"
+					className="mt-7 flex flex-col items-center gap-2 text-center orbitron-ui"
 				>
-					<div className="text-lg sm:text-xl md:text-2xl font-semibold text-white/95">
+					<div className="text-lg sm:text-xl md:text-2xl font-semibold text-white/95 orbitron-ui">
 						USA <span className="mx-3 text-gray-400">—</span> QATAR <span className="mx-3 text-gray-400">—</span> PAKISTAN
 					</div>
 				</motion.div>
@@ -134,13 +134,13 @@ export default function Hero() {
 				>
 					<a
 						href="#services"
-						className="w-full sm:w-auto bg-[hsl(var(--accent))] text-white px-7 py-3.5 rounded-xl font-semibold text-base shadow-lg hover:bg-[hsl(var(--accent))]/90 hover:scale-105 transition-all duration-300"
+						className="w-full sm:w-auto bg-[hsl(var(--accent))] text-white px-7 py-3.5 rounded-xl font-semibold text-base shadow-lg hover:bg-[hsl(var(--accent))]/90 hover:scale-105 transition-all duration-300 orbitron-ui"
 					>
 						Explore Services
 					</a>
 					<a
 						href="#works"
-						className="w-full sm:w-auto bg-[hsl(var(--muted-gray))] text-white px-7 py-3.5 rounded-xl font-semibold text-base shadow-lg hover:bg-[hsl(var(--muted-gray))]/85 transition-all duration-300"
+						className="w-full sm:w-auto bg-[hsl(var(--muted-gray))] text-white px-7 py-3.5 rounded-xl font-semibold text-base shadow-lg hover:bg-[hsl(var(--muted-gray))]/85 transition-all duration-300 orbitron-ui"
 					>
 						Our Portfolio
 					</a>
@@ -155,7 +155,7 @@ export default function Hero() {
 				className="absolute bottom-12 sm:bottom-8 md:bottom-6 left-1/2 transform -translate-x-1/2 z-10"
 			>
 				<div className="flex flex-col items-center gap-2">
-					<span className="text-white/70 text-xs uppercase tracking-wider font-medium">
+					<span className="text-white/70 text-xs uppercase tracking-wider font-medium orbitron-ui">
 						Scroll to explore
 					</span>
 					<motion.div
