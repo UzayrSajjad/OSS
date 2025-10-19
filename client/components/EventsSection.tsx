@@ -240,8 +240,9 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
 
   {/* Below gallery: show 3 event cards */}
 
-  <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-48 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-8 max-w-5xl mx-auto tracking-wider uppercase">REVIVAL OF THE SUFI MUSIC AT MASJID WAZIR KHAN, LAHORE</motion.h3>
-  <motion.p initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.5 }} className="text-center text-sm sm:text-base text-[hsl(var(--muted-gray))] mb-6 max-w-3xl mx-auto">In collaboration with Walled City Lahore Authority (WCLA) and OSS</motion.p>
+  <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-48 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-8 max-w-5xl mx-auto tracking-wider uppercase">REVIVAL OF THE SUFI MUSIC</motion.h3>
+  <motion.p initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.5 }} className="text-center text-sm sm:text-base text-[hsl(var(--muted-gray))] mb-2 max-w-3xl mx-auto">A collaboration between OSS and Walled City Lahore Authority</motion.p>
+  <motion.p initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.5 }} className="text-center text-sm sm:text-base text-[hsl(var(--muted-gray))] mb-6 max-w-3xl mx-auto">Masjid Wazir Khan over 400 years old venue</motion.p>
   <div className="mt-8">
     <div className="max-w-5xl mx-auto">
       <motion.div

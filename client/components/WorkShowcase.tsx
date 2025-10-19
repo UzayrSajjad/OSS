@@ -106,8 +106,8 @@ const works = [
   },
   {
     id: 'sufi-night-wazir-khan',
-    title: 'REVIVAL OF THE SUFI MUSIC AT MASJID WAZIR KHAN, LAHORE',
-    description: 'A revival of Sufi music at Masjid Wazir Khan, Lahore, blending timeless spiritual heritage with cultural grandeur.',
+    title: 'REVIVAL OF THE SUFI MUSIC',
+    description: 'A collaboration between OSS and Walled City Lahore Authority\nMasjid Wazir Khan over 400 years old venue',
     image: 'https://res.cloudinary.com/djetoiflq/image/upload/v1758972707/sm1_zvjayu.png',
     images: [
       'https://res.cloudinary.com/djetoiflq/image/upload/v1758972707/sm1_zvjayu.png',
