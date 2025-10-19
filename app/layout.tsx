@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ClientProviders } from "../client/components/ClientProviders";
 
 export const metadata = {
-  title: 'OSS - One Stop Solutions',
+  title: 'OSS - OneStop Solutions',
   description: 'Premium events, theatrical entertainment and high-impact marketing — all under one roof.',
   icons: {
     icon: '/web-logo/tab-logo-modified.png',
