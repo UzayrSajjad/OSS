@@ -11,6 +11,7 @@ import EventsSection from '../client/components/EventsSection';
 import CategorySection from '../client/components/CategorySection';
 import ContactForm from '../client/components/ContactForm';
 import StatsSection from '../client/components/StatsSection';
+import CEOSection from '../client/components/CEOSection';
 import Footer from '../client/components/Footer';
 
 import { events, entertainment, marketing, services } from '../client/data/services';
@@ -98,9 +99,11 @@ export default function HomePage(){
           </div>
         </section>
 
-        <StatsSection />
+  <StatsSection />
 
-        <ContactForm />
+  <CEOSection />
+
+  <ContactForm />
 
         <Footer />
       </main>
