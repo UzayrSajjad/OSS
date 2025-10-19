@@ -198,7 +198,7 @@ export const services = [
     icon: '📣'
   },
   {
-    title: 'PUPPET THEATRE',
+    title: 'PUPPETRY',
   desc: 'Bringing stories to life with captivating performances and immersive experiences that inspire and delight audiences of all ages.',
   image: 'https://res.cloudinary.com/djetoiflq/image/upload/v1759606959/4_ugpaaf.jpg',
     icon: '🎭'

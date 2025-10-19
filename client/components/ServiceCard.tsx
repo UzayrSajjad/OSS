@@ -12,6 +12,7 @@ export default function ServiceCard({ title, desc, icon, image, index }: { title
     'marketing',
     'oss puppet theatre',
     'puppet theatre',
+    'puppetry',
   ]);
   const titleColorClass = accentTitles.has((title || '').toLowerCase()) ? 'text-[hsl(var(--accent))]' : 'text-[#545555]';
   // determine animation direction by index: 0 -> left, 1 -> bottom, 2 -> right (then repeat)
