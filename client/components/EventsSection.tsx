@@ -395,7 +395,7 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
 
   {/* Faletti's Grand Gulberg Launching Ceremony */}
   <div className="mt-12 max-w-5xl mx-auto px-4 sm:px-6">
-    <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-6 tracking-wider uppercase">FALETTI'S GRAND GULBERG LAUNCHING CEREMONY</motion.h3>
+  <motion.h3 initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6 }} className="mt-32 text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-6 tracking-wider uppercase">EXCLUSIVE PERFORMACE FOR CITY SCHOOL GUEST @ FLATTIES GRAND HOTEL GULBERG</motion.h3>
     <motion.div
       initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -407,8 +407,8 @@ export default function EventsSection({ items, smallHeadings = false }: { items:
         containerClassName="w-full aspect-video rounded-xl overflow-hidden shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[340px] lg:min-h-[400px]"
         src="https://res.cloudinary.com/djetoiflq/video/upload/v1760367228/Faletti_s_Grand_Gulberg_Launching_hxi8tn.mp4"
         poster="https://res.cloudinary.com/djetoiflq/image/upload/v1760367989/flc_1_dsbrlv.jpg"
-        posterAlt="Faletti's Grand Gulberg Launching Ceremony thumbnail"
-        buttonAriaLabel="Play Faletti's Grand Gulberg Launching Ceremony video"
+  posterAlt="Exclusive Performance for City School guest @ Flatties Grand Hotel Gulberg thumbnail"
+  buttonAriaLabel="Play Exclusive Performance for City School guest @ Flatties Grand Hotel Gulberg video"
       />
     </motion.div>
   </div>
