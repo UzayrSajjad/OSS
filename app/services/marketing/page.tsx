@@ -37,7 +37,7 @@ export default function MarketingPage(){
               transition={{ duration: 0.6 }} 
               className="text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-8 max-w-5xl mx-auto tracking-wider uppercase"
             >
-              360 Degree Solutions and Services by OSS @ Solar Exhibition 2025 Expo Center Lahore
+              Solar Exhibition 2025 Expo Center Lahore
             </motion.h3>
 
             {/* Two Column Layout: 70% Text, 30% Video */}

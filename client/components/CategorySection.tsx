@@ -189,8 +189,8 @@ export default function CategorySection({ title, items, isLanding = false, secti
               🎉 Kids Kampus 50th Anniversary @ Polo Ground
             </motion.h3>
             <div className="prose max-w-none text-[hsl(var(--muted-gray))] mx-auto mb-8 max-w-4xl">
-              <p className="text-lg sm:text-xl leading-relaxed text-center">OSS proudly organized the 50th Anniversary Celebration of Kids Kampus at the iconic Polo Ground, marking five decades of learning and joy. The event featured colorful performances, engaging activities, and a lively atmosphere that brought together students, parents, and teachers in celebration of the school's remarkable journey.</p>
-              <p className="text-lg sm:text-xl leading-relaxed text-center mt-4">From concept to execution, OSS ensured a seamless, vibrant, and memorable experience — honoring Kids Kampus's legacy with creativity and excellence.</p>
+              <p className="text-lg sm:text-xl leading-relaxed text-center">OSS was proud to be a part of the 50th Anniversary Celebration of Kids Kampus at the iconic Polo Ground, marking five decades of learning and joy. The event featured colorful performances, engaging activities, and a lively atmosphere that brought together students, parents, and teachers in celebration of the school's remarkable journey.</p>
+              <p className="text-lg sm:text-xl leading-relaxed text-center mt-4">From concept to execution, OSS contributed to creating a seamless, vibrant, and memorable experience — honoring Kids Kampus’s legacy with creativity and excellence.</p>
             </div>
             <div className="max-w-5xl mx-auto">
               <OverlayVideo
@@ -517,7 +517,7 @@ export default function CategorySection({ title, items, isLanding = false, secti
               transition={{ duration: 0.6 }} 
               className="text-2xl sm:text-3xl md:text-4xl font-[Outfit] font-extrabold text-center text-[#AE1D36] mb-8 max-w-5xl mx-auto tracking-wider uppercase"
             >
-              360 Degree Solutions and Services by OSS @ Solar Exhibition 2025 Expo Center Lahore
+              Solar Exhibition 2025 Expo Center Lahore
             </motion.h3>
 
             {/* Two Column Layout: 70% Text, 30% Video */}
