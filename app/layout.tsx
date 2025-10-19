@@ -7,10 +7,21 @@ import { ClientProviders } from "../client/components/ClientProviders";
 
 export const metadata = {
   title: 'OSS - OneStop Solutions',
+  applicationName: 'OneStop Solutions',
   description: 'Premium events, theatrical entertainment and high-impact marketing — all under one roof.',
   icons: {
     icon: '/web-logo/tab-logo-modified.png',
     apple: '/web-logo/tab-logo-modified.png',
+  },
+  openGraph: {
+    title: 'OneStop Solutions',
+    description: 'Premium events, theatrical entertainment and high-impact marketing — all under one roof.',
+    images: ['/web-logo/tab-logo-modified.png'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'OneStop Solutions',
+    images: ['/web-logo/tab-logo-modified.png'],
   },
 };
 

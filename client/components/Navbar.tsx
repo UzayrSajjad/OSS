@@ -52,7 +52,7 @@ export default function Navbar() {
           >
             <img 
               src="https://res.cloudinary.com/djetoiflq/image/upload/v1759552918/oss-logo_veijqu.png" 
-              alt="One Stop Solutions - Premium Events & Entertainment"
+              alt="OneStop Solutions - Premium Events & Entertainment"
               className="h-10 xs:h-11 sm:h-12 md:h-14 lg:h-16 xl:h-16 w-auto object-contain transition-all duration-200 max-w-[120px] sm:max-w-[150px] md:max-w-[180px] lg:max-w-[200px]" 
               loading="eager"
               decoding="async"

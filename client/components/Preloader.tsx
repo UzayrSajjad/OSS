@@ -62,7 +62,7 @@ export default function Preloader() {
             >
               <img 
                 src="https://res.cloudinary.com/djetoiflq/image/upload/v1759552918/oss-logo_veijqu.png" 
-                alt="One Stop Solutions" 
+                alt="OneStop Solutions" 
                 className="h-20 sm:h-24 md:h-28 w-auto"
               />
             </motion.div>

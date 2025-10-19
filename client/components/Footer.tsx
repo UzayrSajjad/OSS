@@ -11,7 +11,7 @@ export default function Footer(){
           <div className="lg:col-span-2">
             <img 
               src="https://res.cloudinary.com/djetoiflq/image/upload/v1759552918/oss-logo_veijqu.png" 
-              alt="One Stop Solutions" 
+              alt="OneStop Solutions" 
               className="h-20 md:h-24 w-auto mb-6" 
             />
             <p className="text-gray-600 text-sm leading-relaxed max-w-md mb-6 orbitron-ui">
@@ -129,7 +129,7 @@ export default function Footer(){
         {/* Bottom Bar */}
           <div className="mt-12 pt-6 border-t border-gray-200">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600 orbitron-ui">
-            <p>&copy; 2025 One Stop Solutions. All rights reserved.</p>
+            <p>&copy; 2025 OneStop Solutions. All rights reserved.</p>
             <div className="flex gap-6">
               <a href="/privacy" className="hover:text-[hsl(var(--accent))] transition-colors orbitron-ui">
                 Privacy Policy
