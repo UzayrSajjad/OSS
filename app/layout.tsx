@@ -34,6 +34,18 @@ export default function RootLayout({
     <html lang="en" className="overflow-x-hidden">
       <body className="overflow-x-hidden w-full">
         <ClientProviders>
+          {/* JSON-LD Organization schema to help search engines pick correct site name & logo */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "OneStop Solutions",
+              "url": "https://ossolutions.pk",
+              "logo": "https://ossolutions.pk/web-logo/tab-logo-modified.png"
+            }) }}
+          />
+
           {children}
         </ClientProviders>
       </body>
