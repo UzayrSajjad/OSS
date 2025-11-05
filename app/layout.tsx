@@ -32,6 +32,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="overflow-x-hidden">
+       <head>
+        {/* Google Search Console Verification - Replace with your actual verification code */}
+        <meta name="google-site-verification" content="vULB0Jw0tgCBVIjHRgcQIVkBLytR1Y1r-qJ2u1J2GNg" />
+      </head>
       <body className="overflow-x-hidden w-full">
         <ClientProviders>
           {/* JSON-LD Organization schema to help search engines pick correct site name & logo */}
