@@ -9,6 +9,7 @@ export const metadata = {
   title: 'OSS - OneStop Solutions',
   applicationName: 'OneStop Solutions',
   description: 'Premium events, theatrical entertainment and high-impact marketing — all under one roof.',
+  metadataBase: new URL('https://ossolutions.pk'),
   icons: {
     icon: '/web-logo/tab-logo-modified.png',
     apple: '/web-logo/tab-logo-modified.png',
